@@ -1,0 +1,51 @@
+package com.tresleches.aadp.activity;
+
+import android.app.ActionBar;
+import android.app.ActionBar.Tab;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
+
+import com.tresleches.aadp.R;
+import com.tresleches.aadp.fragment.StoryFragment;
+import com.tresleches.aadp.listener.FragmentTabListener;
+
+public class HomeActivity extends FragmentActivity {
+
+
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_home);
+		getActionBar().setBackgroundDrawable(new ColorDrawable(Color.rgb(80, 165, 230)));
+		setupTabs();
+
+	}
+	
+	private void setupTabs() {
+		ActionBar actionBar = getActionBar();
+		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
+		
+		actionBar.setDisplayShowTitleEnabled(true);
+
+		Tab tab1 = actionBar
+			.newTab()
+			.setText("Event")
+//			.setIcon(R.drawable.reply_hover)
+			.setTag("HomeTimelineFragment")
+			.setTabListener(new FragmentTabListener<StoryFragment>(R.id.flContainer, this, "EventFragment",StoryFragment.class));
+
+		actionBar.addTab(tab1);
+		actionBar.selectTab(tab1);
+
+		Tab tab2 = actionBar
+			.newTab()
+			.setText("Stories")
+//			.setIcon(R.drawable.retweet_on)
+			.setTag("StoryFragment")
+			.setTabListener(new FragmentTabListener<StoryFragment>(R.id.flContainer, this, "StoryFragment",StoryFragment.class));
+
+		actionBar.addTab(tab2);
+	}	
+}
