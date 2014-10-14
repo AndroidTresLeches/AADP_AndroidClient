@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- the theme applied to the application or activity -->
+    <style name="CustomActionBarTheme" parent="@style/Theme.AppCompat.Light">
+        <item name="android:actionBarStyle">@style/BaseTheme.ActionBar</item>
+        <item name="android:actionBarWidgetTheme">@style/BaseTheme.ActionBar.Widget</item>
+        <item name="android:actionBarTabBarStyle">@style/BaseTheme.ActionBar.TabBar</item>
+        <item name="android:actionBarTabStyle">@style/BaseTheme.ActionBar.TabView</item>
+        <item name="android:actionBarTabTextStyle">@style/BaseTheme.ActionBar.TabText</item>
+    </style>
+
+    <!-- ActionBar styles -->
+    <style name="BaseTheme.ActionBar" parent="@style/Widget.AppCompat.Light.ActionBar.Solid.Inverse">
+        <item name="android:background">@color/actionBarBackground</item>
+    </style>
+
+    <style name="BaseTheme.ActionBar.Widget" parent="@style/Theme.Base.AppCompat.Light">
+        <item name="android:popupMenuStyle">@android:style/Widget.Holo.Light.PopupMenu</item>
+        <item name="android:dropDownListViewStyle">@android:style/Widget.Holo.Light.ListView.DropDown</item>
+    </style>
+
+    <style name="BaseTheme.ActionBar.TabBar" parent="android:style/Widget.Holo.Light.ActionBar.TabBar">
+        <item name="android:background">@color/menuBackground</item>
+    </style>
+
+    <style name="BaseTheme.ActionBar.TabView" parent="android:style/Widget.Holo.ActionBar.TabView">
+        <item name="android:background">@drawable/tab_bar_background</item>
+    </style>
+
+    <style name="BaseTheme.ActionBar.TabText" parent="android:style/Widget.Holo.ActionBar.TabText">
+        <item name="android:textColor">@color/actionBarBackground</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textStyle">normal</item>
+    </style>
+</resources>
