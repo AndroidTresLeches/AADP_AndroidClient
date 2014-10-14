@@ -50,8 +50,6 @@ public class EventDetailActivity extends Activity {
 			 public void done(Event eventObj, ParseException e) {
 				    if (e == null) {
 				    	event = eventObj;
-				    	System.out.println("^^^^^" +event.get("eventName"));
-				    	System.out.println("YAYYYYYYYY");
 				    	tvEventName.setText(event.get("eventName").toString());
 				    	tvCoordinatorName.setText(event.get("coordinateName").toString());
 				    	tvPublishedDate.setText(event.get("publishedDate").toString());
