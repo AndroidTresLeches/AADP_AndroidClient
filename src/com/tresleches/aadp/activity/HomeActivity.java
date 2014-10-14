@@ -5,13 +5,15 @@ import android.app.ActionBar.Tab;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
+import android.support.v7.app.ActionBarActivity;
 
 import com.tresleches.aadp.R;
+import com.tresleches.aadp.fragment.DonorFragment;
+import com.tresleches.aadp.fragment.EventFragment;
 import com.tresleches.aadp.fragment.StoryFragment;
 import com.tresleches.aadp.listener.FragmentTabListener;
 
-public class HomeActivity extends FragmentActivity {
+public class HomeActivity extends ActionBarActivity  {
 
 
 	@Override
@@ -32,9 +34,8 @@ public class HomeActivity extends FragmentActivity {
 		Tab tab1 = actionBar
 			.newTab()
 			.setText("Event")
-//			.setIcon(R.drawable.reply_hover)
-			.setTag("HomeTimelineFragment")
-			.setTabListener(new FragmentTabListener<StoryFragment>(R.id.flContainer, this, "EventFragment",StoryFragment.class));
+			.setTag("EventFragment")
+			.setTabListener(new FragmentTabListener<EventFragment>(R.id.flContainer, this, "EventFragment", EventFragment.class));
 
 		actionBar.addTab(tab1);
 		actionBar.selectTab(tab1);
@@ -42,10 +43,17 @@ public class HomeActivity extends FragmentActivity {
 		Tab tab2 = actionBar
 			.newTab()
 			.setText("Stories")
-//			.setIcon(R.drawable.retweet_on)
 			.setTag("StoryFragment")
 			.setTabListener(new FragmentTabListener<StoryFragment>(R.id.flContainer, this, "StoryFragment",StoryFragment.class));
 
 		actionBar.addTab(tab2);
+		
+		Tab tab3 = actionBar
+				.newTab()
+				.setText("Be a donor")
+				.setTag("DonorFragment")
+				.setTabListener(new FragmentTabListener<DonorFragment>(R.id.flContainer, this, "DonorFragment", DonorFragment.class));
+
+		actionBar.addTab(tab3);
 	}	
 }
