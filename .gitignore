@@ -62,3 +62,4 @@ local.properties
 
 # PDT-specific
 .buildpath
+AADP_AndroidClient/res/values/app_config.xml
