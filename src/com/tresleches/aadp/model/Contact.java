@@ -16,109 +16,88 @@ import com.tresleches.aadp.helper.Utils;
 
 @ParseClassName("Contact")
 public class Contact extends ParseObject {
+	private static final String LAST_NAME = "lastName";
+	private static final String FIRST_NAME = "firstName";
+	private static final String MIDDLE_NAME = "middleName";
+	private static final String PRIMARY_PHONE = "primaryPhone";
+	private static final String SECONDARY_PHONE = "secondaryPhone";
+	private static final String EMAIL = "email";
+	private static final String PROFILE_IMAGE = "profileImage";
 
 	public Contact() {
 		super();
 	}
 
-	public Contact(String _lastName, String _firstName, String _middleName,
-			String _primaryPhone, String _secondaryPhone, String _email,
-			String _profileImagePath) {
-		setFirstName(_firstName);
-		setLastName(_lastName);
-		setMiddleName(_middleName);
-		setPrimaryPhone(_primaryPhone);
-		setSecondaryPhone(_secondaryPhone);
-		setEmail(_email);
+	public Contact(String lastName, String firstName, String middleName,
+			String primaryPhone, String secondaryPhone, String email,
+			String profileImagePath) {
 
-		if (_profileImagePath != null) {
+		setFirstName(firstName);
+		setLastName(lastName);
+		setMiddleName(middleName);
+		setPrimaryPhone(primaryPhone);
+		setSecondaryPhone(secondaryPhone);
+		setEmail(email);
+
+		if (profileImagePath != null) {
 
 		}
 	}
 
 	public String getLastName() {
-		return getString("lastName");
+		return getString(LAST_NAME);
 	}
 
 	public void setLastName(String value) {
-		put("lastName", value);
+		put(LAST_NAME, value);
 	}
 
 	public String getFirstName() {
-		return getString("firstName");
+		return getString(FIRST_NAME);
 	}
 
 	public void setFirstName(String value) {
-		put("firstName", value);
+		put(LAST_NAME, value);
 	}
 
 	public String getMiddleName() {
-		return getString("middleName");
+		return getString(MIDDLE_NAME);
 	}
 
 	public void setMiddleName(String value) {
-		put("middleName", value);
+		put(MIDDLE_NAME, value);
 	}
 
 	public String getPrimaryPhone() {
-		return getString("primaryPhone");
+		return getString(PRIMARY_PHONE);
 	}
 
 	public void setPrimaryPhone(String value) {
-		put("primaryPhone", value);
+		put(PRIMARY_PHONE, value);
 	}
 
 	public String getSecondaryPhone() {
-		return getString("secondaryPhone");
+		return getString(SECONDARY_PHONE);
 	}
 
 	public void setSecondaryPhone(String value) {
-		put("secondayPhone", value);
+		put(SECONDARY_PHONE, value);
 	}
 
 	public String getEmail() {
-		return getString("email");
+		return getString(EMAIL);
 	}
 
 	public void setEmail(String value) {
-		put("email", value);
+		put(EMAIL, value);
 	}
 
 	public ParseFile getProfileImage() {
-		return getParseFile("profileImage");
+		return getParseFile(PROFILE_IMAGE);
 	}
 
 	public void setProfileImage(ParseFile file) {
-		put("profileImage", file);
+		put(PROFILE_IMAGE, file);
 	}
 
-	public static void updateAvatarForCoordinator(String objId, String imagePath) {
-		if (imagePath == null)
-			return;
-		
-		File imgFile = new File(imagePath);
-		boolean fileExists = imgFile.exists();
-		String pp = imgFile.getAbsolutePath();
-		if (fileExists == false)
-			return;
-
-		Bitmap bitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
-		final ParseFile pImgFile = new ParseFile("avatar.jpg",
-				Utils.CompressConvertBitmapTobyteArray(bitmap,
-						Bitmap.CompressFormat.JPEG));
-
-		ParseQuery<Contact> query = ParseQuery.getQuery(Contact.class);
-
-		query.getInBackground(objId, new GetCallback<Contact>() {
-			public void done(Contact item, ParseException e) {
-				if (e == null) {
-					item.setProfileImage(pImgFile);
-					item.saveInBackground();
-
-				} else {
-					Log.d("ERROR", e.toString());
-				}
-			}
-		});
-	}
 }

@@ -2,6 +2,6 @@
 <resources>
     <color name="menuBackground">#FFFFFF</color>
     <color name="menuText">#000000</color>
-    <color name="tabindicator">#BBDDF5</color>
-    <color name="actionBarBackground">#55ACEE</color>
+    <color name="tabindicator">#C9ADD1</color>
+    <color name="actionBarBackground">#885492</color>
 </resources>

@@ -4,15 +4,10 @@
     tools:context="com.tresleches.aadp.HomeActivity" >
 
     <item
-        android:id="@+id/action_coordinator"
+        android:id="@+id/action_search"
         android:orderInCategory="90"
-        app:showAsAction="never"
-        android:title="@string/action_coordinator"/>
+        app:showAsAction="always"
+        android:title="@string/action_search"
+        android:icon="@drawable/ic_action_search"/>
     
-    <item
-        android:id="@+id/action_settings"
-        android:orderInCategory="100"
-        app:showAsAction="never"
-        android:title="@string/action_settings"/>
-
 </menu>
