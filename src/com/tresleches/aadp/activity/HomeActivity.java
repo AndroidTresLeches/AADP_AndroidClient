@@ -2,14 +2,12 @@ package com.tresleches.aadp.activity;
 
 import android.app.ActionBar;
 import android.app.ActionBar.Tab;
-import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
+
+
 
 import com.tresleches.aadp.R;
 import com.tresleches.aadp.fragment.DonorFragment;
@@ -18,7 +16,7 @@ import com.tresleches.aadp.fragment.StoryFragment;
 import com.tresleches.aadp.listener.FragmentTabListener;
 
 public class HomeActivity extends ActionBarActivity  {
-	private final int CONTACT_REQUEST = 100;
+
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -59,27 +57,5 @@ public class HomeActivity extends ActionBarActivity  {
 				.setTabListener(new FragmentTabListener<DonorFragment>(R.id.flContainer, this, "DonorFragment", DonorFragment.class));
 
 		actionBar.addTab(tab3);
-	}	
-	
-	
-	
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		MenuInflater inflater = getMenuInflater();
-		inflater.inflate(R.menu.menu_main, menu);
-		return true;
 	}
-
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		int id = item.getItemId();
-		
-		if (id == R.id.action_coordinator) {
-			Intent it = new Intent(this, SearchResultActivity.class);
-			startActivityForResult(it, CONTACT_REQUEST);
-			return true;
-		} 
-		return true; 
-	}
-
 }

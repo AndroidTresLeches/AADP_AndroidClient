@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" 
+    android:id="@+id/rlEventListItem"
+    android:padding="5dp">
+
+    <ImageView
+        android:id="@+id/ivStoryImage"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:src="@drawable/ic_launcher" />
+
+    <TextView
+        android:id="@+id/tvStoryName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/ivStoryImage"
+        android:layout_marginLeft="10dp"
+        android:text="Name" 
+        android:layout_toRightOf="@+id/ivStoryImage"
+     />
+
+    <TextView
+        android:id="@+id/tvStoryDetail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/tvStoryName"
+        android:layout_below="@+id/tvStoryName"
+        android:text="Story Details" 
+        android:lines="3"
+        android:ellipsize="end" />
+
+</RelativeLayout>
