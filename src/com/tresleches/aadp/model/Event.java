@@ -1,11 +1,19 @@
 package com.tresleches.aadp.model;
 
+import java.io.Serializable;
+import java.util.Date;
+
 import com.parse.ParseClassName;
 import com.parse.ParseObject;
 
 
 @ParseClassName("Event")
-public class Event extends ParseObject {
+public class Event extends ParseObject implements Serializable{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -6250367417003825618L;
 
 	public String getEventId() {
 		return getString("eventId");
@@ -15,12 +23,20 @@ public class Event extends ParseObject {
 		return getString("eventName");
 	}
 
-	public String getEventDate() {
-		return getString("eventDate");
+	public Date getEventDate() {
+		return getDate("eventDate");
 	}
 
-	public String getEventTime() {
-		return getString("eventTime");
+	public Date getEventTime() {
+		return getDate("eventTime");
+	}
+	
+	public Date getPublishedDate() {
+		return getDate("publishedDate");
+	}
+	
+	public String getCoordinatorName() {
+		return getString("coordinateName");
 	}
 
 	public String getLocationAddress() {
@@ -39,11 +55,19 @@ public class Event extends ParseObject {
 		put("eventName", eventName);
 	}
 
-	public void setEventDate(String eventDate) {
+	public void setEventDate(Date eventDate) {
 		put("eventDate", eventDate);
 	}
 
-	public void setEventTime(String eventTime) {
+	public void setEventTime(Date eventTime) {
 		put("eventTime", eventTime);
+	}
+	
+	public void setPublishedDate(Date publishedDate) {
+		put("publishedDate", publishedDate);
+	}
+	
+	public void setCoordinatorName(String coordinateName) {
+		put("coordinateName", coordinateName);
 	}
 }
