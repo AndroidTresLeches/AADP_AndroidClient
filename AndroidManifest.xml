@@ -37,6 +37,11 @@
             android:name="com.tresleches.aadp.activity.SearchResultActivity"
             android:label="@string/title_activity_search_result" >
         </activity>
+        <activity
+            android:name="com.tresleches.aadp.activity.StoryDetailActivity"
+            android:label="@string/title_activity_story_detail" >
+        </activity>        
     </application>
+
 
 </manifest>
