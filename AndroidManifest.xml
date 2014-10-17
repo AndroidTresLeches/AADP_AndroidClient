@@ -23,13 +23,13 @@
     <uses-permission android:name="android.permission.WRITE_CALENDAR" />
 
     <application
-        android:name="com.tresleches.aadp.client.AADPApplication"
+        android:name=".client.AADPApplication"
         android:allowBackup="true"
-        android:icon="@drawable/ic_launcher"
+        android:icon="@drawable/ic_aadp_logo"
         android:label="@string/app_name"
-        android:theme="@style/Theme.AppCompat" >
+        android:theme="@style/CustomActionBarTheme" >
         <activity
-            android:name="com.tresleches.aadp.activity.HomeActivity"
+            android:name=".activity.HomeActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -38,7 +38,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.tresleches.aadp.activity.EventDetailActivity"
+            android:name=".activity.EventDetailActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -53,6 +53,15 @@
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
+        <activity
+            android:name="com.tresleches.aadp.activity.SearchResultActivity"
+            android:label="@string/title_activity_search_result" >
+        </activity>
+        <activity
+            android:name="com.tresleches.aadp.activity.StoryDetailActivity"
+            android:label="@string/title_activity_story_detail" >
+        </activity>        
     </application>
+
 
 </manifest>

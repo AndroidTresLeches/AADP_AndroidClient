@@ -22,6 +22,7 @@ import com.tresleches.aadp.adapter.EventArrayAdapter;
 import com.tresleches.aadp.model.Event;
 
 public class EventFragment extends Fragment {
+	
 
 	private ArrayList<Event> events;
 	private EventArrayAdapter aEvent;

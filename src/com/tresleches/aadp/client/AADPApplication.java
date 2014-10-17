@@ -8,6 +8,7 @@ import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.parse.Parse;
 import com.parse.ParseObject;
 import com.tresleches.aadp.R;
+import com.tresleches.aadp.model.Contact;
 import com.tresleches.aadp.model.Event;
 import com.tresleches.aadp.model.Story;
 
@@ -17,6 +18,7 @@ public class AADPApplication extends Application {
 		super.onCreate();
 		ParseObject.registerSubclass(Event.class);
 		ParseObject.registerSubclass(Story.class);
+		ParseObject.registerSubclass(Contact.class);
 		Parse.initialize(this, getString(R.string.parseApplicationId),
                 getString(R.string.parseClientId));
 		
@@ -31,4 +33,3 @@ public class AADPApplication extends Application {
 		
 	}
 }
-

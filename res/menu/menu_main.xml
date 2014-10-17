@@ -1,0 +1,13 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="com.tresleches.aadp.HomeActivity" >
+
+    <item
+        android:id="@+id/action_search"
+        android:orderInCategory="90"
+        app:showAsAction="always"
+        android:title="@string/action_search"
+        android:icon="@drawable/ic_action_search"/>
+    
+</menu>

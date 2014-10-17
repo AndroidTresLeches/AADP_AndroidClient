@@ -8,21 +8,36 @@ import com.parse.ParseClassName;
 import com.parse.ParseObject;
 
 @ParseClassName("Story")
-public class Story extends ParseObject {
+public class Story extends ParseObject{
 
+	//Enumeration for Column definition 
+	public enum Col{
+		name, detail, type, pic_url,video_url
+	}
+	
+	//Enumeration for Story types. 
+	public enum Type {
+		SEARCHING, SURVIVOR, DONOR, IN_LOVING_MEMORY
+	}
+	
 	public String getName() {
-		return getString("name");
+		return getString(Col.name.toString());
 	}
 
 	public String getDetail() {
-		return getString("detail");
+		return getString(Col.detail.toString());
 	}
 
 	public String getPicUrl() {
-		return getString("pic_url");
+		return getString(Col.pic_url.toString());
 	}
 	public String getVideoUrl() {
-		return getString("video_url");
+		return getString(Col.video_url.toString());
 	}
-	
+
+	public String getType() {
+		return getString(Col.type.toString());
+	}
+
+
 }

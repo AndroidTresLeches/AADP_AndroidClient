@@ -24,6 +24,8 @@ public class StoryFragment extends Fragment {
 	private StoryArrayAdapter aStory;
 	private ListView lvStories;
 
+	private String storyType;
+
 	public void onAttach(Activity activity) {
 		super.onAttach(activity);
 	}
@@ -34,6 +36,7 @@ public class StoryFragment extends Fragment {
 		stories = new ArrayList<Story>();
 		aStory = new StoryArrayAdapter(getActivity(), R.layout.story_list_item,
 				stories);
+		storyType = getActivity().getIntent().getStringExtra("story_type");
 	}
 
 	/**
@@ -56,16 +59,24 @@ public class StoryFragment extends Fragment {
 	/**
 	 * Get the Stories from net and fill in our List.
 	 */
+
 	public void getStories() {
+
+		if (storyType == null) {
+			storyType = Story.Type.SEARCHING.toString();
+		}
 		// Define the class we would like to query
 		ParseQuery<Story> query = ParseQuery.getQuery(Story.class);
+		query.whereEqualTo(Story.Col.type.toString(), storyType);
 		// Define our query conditions
 		query.findInBackground(new FindCallback<Story>() {
 			public void done(List<Story> results, ParseException e) {
 				if (e == null) {
 					// results have all the Story
+
 					stories.addAll(results);
 					aStory.notifyDataSetChanged();
+
 				} else {
 					// There was an error
 				}
