@@ -22,8 +22,8 @@ import com.tresleches.aadp.model.Story;
 
 public class StoryFragment extends Fragment {
 
-	ArrayList<Story> stories;
-	StoryArrayAdapter aStory;
+	private ArrayList<Story> stories;
+	private StoryArrayAdapter aStory;
 	private ListView lvStories;
 
 	private String storyType ;
@@ -39,7 +39,9 @@ public class StoryFragment extends Fragment {
 		super.onCreate(savedInstanceState);
 		stories = new ArrayList<Story>();
 		aStory = new StoryArrayAdapter(getActivity(), R.layout.story_list_item,stories);
-		storyType = getActivity().getIntent().getStringExtra("story_type");
+		getActivity().getActionBar().setTitle(getStoryType());
+		if(getActivity().getIntent() !=null && getActivity().getIntent().getStringExtra("story_type") !=null)
+			setStoryType(getActivity().getIntent().getStringExtra("story_type"));
 	}
 
 	/**
@@ -65,13 +67,13 @@ public class StoryFragment extends Fragment {
 	public void getStories(){
 		
 		{
-			if(storyType == null)
+			if(getStoryType() == null)
 			{
-				storyType = Story.Type.SEARCHING.toString();
+				setStoryType(Story.Type.SEARCHING.toString());
 			}
 			// Define the class we would like to query
 			ParseQuery<Story> query = ParseQuery.getQuery(Story.class);
-			query.whereEqualTo(Story.Col.type.toString(), storyType );
+			query.whereEqualTo(Story.Col.type.toString(), getStoryType() );
 			// Define our query conditions
 			query.findInBackground(new FindCallback<Story>() {
 			    public void done(List<Story> results, ParseException e) {
@@ -88,6 +90,14 @@ public class StoryFragment extends Fragment {
 			});
 			
 		}
+	}
+
+	public String getStoryType() {
+		return storyType;
+	}
+
+	public void setStoryType(String storyType) {
+		this.storyType = storyType;
 	}
 
 

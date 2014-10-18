@@ -14,6 +14,7 @@ import android.view.MenuItem;
 import com.tresleches.aadp.R;
 import com.tresleches.aadp.fragment.DonorFragment;
 import com.tresleches.aadp.fragment.EventFragment;
+import com.tresleches.aadp.fragment.StoryBoardFragment;
 import com.tresleches.aadp.fragment.StoryFragment;
 import com.tresleches.aadp.listener.FragmentTabListener;
 
@@ -46,8 +47,8 @@ public class HomeActivity extends ActionBarActivity  {
 		Tab tab2 = actionBar
 			.newTab()
 			.setText("Stories")
-			.setTag("StoryFragment")
-			.setTabListener(new FragmentTabListener<StoryFragment>(R.id.flContainer, this, "StoryFragment",StoryFragment.class));
+			.setTag("StoryBoardFragment")
+			.setTabListener(new FragmentTabListener<StoryBoardFragment>(R.id.flContainer, this, "StoryBoardFragment",StoryBoardFragment.class));
 
 		actionBar.addTab(tab2);
 		
