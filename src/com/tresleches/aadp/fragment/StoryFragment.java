@@ -82,7 +82,7 @@ public class StoryFragment extends Fragment {
 			    	  aStory.notifyDataSetChanged();
 			    	  
 			      } else {
-			        // There was an error
+			        e.printStackTrace();
 			      }
 			    }
 			});
