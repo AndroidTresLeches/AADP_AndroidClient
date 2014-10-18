@@ -15,5 +15,6 @@
     <string name="contact_name">Name</string>
     <string name="contact_phone">Phone</string>
     <string name="contact_email">Email</string>
+    <string name="no_network">No Network available</string>
     <string name="title_activity_story_detail">Story Detail</string>    
 </resources>

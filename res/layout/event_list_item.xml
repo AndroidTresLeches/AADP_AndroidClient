@@ -9,8 +9,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:text="@string/event_name"
-        android:textColor="#FFFFFF" />
+        android:text="@string/event_name" />
 
     <TextView
         android:id="@+id/tvDate"
@@ -56,10 +55,10 @@
 
     <ImageView
         android:id="@+id/ivCalendarIcon"
-        android:layout_width="15dp"
-        android:layout_height="15dp"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/tvTime"
-        android:src="@drawable/ic_launcher" />
+        android:src="@drawable/calender_add" />
 
 </RelativeLayout>

@@ -1,6 +1,5 @@
 package com.tresleches.aadp.model;
 
-import java.io.Serializable;
 import java.util.Date;
 
 import com.parse.ParseClassName;
@@ -8,12 +7,7 @@ import com.parse.ParseObject;
 
 
 @ParseClassName("Event")
-public class Event extends ParseObject implements Serializable{
-
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -6250367417003825618L;
+public class Event extends ParseObject {
 
 	public String getEventId() {
 		return getString("eventId");

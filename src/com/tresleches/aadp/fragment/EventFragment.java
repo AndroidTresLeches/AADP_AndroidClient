@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 
@@ -19,10 +20,10 @@ import com.parse.ParseQuery;
 import com.tresleches.aadp.R;
 import com.tresleches.aadp.activity.EventDetailActivity;
 import com.tresleches.aadp.adapter.EventArrayAdapter;
+import com.tresleches.aadp.helper.NetworkUtils;
 import com.tresleches.aadp.model.Event;
 
 public class EventFragment extends Fragment {
-	
 
 	private ArrayList<Event> events;
 	private EventArrayAdapter aEvent;
@@ -53,7 +54,7 @@ public class EventFragment extends Fragment {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
-				
+
 				Intent i = new Intent(getActivity(), EventDetailActivity.class);
 				event = events.get(position);
 				i.putExtra("eventId", event.getObjectId());
@@ -67,19 +68,23 @@ public class EventFragment extends Fragment {
 	 * Get the Events from net and fill in our List.
 	 */
 	public void getEvents() {
-		// Define the class we would like to query
-		ParseQuery<Event> query = ParseQuery.getQuery(Event.class);
-		// Define our query conditions
-		query.findInBackground(new FindCallback<Event>() {
-			public void done(List<Event> results, ParseException e) {
-				if (e == null) {
-					// results have all the Story
-					events.addAll(results);
-					aEvent.notifyDataSetChanged();
-				} else {
-					// There was an error
+		if (NetworkUtils.isNetworkAvailable(getActivity())) {
+			// Define the class we would like to query
+			ParseQuery<Event> query = ParseQuery.getQuery(Event.class);
+			// Define our query conditions
+			query.findInBackground(new FindCallback<Event>() {
+				public void done(List<Event> results, ParseException e) {
+					if (e == null) {
+						// results have all the Story
+						events.addAll(results);
+						aEvent.notifyDataSetChanged();
+					} else {
+						// There was an error
+					}
 				}
-			}
-		});
+			});
+		} else {
+			Toast.makeText(getActivity(), getResources().getString(R.string.no_network), Toast.LENGTH_SHORT).show();
+		}
 	}
 }
