@@ -28,6 +28,7 @@ public class StoryBoardFragment extends Fragment {
 	public void onAttach(Activity activity) {
 		// TODO Auto-generated method stub
 		super.onAttach(activity);
+	
 	}
 
 	@Override
@@ -45,6 +46,8 @@ public class StoryBoardFragment extends Fragment {
 
 		View view = inflater.inflate(R.layout.fragment_story_board, container,false);
 
+		getActivity().getActionBar().setTitle("AADP");
+		
 		//4 Image Views represents 4 story types.
 		//these ImagesViews can be changed to some other views 
 		ImageView ivSearching = (ImageView)view.findViewById(R.id.ivSearching);
