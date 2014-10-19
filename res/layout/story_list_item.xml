@@ -37,4 +37,31 @@
         android:ellipsize="end" 
         android:paddingBottom="10dp"/>
 
+    <ImageView
+        android:id="@+id/ivFacebook"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/tvStoryDetail"
+        android:layout_below="@+id/tvStoryDetail"
+        android:src="@drawable/ic_facebook"
+        android:paddingBottom="5dp" />
+
+    <ImageView
+        android:id="@+id/ivTwitter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/ivFacebook"
+        android:layout_toRightOf="@+id/ivFacebook"
+        android:layout_marginLeft="32dp"
+        android:paddingBottom="5dp"
+        android:src="@drawable/ic_twitter" />
+    <ImageView
+        android:id="@+id/ivShare"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/ivFacebook"
+        android:layout_marginLeft="32dp"
+        android:paddingBottom="5dp"
+        android:layout_toRightOf="@+id/ivTwitter"
+        android:src="@drawable/ic_action_share" />
 </RelativeLayout>
