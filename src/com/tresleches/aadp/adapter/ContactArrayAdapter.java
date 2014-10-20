@@ -2,12 +2,9 @@ package com.tresleches.aadp.adapter;
 
 import java.util.List;
 
-import org.apache.http.NameValuePair;
-import org.apache.http.message.BasicNameValuePair;
-
 import android.app.Activity;
-import android.content.Intent;
-import android.util.Log;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,7 +12,8 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.parse.ParseFacebookUtils.Permissions.User;
+import com.parse.ParseException;
+import com.parse.ParseFile;
 import com.tresleches.aadp.R;
 import com.tresleches.aadp.model.Contact;
 
@@ -47,9 +45,12 @@ public class ContactArrayAdapter extends ArrayAdapter<Contact> {
 			viewHolder = new ViewHolder();
 			LayoutInflater inflater = LayoutInflater.from(getContext());
 			view = inflater.inflate(R.layout.contact_item, parent, false);
-			viewHolder.ivProfileImage = (ImageView) view.findViewById(R.id.ivProfileImage);
-			viewHolder.tvContactName = (TextView) view.findViewById(R.id.tvContactName);
-			viewHolder.tvPrimaryPhone = (TextView) view.findViewById(R.id.tvPrimaryPhone);
+			viewHolder.ivProfileImage = (ImageView) view
+					.findViewById(R.id.ivProfileImage);
+			viewHolder.tvContactName = (TextView) view
+					.findViewById(R.id.tvContactName);
+			viewHolder.tvPrimaryPhone = (TextView) view
+					.findViewById(R.id.tvPrimaryPhone);
 			viewHolder.tvEmail = (TextView) view.findViewById(R.id.tvEmail);
 		  
 		    view.setTag(viewHolder);
@@ -65,11 +66,23 @@ public class ContactArrayAdapter extends ArrayAdapter<Contact> {
 		String firstName = contact.getFirstName();
 		String lastName = contact.getLastName();
 		String middleName = contact.getMiddleName();
-		viewHolder.tvContactName.setText(
-				firstName + " " + ((middleName == null) ? "" : middleName) + " " + lastName);
+		viewHolder.tvContactName.setText(firstName + " "
+				+ ((middleName == null) ? "" : middleName) + " " + lastName);
 		viewHolder.tvPrimaryPhone.setText(contact.getPrimaryPhone());
 		viewHolder.tvEmail.setText(contact.getEmail());
-        
+		byte[] profileImage;
+		ParseFile imgFile = contact.getProfileImage();
+		if (imgFile != null) {
+			try {
+				profileImage = imgFile.getData();
+				Bitmap bmp = BitmapFactory.decodeByteArray(profileImage, 0,
+						profileImage.length);
+				viewHolder.ivProfileImage.setImageResource(android.R.color.transparent);
+				viewHolder.ivProfileImage.setImageBitmap(bmp);
+			} catch (ParseException e) {
+				e.printStackTrace();
+			}
+		}
 		return view;
 	}
 
