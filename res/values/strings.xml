@@ -17,4 +17,8 @@
     <string name="contact_email">Email</string>
     <string name="no_network">No Network available</string>
     <string name="title_activity_story_detail">Story Detail</string>    
+    <string name="coordinator">Coordinator</string>
+    <string name="by">By</string>
+    <string name="published">Published :</string>
+    <string name="notes">Note :</string>
 </resources>

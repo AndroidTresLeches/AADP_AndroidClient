@@ -3,6 +3,7 @@ package com.tresleches.aadp.model;
 import java.util.Date;
 
 import com.parse.ParseClassName;
+import com.parse.ParseFile;
 import com.parse.ParseObject;
 
 
@@ -21,8 +22,12 @@ public class Event extends ParseObject {
 		return getDate("eventDate");
 	}
 
-	public Date getEventTime() {
-		return getDate("eventTime");
+	public String getEventStartTime() {
+		return getString("eventStartTime");
+	}
+	
+	public String getEventEndTime() {
+		return getString("eventEndTime");
 	}
 	
 	public Date getPublishedDate() {
@@ -37,6 +42,19 @@ public class Event extends ParseObject {
 		return getString("locationAddress");
 	}
 
+	public String getNotes() {
+		return getString("notes");
+	}
+	
+	public String getFirstName() {
+		return getString("firstName");
+	}
+
+	public ParseFile getProfileImage() {
+		// TODO Auto-generated method stub
+		return getParseFile("profileImage");
+	}
+	
 	public void setEventId(String eventId) {
 		put("eventId", eventId);
 	}
@@ -63,5 +81,25 @@ public class Event extends ParseObject {
 	
 	public void setCoordinatorName(String coordinateName) {
 		put("coordinateName", coordinateName);
+	}
+	
+	public void setEventStartTime(String eventStartTime) {
+		put("eventStartTime", eventStartTime);
+	}
+	
+	public void setEventEndTime(String eventEndTime) {
+		put("eventEndTime", eventEndTime);
+	}
+	
+	public void setNotes(String notes) {
+		put("notes", notes);
+	}
+	
+	public void setFirstName(String firstName) {
+		put("firstName", firstName);
+	}
+	
+	public void setProfileImage(ParseFile img) {
+		put("profileImg", img);
 	}
 }

@@ -3,18 +3,16 @@ package com.tresleches.aadp.activity;
 import android.app.ActionBar;
 import android.app.ActionBar.Tab;
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+
 import com.tresleches.aadp.R;
 import com.tresleches.aadp.fragment.DonorFragment;
 import com.tresleches.aadp.fragment.EventFragment;
 import com.tresleches.aadp.fragment.StoryBoardFragment;
-import com.tresleches.aadp.fragment.StoryFragment;
 import com.tresleches.aadp.listener.FragmentTabListener;
 
 public class HomeActivity extends ActionBarActivity  {
@@ -25,7 +23,6 @@ public class HomeActivity extends ActionBarActivity  {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_home);
 		setupTabs();
-
 	}
 	
 	private void setupTabs() {

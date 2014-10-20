@@ -1,17 +1,13 @@
 package com.tresleches.aadp.activity;
 
-import java.io.IOException;
-import java.util.List;
-
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Intent;
 import android.content.IntentSender;
-import android.location.Geocoder;
-import android.location.Location;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentActivity;
+import android.text.Html;
 import android.util.Log;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -30,6 +26,7 @@ import com.parse.GetCallback;
 import com.parse.ParseException;
 import com.parse.ParseQuery;
 import com.tresleches.aadp.R;
+import com.tresleches.aadp.helper.AddressHelper;
 import com.tresleches.aadp.helper.DateHelper;
 import com.tresleches.aadp.model.Event;
 
@@ -43,14 +40,13 @@ public class EventDetailActivity extends FragmentActivity implements
 	private LocationClient mLocationClient;
 	private TextView tvEventName;
 	private TextView tvCoordinatorName;
-	private TextView tvPublishedDate;
+	private TextView tvNotes;
 	private TextView tvEventDate;
 	private TextView tvEventAddress;
 	private TextView tvEventTime;
 	private Event event;
 	private String eventId;
-	private double longitude;
-	private double latitude;
+	private String locationAddress;
 	/*
 	 * Define a request code to send to Google Play services This code is
 	 * returned in Activity.onActivityResult
@@ -63,6 +59,7 @@ public class EventDetailActivity extends FragmentActivity implements
 		setContentView(R.layout.activity_event_detail);
 		event = new Event();
 		eventId = getIntent().getStringExtra("eventId");
+		locationAddress = getIntent().getStringExtra("location");
 		loadUI();
 		mLocationClient = new LocationClient(this, this, this);
 		mapFragment = ((SupportMapFragment) getSupportFragmentManager()
@@ -87,10 +84,10 @@ public class EventDetailActivity extends FragmentActivity implements
 	private void loadUI() {
 		tvEventName = (TextView) findViewById(R.id.tvEventName);
 		tvCoordinatorName = (TextView) findViewById(R.id.tvCoordinatorName);
-		tvPublishedDate = (TextView) findViewById(R.id.tvPublishedDate);
+		tvNotes = (TextView) findViewById(R.id.tvNotes);
 		tvEventDate = (TextView) findViewById(R.id.tvEventDate);
 		tvEventAddress = (TextView) findViewById(R.id.tvEventAddress);
-		// tvEventTime = (TextView) findViewById(R.id.tvEventTime);
+		tvEventTime = (TextView) findViewById(R.id.tvEventTime);
 		getEvent();
 	}
 
@@ -107,45 +104,27 @@ public class EventDetailActivity extends FragmentActivity implements
 					event = item;
 					tvEventName.setText(event.getEventName());
 					tvCoordinatorName.setText(event.getCoordinatorName());
-					tvPublishedDate.setText(DateHelper.getDateInString(event
-							.getPublishedDate()));
+					tvCoordinatorName.setText(Html.fromHtml("<i>"
+							+ getResources().getString(R.string.by)
+							+ "</i>"
+							+ " "
+							+ event.getCoordinatorName()
+							+ " | "
+							+ "<i>"
+							+ getResources().getString(R.string.published)
+							+ "</i>"
+							+ DateHelper.getDateInString(event
+									.getPublishedDate())));
+					tvNotes.setText(event.getNotes());
+
 					tvEventDate.setText(DateHelper.getDateInString(event
 							.getEventDate()));
 					tvEventAddress.setText(event.getLocationAddress());
-					// tvEventTime.setText(event.getEventTime());
-					getAddress();
+					tvEventTime.setText(event.getEventStartTime() + " - "
+							+ event.getEventEndTime());
 				}
 			}
 		});
-	}
-
-	/*
-	 * From input arguments, create a single Location with provider set to "flp"
-	 */
-	public Location createLocation() {
-		// Create a new Location
-		Location newLocation = new Location("flp");
-		newLocation.setLatitude(latitude);
-		newLocation.setLongitude(longitude);
-		newLocation.setAccuracy(3.0f);
-		return newLocation;
-	}
-
-	// Example of creating a new Location from test data
-
-	public void getAddress() {
-		Geocoder coder = new Geocoder(this);
-		try {
-			List<android.location.Address> adresses = coder
-					.getFromLocationName(event.getLocationAddress(), 1);
-			for (android.location.Address add : adresses) {
-				// as country etc.
-				longitude = add.getLongitude();
-				latitude = add.getLatitude();
-			}
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
 	}
 
 	@Override
@@ -232,14 +211,18 @@ public class EventDetailActivity extends FragmentActivity implements
 	@Override
 	public void onConnected(Bundle dataBundle) {
 		// Display the connection status
-		LatLng latLng = new LatLng(latitude, longitude);
+		
+		LatLng latLng = AddressHelper.getAddress(this, locationAddress);
 		if (latLng != null) {
 			Toast.makeText(this, "Location was found!", Toast.LENGTH_SHORT)
 			.show();
 			CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(
-					latLng, 17);
+					latLng, 15);
 			map.animateCamera(cameraUpdate);
-		} 
+		} else{
+			Toast.makeText(this, "Location was not found!", Toast.LENGTH_SHORT)
+			.show();
+		}
 	}
 
 	/*

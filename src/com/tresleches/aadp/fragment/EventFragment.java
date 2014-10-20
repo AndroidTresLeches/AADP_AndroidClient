@@ -10,12 +10,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.parse.FindCallback;
 import com.parse.ParseException;
+import com.parse.ParseFile;
 import com.parse.ParseQuery;
 import com.tresleches.aadp.R;
 import com.tresleches.aadp.activity.EventDetailActivity;
@@ -29,6 +30,7 @@ public class EventFragment extends Fragment {
 	private EventArrayAdapter aEvent;
 	private ListView lvEvents;
 	private Event event;
+	ParseFile fileImg;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -57,6 +59,7 @@ public class EventFragment extends Fragment {
 
 				Intent i = new Intent(getActivity(), EventDetailActivity.class);
 				event = events.get(position);
+				i.putExtra("location", event.getLocationAddress());
 				i.putExtra("eventId", event.getObjectId());
 				startActivity(i);
 			}
@@ -72,6 +75,7 @@ public class EventFragment extends Fragment {
 			// Define the class we would like to query
 			ParseQuery<Event> query = ParseQuery.getQuery(Event.class);
 			// Define our query conditions
+			query.orderByAscending("eventDate");
 			query.findInBackground(new FindCallback<Event>() {
 				public void done(List<Event> results, ParseException e) {
 					if (e == null) {
@@ -84,7 +88,9 @@ public class EventFragment extends Fragment {
 				}
 			});
 		} else {
-			Toast.makeText(getActivity(), getResources().getString(R.string.no_network), Toast.LENGTH_SHORT).show();
+			Toast.makeText(getActivity(),
+					getResources().getString(R.string.no_network),
+					Toast.LENGTH_SHORT).show();
 		}
 	}
 }
