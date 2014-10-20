@@ -19,5 +19,4 @@ public class SearchResultActivity extends ActionBarActivity {
 		ft.replace(R.id.flSearchResult, ContactFragment.newInstance("coordinator"));
 		ft.commit();
 	}
-
 }

@@ -23,6 +23,7 @@ import com.tresleches.aadp.model.Contact;
 public class ContactFragment extends Fragment {
 	private ArrayAdapter<Contact> aContacts;
 	private ArrayList<Contact> contacts;
+	private String category;
 
 	public ContactFragment() {
 
@@ -41,8 +42,8 @@ public class ContactFragment extends Fragment {
 		super.onCreate(savedInstanceState);
 		contacts = new ArrayList<Contact>();
 		aContacts = new ContactArrayAdapter(getActivity(), contacts);
-		String category = getArguments().getString("category");
-		getContacts(category);
+		category = getArguments().getString("category");
+		
 	}
 
 	@Override
@@ -52,7 +53,8 @@ public class ContactFragment extends Fragment {
 		View v = inflater.inflate(R.layout.fragment_contact, container, false);
 		ListView lvContact = (ListView) v.findViewById(R.id.lvContact);
 		lvContact.setAdapter(aContacts);
-
+		getContacts(category);
+		
 		return v;
 	}
 

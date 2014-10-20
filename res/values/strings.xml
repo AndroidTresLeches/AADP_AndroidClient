@@ -21,4 +21,9 @@
     <string name="by">By</string>
     <string name="published">Published :</string>
     <string name="notes">Note :</string>
+    <string name="drawer_open">Drawer Open</string>
+    <string name="drawer_close">Drawer Close</string>
+    <string name="drawer_icon">Drawer Icon</string>
+    <string name="title_activity_login">LoginActivity</string>
+    <string name="title_activity_main">MainActivity</string>
 </resources>
