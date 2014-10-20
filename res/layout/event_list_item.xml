@@ -1,65 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="${relativePackage}.${activityClass}" >
+    android:layout_height="match_parent" >
 
     <TextView
         android:id="@+id/tvEventName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
         android:text="@string/event_name" />
+
+    <TextView
+        android:id="@+id/tvDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@id/tvEventName"
+        android:text="@string/event_date" />
+
+    
+    <ImageView
+        android:id="@+id/ivCoordinator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:src="@drawable/ic_launcher" />
+
+    <TextView
+        android:id="@+id/tvTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/tvAddress"
+        android:text="@string/event_time" />
+
+    <TextView
+        android:id="@+id/tvAddress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/tvDate"
+        android:text="@string/event_address" />
 
     <TextView
         android:id="@+id/tvCoordinatorName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/tvEventName"
+        android:layout_alignBaseline="@+id/tvTime"
+        android:layout_alignBottom="@+id/tvTime"
+        android:layout_alignParentRight="true"
         android:text="@string/event_coordinator" />
 
-    <TextView
-        android:id="@+id/tvPublishedDate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/tvCoordinatorName"
-        android:text="@string/published_date" />
-
     <ImageView
-        android:id="@+id/ivMap"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:id="@+id/ivCalendarIcon"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true"
-        android:layout_below="@id/tvPublishedDate"
-        android:src="@drawable/ic_launcher" />
-
-    <TextView
-        android:id="@+id/tvEventDate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@id/ivMap"
-        android:text="@string/event_date" />
-
-    <TextView
-        android:id="@+id/tvEventAddress"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/tvEventDate"
-        android:text="@string/event_address" />
-
-    <TextView
-        android:id="@+id/tvEventTime"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/tvEventAddress"
-        android:text="@string/event_time" />
+        android:layout_below="@+id/tvTime"
+        android:src="@drawable/calender_add" />
 
 </RelativeLayout>

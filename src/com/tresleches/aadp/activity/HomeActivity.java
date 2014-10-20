@@ -10,7 +10,6 @@ import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-
 import com.tresleches.aadp.R;
 import com.tresleches.aadp.fragment.DonorFragment;
 import com.tresleches.aadp.fragment.EventFragment;
