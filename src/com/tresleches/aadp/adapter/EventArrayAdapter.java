@@ -7,6 +7,8 @@ import java.util.List;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.provider.CalendarContract;
 import android.provider.CalendarContract.Events;
 import android.view.LayoutInflater;
@@ -17,6 +19,8 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.parse.ParseException;
+import com.parse.ParseFile;
 import com.tresleches.aadp.R;
 import com.tresleches.aadp.helper.DateHelper;
 import com.tresleches.aadp.model.Event;
@@ -25,7 +29,7 @@ public class EventArrayAdapter extends ArrayAdapter<Event> {
 	private static class ViewHolder {
 		TextView tvEventName;
 		TextView tvDate;
-		// ImageView ivCoordinator;
+		ImageView ivCoordinatorImg;
 		TextView tvTime;
 		TextView tvAddress;
 		TextView tvCoordinatorName;
@@ -36,7 +40,7 @@ public class EventArrayAdapter extends ArrayAdapter<Event> {
 	int year;
 	int month;
 	int day;
-
+	
 	public EventArrayAdapter(Context context, int resource, List<Event> events) {
 		super(context, R.layout.event_list_item, events);
 		this.context = context;
@@ -45,19 +49,18 @@ public class EventArrayAdapter extends ArrayAdapter<Event> {
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
 		// Get the item
-		final Event event = getItem(position);
 		ViewHolder viewHolder;
+		final Event event = getItem(position);
 		if (convertView == null) {
 			viewHolder = new ViewHolder();
 			convertView = LayoutInflater.from(getContext()).inflate(
 					R.layout.event_list_item, parent, false);
-
 			viewHolder.tvEventName = (TextView) convertView
 					.findViewById(R.id.tvEventName);
 			viewHolder.tvDate = (TextView) convertView
 					.findViewById(R.id.tvDate);
-			// viewHolder.ivCoordinator =
-			// (ImageView)convertView.findViewById(R.id.ivCoordinator);
+			viewHolder.ivCoordinatorImg = (ImageView) convertView
+					.findViewById(R.id.ivCoordinator);
 			viewHolder.tvTime = (TextView) convertView
 					.findViewById(R.id.tvTime);
 			viewHolder.tvAddress = (TextView) convertView
@@ -73,10 +76,23 @@ public class EventArrayAdapter extends ArrayAdapter<Event> {
 		viewHolder.tvEventName.setText(event.getEventName());
 		viewHolder.tvDate.setText(DateHelper.getDateInString(event
 				.getEventDate()));
-		// viewHolder.tvTime.setText(event.getEventTime());
+		viewHolder.tvTime.setText(event.getEventStartTime() + " - "
+				+ event.getEventEndTime());
 		viewHolder.tvAddress.setText(event.getLocationAddress());
 		viewHolder.tvCoordinatorName.setText(event.getCoordinatorName());
-
+		byte[] profileImage;
+		ParseFile imgFile = event.getProfileImage();
+		if (imgFile != null) {
+			try {
+				profileImage = imgFile.getData();
+				Bitmap bmp = BitmapFactory.decodeByteArray(profileImage, 0,
+						profileImage.length);
+				viewHolder.ivCoordinatorImg.setImageResource(android.R.color.transparent);
+				viewHolder.ivCoordinatorImg.setImageBitmap(bmp);
+			} catch (ParseException e) {
+				e.printStackTrace();
+			}
+		}
 		viewHolder.ivCalendarIcon.setOnClickListener(new OnClickListener() {
 
 			@Override
@@ -90,7 +106,8 @@ public class EventArrayAdapter extends ArrayAdapter<Event> {
 						event.getLocationAddress());
 				calIntent.putExtra(Events.DESCRIPTION, "");
 				getDate(event.getEventDate());
-				GregorianCalendar calDate = new GregorianCalendar(year, month, day);
+				GregorianCalendar calDate = new GregorianCalendar(year, month,
+						day);
 				calIntent.putExtra(CalendarContract.EXTRA_EVENT_ALL_DAY, true);
 				calIntent.putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME,
 						calDate.getTimeInMillis());

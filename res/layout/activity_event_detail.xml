@@ -10,7 +10,9 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:text="@string/event_name" />
+        android:text="@string/event_name"
+        android:textStyle="bold"
+        android:textSize="14sp" />
 
     <TextView
         android:id="@+id/tvCoordinatorName"
@@ -21,35 +23,43 @@
         android:text="@string/event_coordinator" />
 
     <TextView
-        android:id="@+id/tvPublishedDate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/tvCoordinatorName"
-        android:text="@string/published_date" />
-
-    <TextView
         android:id="@+id/tvEventDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_below="@id/tvPublishedDate"
+        android:layout_below="@+id/tvCoordinatorName"
         android:text="@string/event_date" />
-
-    <TextView
-        android:id="@+id/tvEventAddress"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@id/tvEventDate"
-        android:text="@string/event_address" />
 
     <fragment
         android:id="@+id/map"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_alignParentLeft="true"
-        android:layout_below="@+id/tvEventAddress"
+        android:layout_below="@+id/tvEventTime"
         class="com.google.android.gms.maps.SupportMapFragment" />
+
+    <TextView
+        android:id="@+id/tvNotes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvEventDate"
+        android:text="@string/notes"
+        android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/tvEventAddress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/tvNotes"
+        android:text="@string/event_address" />
+
+    <TextView
+        android:id="@+id/tvEventTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/tvEventName"
+        android:layout_below="@+id/tvEventAddress"
+        android:text="@string/event_time" />
 
 </RelativeLayout>

@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_card_top_no_padding" >
 
     <TextView
         android:id="@+id/tvEventName"
@@ -9,7 +10,9 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:text="@string/event_name" />
+        android:text="@string/event_name"
+        android:textStyle="bold"
+        android:textSize="14sp"  />
 
     <TextView
         android:id="@+id/tvDate"
@@ -17,16 +20,9 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_below="@id/tvEventName"
-        android:text="@string/event_date" />
-
-    
-    <ImageView
-        android:id="@+id/ivCoordinator"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentTop="true"
-        android:src="@drawable/ic_launcher" />
+        android:text="@string/event_date"
+        android:textStyle="italic"
+        android:textSize="13sp"  />
 
     <TextView
         android:id="@+id/tvTime"
@@ -34,31 +30,51 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/tvAddress"
-        android:text="@string/event_time" />
+        android:text="@string/event_time"
+        android:textSize="13sp" />
 
     <TextView
         android:id="@+id/tvAddress"
-        android:layout_width="wrap_content"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/tvDate"
-        android:text="@string/event_address" />
-
-    <TextView
-        android:id="@+id/tvCoordinatorName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/tvTime"
-        android:layout_alignBottom="@+id/tvTime"
-        android:layout_alignParentRight="true"
-        android:text="@string/event_coordinator" />
+        android:text="@string/event_address"
+        android:textSize="13sp" />
 
     <ImageView
         android:id="@+id/ivCalendarIcon"
         android:layout_width="25dp"
         android:layout_height="25dp"
         android:layout_alignParentLeft="true"
+        android:paddingBottom="10dp"
         android:layout_below="@+id/tvTime"
         android:src="@drawable/calender_add" />
+
+    <TextView
+        android:id="@+id/tvCoordinatorText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignRight="@+id/ivCoordinator"
+        android:text="@string/coordinator"
+        android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/tvCoordinatorName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/ivCoordinator"
+        android:text="@string/event_coordinator"
+        android:textSize="12sp"  />
+
+    <ImageView
+        android:id="@+id/ivCoordinator"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_alignRight="@+id/tvCoordinatorName"
+        android:layout_below="@+id/tvCoordinatorText"
+        android:src="@drawable/ic_launcher" />
 
 </RelativeLayout>
