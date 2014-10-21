@@ -26,7 +26,9 @@ Completed user stories:
 - [x] User can click on "Donate" to make donation in the slide menu.
 - [ ] User can read about AADP by clicking on "About AADP" in the slide menu.
 
-**Screenshots**
+**GIF**
+Gif Image
+![Alt Text](AADP2.gif)
 
 
 **Team**
