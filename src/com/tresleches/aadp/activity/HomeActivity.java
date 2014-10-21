@@ -51,7 +51,7 @@ public class HomeActivity extends BaseActionBarActivity {
 		dlDrawer.addNavItem("About", R.drawable.ic_nav_about, "About AADP", AboutFragment.class);
 		// Select default
 		if (savedInstanceState == null) {
-			dlDrawer.selectDrawerItem(1);
+			dlDrawer.selectDrawerItem(0);
 		}
 		//setupTabs();
 	}
