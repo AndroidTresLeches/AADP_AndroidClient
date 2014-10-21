@@ -9,7 +9,7 @@ import android.content.Context;
 import android.location.Geocoder;
 
 public class AddressHelper {
-	
+
 	public static LatLng getAddress(Context context, String address) {
 		Geocoder coder = new Geocoder(context);
 		LatLng latLng = null;
@@ -20,9 +20,7 @@ public class AddressHelper {
 				// as country etc.
 				double longitude = add.getLongitude();
 				double latitude = add.getLatitude();
-				System.out.println("@########geocoder" + longitude);
-				System.out.println("@########geoder" + latitude);
-				 latLng = new LatLng(latitude, longitude);
+				latLng = new LatLng(latitude, longitude);
 			}
 		} catch (IOException e) {
 			e.printStackTrace();

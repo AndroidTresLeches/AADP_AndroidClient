@@ -10,6 +10,7 @@ import com.parse.ParseObject;
 import com.tresleches.aadp.R;
 import com.tresleches.aadp.model.Contact;
 import com.tresleches.aadp.model.Event;
+import com.tresleches.aadp.model.Favorite;
 import com.tresleches.aadp.model.Story;
 
 public class AADPApplication extends Application {
@@ -19,6 +20,7 @@ public class AADPApplication extends Application {
 		ParseObject.registerSubclass(Event.class);
 		ParseObject.registerSubclass(Story.class);
 		ParseObject.registerSubclass(Contact.class);
+		ParseObject.registerSubclass(Favorite.class);
 		Parse.initialize(this, getString(R.string.parseApplicationId),
                 getString(R.string.parseClientId));
 		

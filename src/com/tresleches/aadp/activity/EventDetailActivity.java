@@ -120,8 +120,8 @@ public class EventDetailActivity extends FragmentActivity implements
 					tvEventDate.setText(DateHelper.getDateInString(event
 							.getEventDate()));
 					tvEventAddress.setText(event.getLocationAddress());
-					tvEventTime.setText(event.getEventStartTime() + " - "
-							+ event.getEventEndTime());
+					tvEventTime.setText(DateHelper.getTime(event.getEventStartTime()) + " - "
+							+ DateHelper.getTime(event.getEventEndTime()));
 				}
 			}
 		});
@@ -198,7 +198,6 @@ public class EventDetailActivity extends FragmentActivity implements
 				errorFragment.show(getSupportFragmentManager(),
 						"Location Updates");
 			}
-
 			return false;
 		}
 	}
