@@ -11,6 +11,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.ListView;
 
+import com.parse.ParseUser;
 import com.tresleches.aadp.R;
 import com.tresleches.aadp.fragment.AboutFragment;
 import com.tresleches.aadp.fragment.DonateFragment;
@@ -26,12 +27,13 @@ import com.tresleches.aadp.navigation.FragmentNavigationDrawer;
 public class HomeActivity extends BaseActionBarActivity {
 	private final int SEARCH_REQUEST = 100;
 	private FragmentNavigationDrawer dlDrawer;
+	LoginFragment loginFragment;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_home);
-
+		checkUserSignin();
 		// navigation drawer - find drawer view
 		dlDrawer = (FragmentNavigationDrawer) findViewById(R.id.drawer_layout);
 		// Setup drawer view
@@ -39,20 +41,30 @@ public class HomeActivity extends BaseActionBarActivity {
 				(ListView) findViewById(R.id.lvDrawer),
 				R.layout.drawer_nav_item, R.id.flContainer);
 		// Add navigation items
-		dlDrawer.addNavItem("Login", R.drawable.ic_nav_login, "Profile and Login", LoginFragment.class);
+		//dlDrawer.addNavItem("Login", R.drawable.ic_nav_login, "Profile and Login", LoginFragment.class);
 		dlDrawer.addNavItem("Events", R.drawable.ic_nav_events, "Events", EventFragment.class);
 		dlDrawer.addNavItem("Stories", R.drawable.ic_nav_stories, "Stories", StoryBoardFragment.class);
 		dlDrawer.addNavItem("Be a donor", R.drawable.ic_nav_donor, "Be a donor", DonorFragment.class);	
-		dlDrawer.addNavItem("Favorite", R.drawable.ic_nav_favorite, "Favorite Events", FavoriteFragment.class);
-		dlDrawer.addNavItem("Twitter", R.drawable.ic_nav_twitter, "AADP Tweets", TwitterFragment.class);
+		dlDrawer.addNavItem("Favorites", R.drawable.ic_nav_favorite, "Favorite Events", FavoriteFragment.class);
+		//dlDrawer.addNavItem("Twitter Feed", R.drawable.ic_nav_twitter, "AADP Tweets", TwitterFragment.class);
 		dlDrawer.addNavItem("Donate", R.drawable.ic_nav_donate, "Donate", DonateFragment.class);
 		dlDrawer.addNavItem("About", R.drawable.ic_nav_about, "About AADP", AboutFragment.class);
 		// Select default
 		if (savedInstanceState == null) {
 			dlDrawer.selectDrawerItem(1);
 		}
-		
 		//setupTabs();
+	}
+
+	public void checkUserSignin() {
+		ParseUser currentUser = ParseUser.getCurrentUser();
+		if (currentUser != null) {
+		  // do stuff with the user
+		} else {
+		  // show the signup or login screen
+			Intent i = new Intent(this, LoginActivity.class);
+			startActivity(i);
+		}
 	}
 
 	private void setupTabs() {

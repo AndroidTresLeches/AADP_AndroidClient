@@ -16,7 +16,7 @@
     <string name="contact_phone">Phone</string>
     <string name="contact_email">Email</string>
     <string name="no_network">No Network available</string>
-    <string name="title_activity_story_detail">Story Detail</string>    
+    <string name="title_activity_story_detail">Story Detail</string>
     <string name="coordinator">Coordinator</string>
     <string name="by">By</string>
     <string name="published">Published :</string>
@@ -26,6 +26,15 @@
     <string name="drawer_icon">Drawer Icon</string>
     <string name="title_activity_login">LoginActivity</string>
     <string name="title_activity_main">MainActivity</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="signup">Signup Here</string>
+    <string name="login">Log In</string>
+    <string name="title_activity_sign_up">SignUpActivity</string>
+    <string name="register">Register</string>
+    <string name="confirmPassword">Confirm Password</string>
+    <string name="userName">Username</string>
+    <string name="noUser">User not logged in</string>
     <string name="button_label_donate">Donate</string>
     <string name="amount_hint">Enter Amount</string>
     <string name="donate_name">Your Name</string>

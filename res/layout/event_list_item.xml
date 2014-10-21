@@ -77,4 +77,12 @@
         android:layout_below="@+id/tvCoordinatorText"
         android:src="@drawable/ic_launcher" />
 
+    <ImageView
+        android:id="@+id/ivFavoriteIcon"
+        android:layout_width="15dp"
+        android:layout_height="15dp"
+        android:layout_toRightOf="@+id/ivCalendarIcon"
+        android:layout_alignTop="@+id/ivCalendarIcon"
+        android:src="@drawable/ic_heart" />
+
 </RelativeLayout>

@@ -18,12 +18,15 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.parse.ParseException;
 import com.parse.ParseFile;
+import com.parse.ParseUser;
 import com.tresleches.aadp.R;
 import com.tresleches.aadp.helper.DateHelper;
 import com.tresleches.aadp.model.Event;
+import com.tresleches.aadp.model.Favorite;
 
 public class EventArrayAdapter extends ArrayAdapter<Event> {
 	private static class ViewHolder {
@@ -34,6 +37,7 @@ public class EventArrayAdapter extends ArrayAdapter<Event> {
 		TextView tvAddress;
 		TextView tvCoordinatorName;
 		ImageView ivCalendarIcon;
+		ImageView ivFavoriteIcon;
 	}
 
 	private Context context;
@@ -69,6 +73,8 @@ public class EventArrayAdapter extends ArrayAdapter<Event> {
 					.findViewById(R.id.tvCoordinatorName);
 			viewHolder.ivCalendarIcon = (ImageView) convertView
 					.findViewById(R.id.ivCalendarIcon);
+			viewHolder.ivFavoriteIcon = (ImageView) convertView
+					.findViewById(R.id.ivFavoriteIcon);
 			convertView.setTag(viewHolder);
 		} else {
 			viewHolder = (ViewHolder) convertView.getTag();
@@ -76,15 +82,14 @@ public class EventArrayAdapter extends ArrayAdapter<Event> {
 		viewHolder.tvEventName.setText(event.getEventName());
 		viewHolder.tvDate.setText(DateHelper.getDateInString(event
 				.getEventDate()));
-		viewHolder.tvTime.setText(event.getEventStartTime() + " - "
-				+ event.getEventEndTime());
+		viewHolder.tvTime.setText(DateHelper.getTime(event.getEventStartTime()) + " - "
+				+ DateHelper.getTime(event.getEventEndTime()));
 		viewHolder.tvAddress.setText(event.getLocationAddress());
 		viewHolder.tvCoordinatorName.setText(event.getCoordinatorName());
-		byte[] profileImage;
 		ParseFile imgFile = event.getProfileImage();
 		if (imgFile != null) {
 			try {
-				profileImage = imgFile.getData();
+				byte[] profileImage = imgFile.getData();
 				Bitmap bmp = BitmapFactory.decodeByteArray(profileImage, 0,
 						profileImage.length);
 				viewHolder.ivCoordinatorImg.setImageResource(android.R.color.transparent);
@@ -106,18 +111,34 @@ public class EventArrayAdapter extends ArrayAdapter<Event> {
 						event.getLocationAddress());
 				calIntent.putExtra(Events.DESCRIPTION, "");
 				getDate(event.getEventDate());
-				GregorianCalendar calDate = new GregorianCalendar(year, month,
-						day);
-				calIntent.putExtra(CalendarContract.EXTRA_EVENT_ALL_DAY, true);
-				calIntent.putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME,
-						calDate.getTimeInMillis());
-				calIntent.putExtra(CalendarContract.EXTRA_EVENT_END_TIME,
-						calDate.getTimeInMillis());
+				GregorianCalendar startTime = new GregorianCalendar(year, month,
+						day, Integer.parseInt(event.getEventStartTime()), 0);
+				GregorianCalendar endTime = new GregorianCalendar(year, month,
+						day, Integer.parseInt(event.getEventEndTime()), 0);
+				//calIntent.putExtra(CalendarContract.EXTRA_EVENT_ALL_DAY, true);
+				calIntent.putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME, startTime.getTimeInMillis());
+				calIntent.putExtra(CalendarContract.EXTRA_EVENT_END_TIME, endTime.getTimeInMillis());
 				calIntent.putExtra(Events.ACCESS_LEVEL, Events.ACCESS_PRIVATE);
 				calIntent.putExtra(Events.AVAILABILITY,
 						Events.AVAILABILITY_BUSY);
 
 				context.startActivity(calIntent);
+			}
+		});
+		
+		viewHolder.ivFavoriteIcon.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				Favorite favItem = new Favorite();
+				// Set the current user, assuming a user is signed in
+				String user = ParseUser.getCurrentUser().getUsername();
+				favItem.setUser(user);
+				favItem.setEventObjId(event.getObjectId());
+				// Immediately save the data asynchronously
+				favItem.saveInBackground();
+				Toast.makeText(context, "Favorite Saved", Toast.LENGTH_SHORT).show();
 			}
 		});
 		return convertView;

@@ -16,7 +16,6 @@ import android.widget.Toast;
 
 import com.parse.FindCallback;
 import com.parse.ParseException;
-import com.parse.ParseFile;
 import com.parse.ParseQuery;
 import com.tresleches.aadp.R;
 import com.tresleches.aadp.activity.EventDetailActivity;
@@ -30,7 +29,6 @@ public class EventFragment extends Fragment {
 	private EventArrayAdapter aEvent;
 	private ListView lvEvents;
 	private Event event;
-	ParseFile fileImg;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
