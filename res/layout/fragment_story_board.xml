@@ -8,7 +8,7 @@
 
     <ImageView
         android:id="@+id/ivSearching"
-        android:layout_width="175dp"
+        android:layout_width="150dp"
         android:layout_height="250dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
@@ -16,8 +16,9 @@
 
     <ImageView
         android:id="@+id/ivSurvivor"
-        android:layout_width="120dp"
+        android:layout_width="150dp"
         android:layout_height="250dp"
+        android:layout_marginTop="30dp"
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
         android:layout_toRightOf="@+id/ivSearching"
@@ -25,20 +26,21 @@
     
     <ImageView
         android:id="@+id/ivDonor"
-        android:layout_width="120dp"
+        android:layout_width="150dp"
         android:layout_height="250dp"
         android:layout_alignParentLeft="true"
-        android:layout_below="@+id/ivSearching"
-        android:layout_marginLeft="5dp"
-        android:layout_toLeftOf="@+id/ivInMemory"
+        android:layout_alignParentBottom="true"
         android:src="@drawable/donor" />
 
     <ImageView
         android:id="@+id/ivInMemory"
-        android:layout_width="175dp"
-        android:layout_height="200dp"
+        android:layout_width="150dp"
+        android:layout_height="250dp"
         android:layout_toRightOf="@+id/ivSearching"
         android:layout_below="@+id/ivSurvivor"
-        android:src="@drawable/inmemory" />
+        android:src="@drawable/inmemory"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+         />
 
 </RelativeLayout>

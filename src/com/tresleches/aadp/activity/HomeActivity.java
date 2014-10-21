@@ -23,7 +23,7 @@ import com.tresleches.aadp.fragment.TwitterFragment;
 import com.tresleches.aadp.listener.FragmentTabListener;
 import com.tresleches.aadp.navigation.FragmentNavigationDrawer;
 
-public class HomeActivity extends ActionBarActivity {
+public class HomeActivity extends BaseActionBarActivity {
 	private final int SEARCH_REQUEST = 100;
 	private FragmentNavigationDrawer dlDrawer;
 

@@ -26,4 +26,8 @@
     <string name="drawer_icon">Drawer Icon</string>
     <string name="title_activity_login">LoginActivity</string>
     <string name="title_activity_main">MainActivity</string>
+    <string name="button_label_donate">Donate</string>
+    <string name="amount_hint">Enter Amount</string>
+    <string name="donate_name">Your Name</string>
+    <string name="donate_email">Your Email id</string>
 </resources>
