@@ -24,7 +24,7 @@ import com.tresleches.aadp.fragment.TwitterFragment;
 import com.tresleches.aadp.listener.FragmentTabListener;
 import com.tresleches.aadp.navigation.FragmentNavigationDrawer;
 
-public class HomeActivity extends ActionBarActivity {
+public class HomeActivity extends BaseActionBarActivity {
 	private final int SEARCH_REQUEST = 100;
 	private FragmentNavigationDrawer dlDrawer;
 	LoginFragment loginFragment;
@@ -41,12 +41,12 @@ public class HomeActivity extends ActionBarActivity {
 				(ListView) findViewById(R.id.lvDrawer),
 				R.layout.drawer_nav_item, R.id.flContainer);
 		// Add navigation items
-		dlDrawer.addNavItem("Login", R.drawable.ic_nav_login, "Profile and Login", LoginFragment.class);
+		//dlDrawer.addNavItem("Login", R.drawable.ic_nav_login, "Profile and Login", LoginFragment.class);
 		dlDrawer.addNavItem("Events", R.drawable.ic_nav_events, "Events", EventFragment.class);
 		dlDrawer.addNavItem("Stories", R.drawable.ic_nav_stories, "Stories", StoryBoardFragment.class);
 		dlDrawer.addNavItem("Be a donor", R.drawable.ic_nav_donor, "Be a donor", DonorFragment.class);	
 		dlDrawer.addNavItem("Favorites", R.drawable.ic_nav_favorite, "Favorite Events", FavoriteFragment.class);
-		dlDrawer.addNavItem("Twitter Feed", R.drawable.ic_nav_twitter, "AADP Tweets", TwitterFragment.class);
+		//dlDrawer.addNavItem("Twitter Feed", R.drawable.ic_nav_twitter, "AADP Tweets", TwitterFragment.class);
 		dlDrawer.addNavItem("Donate", R.drawable.ic_nav_donate, "Donate", DonateFragment.class);
 		dlDrawer.addNavItem("About", R.drawable.ic_nav_about, "About AADP", AboutFragment.class);
 		// Select default

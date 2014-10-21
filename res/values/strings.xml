@@ -35,5 +35,8 @@
     <string name="confirmPassword">Confirm Password</string>
     <string name="userName">Username</string>
     <string name="noUser">User not logged in</string>
-
+    <string name="button_label_donate">Donate</string>
+    <string name="amount_hint">Enter Amount</string>
+    <string name="donate_name">Your Name</string>
+    <string name="donate_email">Your Email id</string>
 </resources>

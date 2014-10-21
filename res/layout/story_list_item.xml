@@ -36,7 +36,7 @@
         android:lines="3"
         android:ellipsize="end" 
         android:paddingBottom="10dp"/>
-
+<!--  
     <ImageView
         android:id="@+id/ivFacebook"
         android:layout_width="wrap_content"
@@ -63,5 +63,5 @@
         android:layout_marginLeft="32dp"
         android:paddingBottom="5dp"
         android:layout_toRightOf="@+id/ivTwitter"
-        android:src="@drawable/ic_action_share" />
+        android:src="@drawable/ic_action_share" />-->
 </RelativeLayout>
