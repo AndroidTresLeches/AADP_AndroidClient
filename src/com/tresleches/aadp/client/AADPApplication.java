@@ -13,6 +13,7 @@ import com.tresleches.aadp.model.Contact;
 import com.tresleches.aadp.model.Donation;
 import com.tresleches.aadp.model.Event;
 import com.tresleches.aadp.model.Favorite;
+import com.tresleches.aadp.model.KnowledgeBase;
 import com.tresleches.aadp.model.Story;
 
 public class AADPApplication extends Application {
@@ -24,6 +25,8 @@ public class AADPApplication extends Application {
 		ParseObject.registerSubclass(Contact.class);
 		ParseObject.registerSubclass(Favorite.class);
 		ParseObject.registerSubclass(Donation.class);
+		ParseObject.registerSubclass(KnowledgeBase.class);
+
 		Parse.initialize(this, getString(R.string.parseApplicationId),
                 getString(R.string.parseClientId));
 		
@@ -35,7 +38,6 @@ public class AADPApplication extends Application {
 		.defaultDisplayImageOptions(defaultOptions)
 		.build();
 		ImageLoader.getInstance().init(imlConfig);
-		
 		
 
 	}

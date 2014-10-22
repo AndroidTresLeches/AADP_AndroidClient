@@ -1,18 +1,8 @@
 package com.tresleches.aadp.model;
 
-import java.io.File;
-
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.util.Log;
-
-import com.parse.GetCallback;
 import com.parse.ParseClassName;
-import com.parse.ParseException;
 import com.parse.ParseFile;
 import com.parse.ParseObject;
-import com.parse.ParseQuery;
-import com.tresleches.aadp.helper.Utils;
 
 @ParseClassName("Contact")
 public class Contact extends ParseObject {

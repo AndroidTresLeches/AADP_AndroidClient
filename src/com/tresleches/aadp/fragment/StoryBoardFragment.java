@@ -46,7 +46,7 @@ public class StoryBoardFragment extends Fragment {
 
 		View view = inflater.inflate(R.layout.fragment_story_board, container,false);
 
-		getActivity().getActionBar().setTitle("AADP");
+		//getActivity().getActionBar().setTitle("AADP");
 		
 		//4 Image Views represents 4 story types.
 		//these ImagesViews can be changed to some other views 
