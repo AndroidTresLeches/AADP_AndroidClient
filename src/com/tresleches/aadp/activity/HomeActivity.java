@@ -4,14 +4,26 @@ import android.app.ActionBar;
 import android.app.ActionBar.Tab;
 import android.content.Intent;
 import android.content.res.Configuration;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+
+import android.util.Log;
+
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.ListView;
 
+
 import com.parse.ParseUser;
+
+import com.parse.GetCallback;
+import com.parse.ParseException;
+import com.parse.ParseFile;
+import com.parse.ParseQuery;
+
 import com.tresleches.aadp.R;
 import com.tresleches.aadp.fragment.AboutFragment;
 import com.tresleches.aadp.fragment.DonateFragment;
@@ -21,7 +33,9 @@ import com.tresleches.aadp.fragment.FavoriteFragment;
 import com.tresleches.aadp.fragment.LoginFragment;
 import com.tresleches.aadp.fragment.StoryBoardFragment;
 import com.tresleches.aadp.fragment.TwitterFragment;
+import com.tresleches.aadp.helper.Utils;
 import com.tresleches.aadp.listener.FragmentTabListener;
+import com.tresleches.aadp.model.Contact;
 import com.tresleches.aadp.navigation.FragmentNavigationDrawer;
 
 public class HomeActivity extends BaseActionBarActivity {
@@ -56,7 +70,7 @@ public class HomeActivity extends BaseActionBarActivity {
 		//setupTabs();
 	}
 
-	public void checkUserSignin() {
+        public void checkUserSignin() {
 		ParseUser currentUser = ParseUser.getCurrentUser();
 		if (currentUser != null) {
 		  // do stuff with the user
@@ -67,46 +81,6 @@ public class HomeActivity extends BaseActionBarActivity {
 		}
 	}
 
-	private void setupTabs() {
-		ActionBar actionBar = getActionBar();
-		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
-
-		actionBar.setDisplayShowTitleEnabled(true);
-
-		Tab tab1 = actionBar
-				.newTab()
-				.setText("Event")
-				.setTag("EventFragment")
-				.setTabListener(
-						new FragmentTabListener<EventFragment>(
-								R.id.flContainer, this, "EventFragment",
-								EventFragment.class));
-
-		actionBar.addTab(tab1);
-		actionBar.selectTab(tab1);
-
-		Tab tab2 = actionBar
-				.newTab()
-				.setText("Stories")
-				.setTag("StoryBoardFragment")
-				.setTabListener(
-						new FragmentTabListener<StoryBoardFragment>(
-								R.id.flContainer, this, "StoryBoardFragment",
-								StoryBoardFragment.class));
-
-		actionBar.addTab(tab2);
-
-		Tab tab3 = actionBar
-				.newTab()
-				.setText("Be a donor")
-				.setTag("DonorFragment")
-				.setTabListener(
-						new FragmentTabListener<DonorFragment>(
-								R.id.flContainer, this, "DonorFragment",
-								DonorFragment.class));
-
-		actionBar.addTab(tab3);
-	}
 
 	@Override
 	public boolean onPrepareOptionsMenu(Menu menu) {
@@ -161,4 +135,25 @@ public class HomeActivity extends BaseActionBarActivity {
 		dlDrawer.getDrawerToggle().onConfigurationChanged(newConfig);
 	}
 
+        public void updateAvatarForContact(String objId, int drawableId) {
+
+		Bitmap bitmap = BitmapFactory.decodeResource(getResources(), drawableId);
+		final ParseFile pImgFile = new ParseFile("avatar.jpg",
+				Utils.CompressConvertBitmapTobyteArray(bitmap,
+						Bitmap.CompressFormat.JPEG));
+
+		ParseQuery<Contact> query = ParseQuery.getQuery(Contact.class);
+
+		query.getInBackground(objId, new GetCallback<Contact>() {
+			public void done(Contact item, ParseException e) {
+				if (e == null) {
+					item.setProfileImage(pImgFile);
+					item.saveInBackground();
+
+				} else {
+					Log.d("ERROR", e.toString());
+				}
+			}
+		});
+	}
 }

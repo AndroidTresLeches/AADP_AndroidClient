@@ -5,4 +5,5 @@
     <color name="tabindicator">#C9ADD1</color>
     <color name="actionBarBackground">#885492</color>
     <color name="white">#FFFFFF</color>
+    <color name="tabBackground">#E9E9E9</color>
 </resources>

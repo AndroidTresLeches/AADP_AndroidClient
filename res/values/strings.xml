@@ -39,4 +39,7 @@
     <string name="amount_hint">Enter Amount</string>
     <string name="donate_name">Your Name</string>
     <string name="donate_email">Your Email id</string>
+    <string name="about_image">About image</string>
+    <string name="title_activity_donor">Be a donor</string>
+    <string name="title_step1_eligible">Am I eiligible ?</string>
 </resources>
