@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rlAboutItem"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_card_pad_less" >
+
+    <ImageView
+        android:id="@+id/ivAboutImage"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="10dp"
+        android:contentDescription="@string/about_image"
+        android:src="@drawable/ic_bird" />
+
+    <TextView
+        android:id="@+id/tvAboutTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/ivAboutImage"
+        android:layout_toRightOf="@+id/ivAboutImage"
+        android:gravity="center"
+        android:text="@string/hello_world"
+        android:textColor="@android:color/black"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/tvAboutContent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/tvAboutTitle"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/tvAboutTitle"
+        android:ellipsize="end"
+        android:lines="7"
+        android:paddingBottom="20dp"
+        android:text="@string/hello_world"/>
+
+</RelativeLayout>
+
