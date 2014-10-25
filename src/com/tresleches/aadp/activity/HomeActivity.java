@@ -67,7 +67,6 @@ public class HomeActivity extends BaseActionBarActivity {
 		if (savedInstanceState == null) {
 			dlDrawer.selectDrawerItem(0);
 		}
-		//setupTabs();
 	}
 
         public void checkUserSignin() {
