@@ -6,9 +6,9 @@
     <string name="event_name">Event Name</string>
     <string name="event_coordinator">Event Coordinator</string>
     <string name="published_date">Published Date</string>
-    <string name="event_address">Event Address</string>
-    <string name="event_date">Event Date</string>
-    <string name="event_time">Event Time</string>
+    <string name="event_address">Event Address :</string>
+    <string name="event_date">Event Date :</string>
+    <string name="event_time">Event Time :</string>
     <string name="title_activity_search_result">Coordinator Search Result</string>
     <string name="action_settings">Settings</string>
     <string name="action_search">Search</string>
@@ -42,4 +42,6 @@
     <string name="about_image">About image</string>
     <string name="title_activity_donor">Be a donor</string>
     <string name="title_step1_eligible">Am I eiligible ?</string>
+    <string name="favorite">Favorite</string>
+    <string name="volunteer">Volunteer</string>
 </resources>
