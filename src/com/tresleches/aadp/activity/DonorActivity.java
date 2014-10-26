@@ -16,9 +16,9 @@ import android.util.TypedValue;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.astuetz.PagerSlidingTabStrip;
 import com.tresleches.aadp.R;
 import com.tresleches.aadp.fragment.StepFragment;
+import com.tresleches.aadp.ui.PagerSlidingTabStrip;
 //import com.astuetz.viewpager.extensions.sample.QuickContactFragment;
 
 //modified from PagerSlidingTabStrip sample
