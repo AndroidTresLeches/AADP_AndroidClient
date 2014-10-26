@@ -3,6 +3,7 @@ package com.tresleches.aadp.fragment;
 import java.util.ArrayList;
 import java.util.List;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -20,6 +21,7 @@ import com.parse.ParseQuery;
 import com.parse.ParseUser;
 import com.tresleches.aadp.R;
 import com.tresleches.aadp.activity.EventDetailActivity;
+import com.tresleches.aadp.activity.LoginActivity;
 import com.tresleches.aadp.adapter.EventArrayAdapter;
 import com.tresleches.aadp.helper.NetworkUtils;
 import com.tresleches.aadp.model.Event;
@@ -27,6 +29,7 @@ import com.tresleches.aadp.model.Favorite;
 
 public class FavoriteFragment extends Fragment {
 
+	private static final int REQUEST_CODE = 30;
 	private ArrayList<Event> favEvents;
 	private ArrayList<Favorite> favorites;
 	private EventArrayAdapter aFavEvent;
@@ -40,7 +43,7 @@ public class FavoriteFragment extends Fragment {
 		favEvents = new ArrayList<Event>();
 		favorites = new ArrayList<Favorite>();
 		aFavEvent = new EventArrayAdapter(getActivity(),
-				R.layout.event_list_item, favEvents);
+				R.layout.fragment_favorite, favEvents);
 	}
 
 	/**
@@ -50,8 +53,8 @@ public class FavoriteFragment extends Fragment {
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 
-		View view = inflater.inflate(R.layout.event_list, container, false);
-		lvEvents = (ListView) view.findViewById(R.id.lvEventsList);
+		View view = inflater.inflate(R.layout.fragment_favorite, container, false);
+		lvEvents = (ListView) view.findViewById(R.id.lvFavoritesList);
 		lvEvents.setAdapter(aFavEvent);
 		getFavEvents();
 		lvEvents.setOnItemClickListener(new OnItemClickListener() {
@@ -67,6 +70,7 @@ public class FavoriteFragment extends Fragment {
 				startActivity(i);
 			}
 		});
+		Toast.makeText(getActivity(), getActivity().toString(), Toast.LENGTH_SHORT).show();
 		return view;
 	}
 
@@ -76,32 +80,43 @@ public class FavoriteFragment extends Fragment {
 	public void getFavEvents() {
 		if (NetworkUtils.isNetworkAvailable(getActivity())) {
 			// Define the class we would like to query
-			ParseQuery<Favorite> query = ParseQuery.getQuery(Favorite.class);
-			// Define our query conditions
-			String user = ParseUser.getCurrentUser().getUsername();
-			if (user != null) {
-				query.whereEqualTo("user", user);
-				query.findInBackground(new FindCallback<Favorite>() {
-					public void done(List<Favorite> results, ParseException e) {
-						if (e == null) {
-							// results have all the Story
-							favorites.addAll(results);
-							getEvents(favorites);
-							// aFavEvent.notifyDataSetChanged();
-						} else {
-							// There was an error
-						}
-					}
-				});
+
+			ParseUser currentUser = ParseUser.getCurrentUser();
+			if (currentUser == null) {
+
+				// show the signup or login screen
+				Intent i = new Intent(getActivity(), LoginActivity.class);
+				// i.putExtra("objectId", event.getObjectId());
+				getActivity().startActivityForResult(i, REQUEST_CODE);
+				getActivity().overridePendingTransition(R.anim.right_in,
+						R.anim.left_out);
+				// Set the current user, assuming a user is signed in
 			} else {
-				Toast.makeText(getActivity(),
-						getResources().getString(R.string.no_network),
-						Toast.LENGTH_SHORT).show();
+				ParseQuery<Favorite> query = ParseQuery
+						.getQuery(Favorite.class);
+				// Define our query conditions
+				String user = ParseUser.getCurrentUser().getUsername();
+				if (user != null) {
+					query.whereEqualTo("user", user);
+					query.findInBackground(new FindCallback<Favorite>() {
+						public void done(List<Favorite> results,
+								ParseException e) {
+							if (e == null) {
+								// results have all the Story
+								favorites.addAll(results);
+								getEvents(favorites);
+								// aFavEvent.notifyDataSetChanged();
+							} else {
+								// There was an error
+							}
+						}
+					});
+				} else {
+					Toast.makeText(getActivity(),
+							getResources().getString(R.string.no_network),
+							Toast.LENGTH_SHORT).show();
+				}
 			}
-		} else {
-			Toast.makeText(getActivity(),
-					getResources().getString(R.string.noUser),
-					Toast.LENGTH_SHORT).show();
 		}
 	}
 
@@ -113,6 +128,7 @@ public class FavoriteFragment extends Fragment {
 			for (Favorite f : favorites) {
 				ParseQuery<Event> query = ParseQuery.getQuery(Event.class);
 				// Define our query conditions
+
 				query.whereEqualTo("objectId", f.getEventObjId());
 				query.findInBackground(new FindCallback<Event>() {
 					public void done(List<Event> results, ParseException e) {
@@ -133,4 +149,53 @@ public class FavoriteFragment extends Fragment {
 					Toast.LENGTH_SHORT).show();
 		}
 	}
+
+	@Override
+	public void onActivityResult(int requestCode, int resultCode, Intent data) {
+		// TODO Auto-generated method stub
+		System.out.println("@@@@@@@@");
+		getActivity();
+		if (resultCode == Activity.RESULT_OK  && requestCode == REQUEST_CODE) {
+			ParseQuery<Favorite> query = ParseQuery.getQuery(Favorite.class);
+			// Define our query conditions
+			String user = ParseUser.getCurrentUser().getUsername();
+			if (user != null) {
+				query.whereEqualTo("user", user);
+				query.findInBackground(new FindCallback<Favorite>() {
+					public void done(List<Favorite> results, ParseException e) {
+						if (e == null) {
+							// results have all the Story
+							favorites.addAll(results);
+							getEvents(favorites);
+							// aFavEvent.notifyDataSetChanged();
+						} else {
+							// There was an error
+						}
+					}
+				});
+			}
+		}
+	}
+	
+	public void doSomething(String param) {
+	      // do something in fragment
+		ParseQuery<Favorite> query = ParseQuery.getQuery(Favorite.class);
+		// Define our query conditions
+		String user = ParseUser.getCurrentUser().getUsername();
+		if (user != null) {
+			query.whereEqualTo("user", user);
+			query.findInBackground(new FindCallback<Favorite>() {
+				public void done(List<Favorite> results, ParseException e) {
+					if (e == null) {
+						// results have all the Story
+						favorites.addAll(results);
+						getEvents(favorites);
+						// aFavEvent.notifyDataSetChanged();
+					} else {
+						// There was an error
+					}
+				}
+			});
+		}
+	  }
 }
