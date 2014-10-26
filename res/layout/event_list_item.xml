@@ -12,7 +12,7 @@
         android:layout_alignParentTop="true"
         android:text="@string/event_name"
         android:textStyle="bold"
-        android:textSize="14sp"  />
+        android:textSize="15sp"  />
 
     <TextView
         android:id="@+id/tvDate"
@@ -55,7 +55,7 @@
         android:id="@+id/tvCoordinatorText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
+        android:layout_alignTop="@id/tvEventName"
         android:layout_alignRight="@+id/ivCoordinator"
         android:text="@string/coordinator"
         android:textSize="12sp" />
@@ -75,7 +75,8 @@
         android:layout_height="40dp"
         android:layout_alignRight="@+id/tvCoordinatorName"
         android:layout_below="@+id/tvCoordinatorText"
-        android:src="@drawable/ic_launcher" />
+        android:contentDescription="@string/coordinator"
+        android:background="@drawable/rounded_image" />
 
     <ImageView
         android:id="@+id/ivFavoriteIcon"
@@ -83,6 +84,16 @@
         android:layout_height="15dp"
         android:layout_toRightOf="@+id/ivCalendarIcon"
         android:layout_alignTop="@+id/ivCalendarIcon"
+        android:contentDescription="@string/favorite"
         android:src="@drawable/ic_heart" />
+
+    <ImageView
+        android:id="@+id/ivVolunteerIcon"
+        android:layout_width="15dp"
+        android:layout_height="15dp"
+        android:layout_below="@+id/tvTime"
+        android:layout_toRightOf="@+id/ivFavoriteIcon"
+        android:contentDescription="@string/volunteer"
+        android:src="@drawable/volunteer" />
 
 </RelativeLayout>

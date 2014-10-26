@@ -60,6 +60,7 @@ public class EventFragment extends Fragment {
 				i.putExtra("location", event.getLocationAddress());
 				i.putExtra("eventId", event.getObjectId());
 				startActivity(i);
+				getActivity().overridePendingTransition(R.anim.right_in, R.anim.left_out);
 			}
 		});
 		return view;
