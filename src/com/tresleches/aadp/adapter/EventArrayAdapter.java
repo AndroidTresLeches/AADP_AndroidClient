@@ -1,10 +1,12 @@
 package com.tresleches.aadp.adapter;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -24,6 +26,7 @@ import com.parse.ParseException;
 import com.parse.ParseFile;
 import com.parse.ParseUser;
 import com.tresleches.aadp.R;
+import com.tresleches.aadp.activity.LoginActivity;
 import com.tresleches.aadp.helper.DateHelper;
 import com.tresleches.aadp.model.Event;
 import com.tresleches.aadp.model.Favorite;
@@ -38,12 +41,15 @@ public class EventArrayAdapter extends ArrayAdapter<Event> {
 		TextView tvCoordinatorName;
 		ImageView ivCalendarIcon;
 		ImageView ivFavoriteIcon;
+		ImageView ivVolunteerIcon;
 	}
 
 	private Context context;
 	int year;
 	int month;
+	String fullMonth;
 	int day;
+	private final int REQUEST_CODE = 20;
 	
 	public EventArrayAdapter(Context context, int resource, List<Event> events) {
 		super(context, R.layout.event_list_item, events);
@@ -75,13 +81,15 @@ public class EventArrayAdapter extends ArrayAdapter<Event> {
 					.findViewById(R.id.ivCalendarIcon);
 			viewHolder.ivFavoriteIcon = (ImageView) convertView
 					.findViewById(R.id.ivFavoriteIcon);
+			viewHolder.ivVolunteerIcon = (ImageView) convertView.findViewById(R.id.ivVolunteerIcon);
 			convertView.setTag(viewHolder);
 		} else {
 			viewHolder = (ViewHolder) convertView.getTag();
 		}
+		
+		getDate(event.getEventDate());
 		viewHolder.tvEventName.setText(event.getEventName());
-		viewHolder.tvDate.setText(DateHelper.getDateInString(event
-				.getEventDate()));
+		viewHolder.tvDate.setText(fullMonth + " " + day + ", " + year);
 		viewHolder.tvTime.setText(DateHelper.getTime(event.getEventStartTime()) + " - "
 				+ DateHelper.getTime(event.getEventEndTime()));
 		viewHolder.tvAddress.setText(event.getLocationAddress());
@@ -110,7 +118,7 @@ public class EventArrayAdapter extends ArrayAdapter<Event> {
 				calIntent.putExtra(Events.EVENT_LOCATION,
 						event.getLocationAddress());
 				calIntent.putExtra(Events.DESCRIPTION, "");
-				getDate(event.getEventDate());
+				//getDate(event.getEventDate());
 				GregorianCalendar startTime = new GregorianCalendar(year, month,
 						day, Integer.parseInt(event.getEventStartTime()), 0);
 				GregorianCalendar endTime = new GregorianCalendar(year, month,
@@ -132,13 +140,36 @@ public class EventArrayAdapter extends ArrayAdapter<Event> {
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				Favorite favItem = new Favorite();
-				// Set the current user, assuming a user is signed in
-				String user = ParseUser.getCurrentUser().getUsername();
-				favItem.setUser(user);
-				favItem.setEventObjId(event.getObjectId());
-				// Immediately save the data asynchronously
-				favItem.saveInBackground();
-				Toast.makeText(context, "Favorite Saved", Toast.LENGTH_SHORT).show();
+				ParseUser currentUser = ParseUser.getCurrentUser();
+				if (currentUser != null) {
+				  // do stuff with the user
+					// Set the current user, assuming a user is signed in
+					String user = ParseUser.getCurrentUser().getUsername();
+					favItem.setUser(user);
+					favItem.setEventObjId(event.getObjectId());
+					// Immediately save the data asynchronously
+					favItem.saveInBackground();
+					Toast.makeText(context, "Favorite Saved", Toast.LENGTH_SHORT).show();
+				} else {
+				  // show the signup or login screen
+					Intent i = new Intent(getContext(), LoginActivity.class);
+					i.putExtra("objectId", event.getObjectId());
+					((Activity)context).startActivityForResult(i, REQUEST_CODE); 
+					// Set the current user, assuming a user is signed in
+				}
+			}
+		});
+		
+		viewHolder.ivVolunteerIcon.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				Intent intent = new Intent(Intent.ACTION_SEND);
+				intent.setType("plain/text");
+				intent.putExtra(Intent.EXTRA_EMAIL, new String[] { "some@email.address" });
+				intent.putExtra(Intent.EXTRA_SUBJECT, "Volunteer for " + event.getEventName());
+				intent.putExtra(Intent.EXTRA_TEXT, "mail body");
+				context.startActivity(Intent.createChooser(intent, ""));
 			}
 		});
 		return convertView;
@@ -149,6 +180,8 @@ public class EventArrayAdapter extends ArrayAdapter<Event> {
 		cal.setTime(date);
 		year = cal.get(Calendar.YEAR);
 		month = cal.get(Calendar.MONTH);
+		fullMonth = new SimpleDateFormat("MMMM").format(date);
 		day = cal.get(Calendar.DAY_OF_MONTH);
+		System.out.println("@@@@@@@@@@" + new SimpleDateFormat("MMMM").format(date));
 	}
 }

@@ -22,11 +22,15 @@ public class LoginActivity extends Activity {
 	private EditText etPassword;
 	private Button btnLogin;
 	private TextView tvSignUp;
+	private String username;
+	private String password;
+	private String objectId;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_login);
+		objectId = getIntent().getStringExtra("objectId");
 		loadUI();
 	}
 
@@ -41,14 +45,21 @@ public class LoginActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				String username = etUserName.getText().toString();
-				String password = etPassword.getText().toString();
+				username = etUserName.getText().toString();
+				password = etPassword.getText().toString();
 				
 				ParseUser.logInInBackground(username, password, new LogInCallback() {
 					  public void done(ParseUser user, ParseException e) {
 					    if (user != null) {
-					    	Intent i = new Intent(getApplicationContext(), HomeActivity.class);
-							startActivity(i);
+					    	Intent data = new Intent(getApplicationContext(), HomeActivity.class);
+							//startActivity(i);
+					    	// Intent data = new Intent();
+					   	  // Pass relevant data back as a result
+					   	  data.putExtra("username", username);
+					   	  data.putExtra("objectId", objectId);
+					   	  // Activity finished ok, return the data
+					   	  setResult(RESULT_OK, data); // set result code and bundle data for response
+					   	  finish(); // closes the activity, pass data to parent
 					    } else {
 					      // Signup failed. Look at the ParseException to see what happened.
 					    	Log.d("ERROR", "User login failed");

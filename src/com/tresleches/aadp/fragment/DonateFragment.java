@@ -47,9 +47,11 @@ public class DonateFragment extends Fragment {
 		etDonationAmount = (EditText)view.findViewById(R.id.etDonationAmount);
 		Button btnDonate = (Button)view.findViewById(R.id.btnDonate);
 		
-		etDonationName.setText(ParseUser.getCurrentUser().getUsername());
-		etDonationEmail.setText(ParseUser.getCurrentUser().getEmail());
 		
+		if(ParseUser.getCurrentUser() != null ){
+			etDonationName.setText(ParseUser.getCurrentUser().getUsername());
+			etDonationEmail.setText(ParseUser.getCurrentUser().getEmail());
+		}
 		
 		btnDonate.setOnClickListener(new OnClickListener() {
 			

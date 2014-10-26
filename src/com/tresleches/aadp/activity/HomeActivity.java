@@ -1,29 +1,22 @@
 package com.tresleches.aadp.activity;
 
-import android.app.ActionBar;
-import android.app.ActionBar.Tab;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
-
 import android.util.Log;
-
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.ListView;
-
-
-import com.parse.ParseUser;
+import android.widget.Toast;
 
 import com.parse.GetCallback;
 import com.parse.ParseException;
 import com.parse.ParseFile;
 import com.parse.ParseQuery;
-
+import com.parse.ParseUser;
 import com.tresleches.aadp.R;
 import com.tresleches.aadp.fragment.AboutFragment;
 import com.tresleches.aadp.fragment.DonateFragment;
@@ -32,13 +25,13 @@ import com.tresleches.aadp.fragment.EventFragment;
 import com.tresleches.aadp.fragment.FavoriteFragment;
 import com.tresleches.aadp.fragment.LoginFragment;
 import com.tresleches.aadp.fragment.StoryBoardFragment;
-import com.tresleches.aadp.fragment.TwitterFragment;
 import com.tresleches.aadp.helper.Utils;
-import com.tresleches.aadp.listener.FragmentTabListener;
 import com.tresleches.aadp.model.Contact;
+import com.tresleches.aadp.model.Favorite;
 import com.tresleches.aadp.navigation.FragmentNavigationDrawer;
 
 public class HomeActivity extends BaseActionBarActivity {
+	private static final int REQUEST_CODE = 20;
 	private final int SEARCH_REQUEST = 100;
 	private FragmentNavigationDrawer dlDrawer;
 	LoginFragment loginFragment;
@@ -47,7 +40,7 @@ public class HomeActivity extends BaseActionBarActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_home);
-		checkUserSignin();
+		//checkUserSignin();
 		// navigation drawer - find drawer view
 		dlDrawer = (FragmentNavigationDrawer) findViewById(R.id.drawer_layout);
 		// Setup drawer view
@@ -79,7 +72,6 @@ public class HomeActivity extends BaseActionBarActivity {
 			startActivity(i);
 		}
 	}
-
 
 	@Override
 	public boolean onPrepareOptionsMenu(Menu menu) {
@@ -155,4 +147,22 @@ public class HomeActivity extends BaseActionBarActivity {
 			}
 		});
 	}
+        
+        @Override
+        protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+          // REQUEST_CODE is defined above
+          if (resultCode == RESULT_OK && requestCode == REQUEST_CODE) {
+             // Extract name value from result extras
+             String user = data.getExtras().getString("username");
+             String objectId = data.getExtras().getString("objectId");
+             // Toast the name to display temporarily on screen
+             Favorite favItem = new Favorite();
+             favItem.setUser(user);
+			 favItem.setEventObjId(objectId);
+			 // Immediately save the data asynchronously
+			 favItem.saveInBackground();
+				Toast.makeText(this, "Favorite Saved", Toast.LENGTH_SHORT).show();
+            // Toast.makeText(this, name, Toast.LENGTH_SHORT).show();
+          }
+        } 
 }

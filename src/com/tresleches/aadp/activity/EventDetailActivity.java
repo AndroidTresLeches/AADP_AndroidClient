@@ -22,6 +22,7 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.GoogleMap.OnMapLongClickListener;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 import com.parse.GetCallback;
 import com.parse.ParseException;
 import com.parse.ParseQuery;
@@ -78,7 +79,7 @@ public class EventDetailActivity extends FragmentActivity implements
 			Toast.makeText(this, "Error - Map Fragment was null!!",
 					Toast.LENGTH_SHORT).show();
 		}
-		map.setOnMapLongClickListener(this);
+		// map.setOnMapLongClickListener(this);
 	}
 
 	private void loadUI() {
@@ -102,7 +103,7 @@ public class EventDetailActivity extends FragmentActivity implements
 				if (e == null) {
 					// item was found
 					event = item;
-					tvEventName.setText(event.getEventName());
+					tvEventName.setText(Html.fromHtml("<i>" + event.getEventName()+ "</i>"));
 					tvCoordinatorName.setText(event.getCoordinatorName());
 					tvCoordinatorName.setText(Html.fromHtml("<i>"
 							+ getResources().getString(R.string.by)
@@ -113,14 +114,26 @@ public class EventDetailActivity extends FragmentActivity implements
 							+ "<i>"
 							+ getResources().getString(R.string.published)
 							+ "</i>"
-							+ DateHelper.getDateInString(event
+							+ DateHelper.getMonthInString(event
+									.getPublishedDate())
+							+ " "
+							+ DateHelper.getDate(event.getPublishedDate())
+							+ ", "
+							+ DateHelper.getYearInString(event
 									.getPublishedDate())));
 					tvNotes.setText(event.getNotes());
 
-					tvEventDate.setText(DateHelper.getDateInString(event
-							.getEventDate()));
-					tvEventAddress.setText(event.getLocationAddress());
-					tvEventTime.setText(DateHelper.getTime(event.getEventStartTime()) + " - "
+					tvEventDate.setText(getResources().getString(R.string.event_date) + 
+							DateHelper.getMonthInString(event
+							.getEventDate())
+							+ " "
+							+ DateHelper.getDate(event.getEventDate())
+							+ ", "
+							+ DateHelper.getYearInString(event.getEventDate()));
+					tvEventAddress.setText(Html.fromHtml("<i>"+ getResources().getString(R.string.event_address)) +"</i>"+ event.getLocationAddress());
+					tvEventTime.setText(getResources().getString(R.string.event_time) + DateHelper.getTime(event
+							.getEventStartTime())
+							+ " - "
 							+ DateHelper.getTime(event.getEventEndTime()));
 				}
 			}
@@ -210,17 +223,19 @@ public class EventDetailActivity extends FragmentActivity implements
 	@Override
 	public void onConnected(Bundle dataBundle) {
 		// Display the connection status
-		
+
 		LatLng latLng = AddressHelper.getAddress(this, locationAddress);
 		if (latLng != null) {
 			Toast.makeText(this, "Location was found!", Toast.LENGTH_SHORT)
-			.show();
+					.show();
 			CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(
 					latLng, 15);
 			map.animateCamera(cameraUpdate);
-		} else{
+			map.addMarker(new MarkerOptions().position(latLng).title(
+					"Hello world"));
+		} else {
 			Toast.makeText(this, "Location was not found!", Toast.LENGTH_SHORT)
-			.show();
+					.show();
 		}
 	}
 
@@ -287,5 +302,12 @@ public class EventDetailActivity extends FragmentActivity implements
 		public Dialog onCreateDialog(Bundle savedInstanceState) {
 			return mDialog;
 		}
+	}
+
+	@Override
+	public void onBackPressed() {
+		// TODO Auto-generated method stub
+		finish();
+		overridePendingTransition(R.anim.left_in, R.anim.right_out);
 	}
 }
