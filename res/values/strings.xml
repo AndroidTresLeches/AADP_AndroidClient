@@ -44,4 +44,8 @@
     <string name="title_step1_eligible">Am I eiligible ?</string>
     <string name="favorite">Favorite</string>
     <string name="volunteer">Volunteer</string>
+    <string name="title_activity_splash_screen">Splash Screen</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+
 </resources>
