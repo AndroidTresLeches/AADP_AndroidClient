@@ -2,6 +2,7 @@
 <resources>
 
     <string name="app_name">AADP</string>
+    <string name="app_name_full">Asian American \n Donor Program</string>
     <string name="hello_world">Hello world!</string>
     <string name="event_name">Event Name</string>
     <string name="event_coordinator">Event Coordinator</string>
