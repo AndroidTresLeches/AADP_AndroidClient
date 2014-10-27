@@ -17,7 +17,7 @@
 	        android:layout_alignParentLeft="true"
 	        android:layout_alignParentRight="true"
 	        android:layout_alignParentTop="true"
-	        android:src="@drawable/abc_ab_bottom_solid_light_holo" />
+	        android:src="@drawable/ic_aadp_logo" />
 	  
 	    <ImageView
 	        android:id="@+id/ivFacebook"
