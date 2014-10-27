@@ -15,7 +15,7 @@ import com.easyandroidanimations.library.FadeInAnimation;
 import com.easyandroidanimations.library.ParallelAnimator;
 import com.easyandroidanimations.library.PathAnimation;
 import com.tresleches.aadp.activity.HomeActivity;
-import com.tresleches.aadp.util.SystemUiHider;
+
 
 
 /**
