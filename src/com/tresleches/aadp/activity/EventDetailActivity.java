@@ -4,11 +4,14 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.content.Intent;
 import android.content.IntentSender;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentActivity;
 import android.text.Html;
 import android.util.Log;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -26,6 +29,7 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.parse.GetCallback;
 import com.parse.ParseException;
+import com.parse.ParseFile;
 import com.parse.ParseQuery;
 import com.tresleches.aadp.R;
 import com.tresleches.aadp.helper.AddressHelper;
@@ -45,7 +49,7 @@ public class EventDetailActivity extends FragmentActivity implements
 	private TextView tvNotes;
 	private TextView tvEventDate;
 	private TextView tvEventAddress;
-	private TextView tvEventTime;
+	private ImageView ivProfileImg;
 	private Event event;
 	private String eventId;
 	private String locationAddress;
@@ -89,7 +93,7 @@ public class EventDetailActivity extends FragmentActivity implements
 		tvNotes = (TextView) findViewById(R.id.tvNotes);
 		tvEventDate = (TextView) findViewById(R.id.tvEventDate);
 		tvEventAddress = (TextView) findViewById(R.id.tvEventAddress);
-		tvEventTime = (TextView) findViewById(R.id.tvEventTime);
+		ivProfileImg = (ImageView) findViewById(R.id.ivCoordinator);
 		getEvent();
 	}
 
@@ -105,7 +109,7 @@ public class EventDetailActivity extends FragmentActivity implements
 				if (e == null) {
 					// item was found
 					event = item;
-					tvEventName.setText(Html.fromHtml("<i>" + event.getEventName()+ "</i>"));
+					tvEventName.setText(event.getEventName());
 					tvCoordinatorName.setText(event.getCoordinatorName());
 					tvCoordinatorName.setText(Html.fromHtml("<i>"
 							+ getResources().getString(R.string.by)
@@ -125,18 +129,33 @@ public class EventDetailActivity extends FragmentActivity implements
 									.getPublishedDate())));
 					tvNotes.setText(event.getNotes());
 
-					tvEventDate.setText(getResources().getString(R.string.event_date) + 
-							DateHelper.getMonthInString(event
+					tvEventDate.setText(DateHelper.getMonthInString(event
 							.getEventDate())
 							+ " "
 							+ DateHelper.getDate(event.getEventDate())
 							+ ", "
-							+ DateHelper.getYearInString(event.getEventDate()));
-					tvEventAddress.setText(Html.fromHtml("<i>"+ getResources().getString(R.string.event_address)) +"</i>"+ event.getLocationAddress());
-					tvEventTime.setText(getResources().getString(R.string.event_time) + DateHelper.getTime(event
+							+ DateHelper.getYearInString(event.getEventDate()) + " @ " +DateHelper.getTime(event
+									.getEventStartTime())
+									
+									+ DateHelper.getTime(event.getEventEndTime()));
+					tvEventAddress.setText(event.getLocationAddress());
+					/*tvEventTime.setText(DateHelper.getTime(event
 							.getEventStartTime())
-							+ " - "
-							+ DateHelper.getTime(event.getEventEndTime()));
+				
+							+ DateHelper.getTime(event.getEventEndTime()));*/
+					ParseFile imgFile = event.getProfileImage();
+					if (imgFile != null) {
+						try {
+							byte[] profileImage = imgFile.getData();
+							Bitmap bmp = BitmapFactory.decodeByteArray(profileImage, 0,
+									profileImage.length);
+							ivProfileImg
+									.setImageResource(android.R.color.transparent);
+							ivProfileImg.setImageBitmap(bmp);
+						} catch (ParseException ex) {
+							ex.printStackTrace();
+						}
+					}
 				}
 			}
 		});

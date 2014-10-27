@@ -3,9 +3,13 @@
     <color name="menuBackground">#FFFFFF</color>
     <color name="menuText">#000000</color>
     <color name="tabindicator">#C9ADD1</color>
-    <color name="actionBarBackground">#885492</color>
+    <color name="actionBarBackground">#A4148E</color>
     <color name="white">#FFFFFF</color>
     <color name="tabBackground">#E9E9E9</color>
     <color name="background_tab_pressed">#6633B5E5</color>
-    <color name="purple">#E9E9E9</color>
+    <color name="purple">#885492</color>
+    <color name="realm_pink">#C10D6E</color>
+    <color name="realm_purple">#791A89</color>
+    <color name="realm_navy">#43227B</color>
+    <color name="realm_crimson">#E80629</color>
 </resources>

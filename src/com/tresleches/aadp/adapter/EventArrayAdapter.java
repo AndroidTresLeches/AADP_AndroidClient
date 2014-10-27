@@ -13,6 +13,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.provider.CalendarContract;
 import android.provider.CalendarContract.Events;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -35,6 +36,7 @@ public class EventArrayAdapter extends ArrayAdapter<Event> {
 	private static class ViewHolder {
 		TextView tvEventName;
 		TextView tvDate;
+		TextView tvDay;
 		ImageView ivCoordinatorImg;
 		TextView tvTime;
 		TextView tvAddress;
@@ -69,6 +71,8 @@ public class EventArrayAdapter extends ArrayAdapter<Event> {
 					.findViewById(R.id.tvEventName);
 			viewHolder.tvDate = (TextView) convertView
 					.findViewById(R.id.tvDate);
+			viewHolder.tvDay = (TextView) convertView
+					.findViewById(R.id.tvDay);
 			viewHolder.ivCoordinatorImg = (ImageView) convertView
 					.findViewById(R.id.ivCoordinator);
 			viewHolder.tvTime = (TextView) convertView
@@ -90,9 +94,11 @@ public class EventArrayAdapter extends ArrayAdapter<Event> {
 
 		getDate(event.getEventDate());
 		viewHolder.tvEventName.setText(event.getEventName());
-		viewHolder.tvDate.setText(fullMonth + " " + day + ", " + year);
+		viewHolder.tvDate.setText(fullMonth);
+		//+ " " + Html.fromHtml("<br/>") +"  "+ day);
+		viewHolder.tvDay.setText(Integer.toString(day));
 		viewHolder.tvTime.setText(DateHelper.getTime(event.getEventStartTime())
-				+ " - " + DateHelper.getTime(event.getEventEndTime()));
+				+ DateHelper.getTime(event.getEventEndTime()));
 		viewHolder.tvAddress.setText(event.getLocationAddress());
 		viewHolder.tvCoordinatorName.setText(event.getCoordinatorName());
 		ParseFile imgFile = event.getProfileImage();
