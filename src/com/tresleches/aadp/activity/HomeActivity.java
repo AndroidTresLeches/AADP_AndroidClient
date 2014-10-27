@@ -7,7 +7,6 @@ import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -20,7 +19,7 @@ import com.parse.ParseUser;
 import com.tresleches.aadp.R;
 import com.tresleches.aadp.fragment.AboutFragment;
 import com.tresleches.aadp.fragment.DonateFragment;
-import com.tresleches.aadp.fragment.DonorFragment;
+import com.tresleches.aadp.fragment.DonorPagerFragment;
 import com.tresleches.aadp.fragment.EventFragment;
 import com.tresleches.aadp.fragment.FavoriteFragment;
 import com.tresleches.aadp.fragment.LoginFragment;
@@ -48,14 +47,14 @@ public class HomeActivity extends BaseActionBarActivity {
 				(ListView) findViewById(R.id.lvDrawer),
 				R.layout.drawer_nav_item, R.id.flContainer);
 		// Add navigation items
-		//dlDrawer.addNavItem("Login", R.drawable.ic_nav_login, "Profile and Login", LoginFragment.class);
-		dlDrawer.addNavItem("Events", R.drawable.ic_nav_events, "Events", EventFragment.class);
-		dlDrawer.addNavItem("Stories", R.drawable.ic_nav_stories, "Stories", StoryBoardFragment.class);
-		dlDrawer.addNavItem("Be a donor", R.drawable.ic_nav_donor, "Be a donor", DonorFragment.class);	
-		dlDrawer.addNavItem("Favorites", R.drawable.ic_nav_favorite, "Favorite Events", FavoriteFragment.class);
-		//dlDrawer.addNavItem("Twitter Feed", R.drawable.ic_nav_twitter, "AADP Tweets", TwitterFragment.class);
-		dlDrawer.addNavItem("Donate", R.drawable.ic_nav_donate, "Donate", DonateFragment.class);
-		dlDrawer.addNavItem("About", R.drawable.ic_nav_about, "About AADP", AboutFragment.class);
+		//dlDrawer.addNavItem("Login", R.drawable.ic_nav_login_dark, "Profile and Login", LoginFragment.class);
+		dlDrawer.addNavItem("Events", R.drawable.ic_nav_events_dark, "Events", EventFragment.class);
+		dlDrawer.addNavItem("Stories", R.drawable.ic_nav_stories_dark, "Stories", StoryBoardFragment.class);
+		dlDrawer.addNavItem("Be a donor", R.drawable.ic_nav_donor_dark, "Be a donor", DonorPagerFragment.class);	
+		dlDrawer.addNavItem("Favorites", R.drawable.ic_nav_favorite_dark, "Favorite Events", FavoriteFragment.class);
+		//dlDrawer.addNavItem("Twitter Feed", R.drawable.ic_nav_twitter_dark, "AADP Tweets", TwitterFragment.class);
+		dlDrawer.addNavItem("Donate", R.drawable.ic_nav_donate_dark, "Donate", DonateFragment.class);
+		dlDrawer.addNavItem("About", R.drawable.ic_nav_about_dark, "About AADP", AboutFragment.class);
 		// Select default
 		if (savedInstanceState == null) {
 			dlDrawer.selectDrawerItem(0);
@@ -76,20 +75,20 @@ public class HomeActivity extends BaseActionBarActivity {
 	@Override
 	public boolean onPrepareOptionsMenu(Menu menu) {
 		// If the nav drawer is open, hide action items related to the content
-		if (dlDrawer.isDrawerOpen()) {
-			// hide menu items
-			menu.findItem(R.id.action_search).setVisible(false);
-		}
-		else{menu.findItem(R.id.action_search).setVisible(true);
-			
-		}
+//		if (dlDrawer.isDrawerOpen()) {
+//			// hide menu items
+//			menu.findItem(R.id.action_search).setVisible(false);
+//		}
+//		else{menu.findItem(R.id.action_search).setVisible(true);
+//			
+//		}
 		return super.onPrepareOptionsMenu(menu);
 	}
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		MenuInflater inflater = getMenuInflater();
-		inflater.inflate(R.menu.menu_main, menu);
+//		MenuInflater inflater = getMenuInflater();
+//		inflater.inflate(R.menu.menu_main, menu);
 		return true;
 	}
 

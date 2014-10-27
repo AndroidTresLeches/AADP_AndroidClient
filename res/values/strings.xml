@@ -44,4 +44,6 @@
     <string name="title_step1_eligible">Am I eiligible ?</string>
     <string name="favorite">Favorite</string>
     <string name="volunteer">Volunteer</string>
+    <string name="be_a_donor">Be a donor</string>
+    <string name="button_start_label">Start</string>
 </resources>

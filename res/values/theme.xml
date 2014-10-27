@@ -12,7 +12,7 @@
 
     <!-- ActionBar styles -->
     <style name="BaseTheme.ActionBar" parent="@style/Widget.AppCompat.Light.ActionBar.Solid.Inverse">
-        <item name="android:background">@color/actionBarBackground</item>
+        <item name="android:background">@color/pc_purple</item>
     </style>
 
     <style name="BaseTheme.ActionBar.Widget" parent="@style/Theme.Base.AppCompat.Light">

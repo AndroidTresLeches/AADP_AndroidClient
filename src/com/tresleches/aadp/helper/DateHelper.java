@@ -32,13 +32,14 @@ public class DateHelper {
 	public static String getTime(String time){
 		int newTime = 0;
 		String exactTime;
+		time = time.substring(0, 2);
 		if(Integer.parseInt(time) > 12){
 			newTime = Integer.parseInt(time) -12;
 			exactTime = Integer.toString(newTime) + " PM";
 		}else if(Integer.parseInt(time) == 12){
 			exactTime = time + " PM";
 		}else{
-			exactTime = time + " PM";
+			exactTime = time + " AM";
 		}
 		return exactTime;
 	}
