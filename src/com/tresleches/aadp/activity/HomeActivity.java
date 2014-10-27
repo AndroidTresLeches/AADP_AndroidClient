@@ -1,5 +1,8 @@
 package com.tresleches.aadp.activity;
 
+import java.util.List;
+
+import android.app.Activity;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
@@ -12,6 +15,7 @@ import android.view.MenuItem;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.parse.FindCallback;
 import com.parse.GetCallback;
 import com.parse.ParseException;
 import com.parse.ParseFile;
@@ -32,6 +36,7 @@ import com.tresleches.aadp.navigation.FragmentNavigationDrawer;
 
 public class HomeActivity extends BaseActionBarActivity {
 	private static final int REQUEST_CODE = 20;
+	private static final int REQUEST_CODE_1 = 30;
 	private final int SEARCH_REQUEST = 100;
 	private FragmentNavigationDrawer dlDrawer;
 	LoginFragment loginFragment;
@@ -151,6 +156,7 @@ public class HomeActivity extends BaseActionBarActivity {
         @Override
         protected void onActivityResult(int requestCode, int resultCode, Intent data) {
           // REQUEST_CODE is defined above
+        	System.out.println("RESULT      " + requestCode);
           if (resultCode == RESULT_OK && requestCode == REQUEST_CODE) {
              // Extract name value from result extras
              String user = data.getExtras().getString("username");
@@ -163,6 +169,13 @@ public class HomeActivity extends BaseActionBarActivity {
 			 favItem.saveInBackground();
 				Toast.makeText(this, "Favorite Saved", Toast.LENGTH_SHORT).show();
             // Toast.makeText(this, name, Toast.LENGTH_SHORT).show();
+          }else{
+        	  if (resultCode == Activity.RESULT_OK  && requestCode == REQUEST_CODE_1) {
+        		  FavoriteFragment fragmentDemo = (FavoriteFragment) 
+        		            getSupportFragmentManager().findFragmentById(R.id.lvFavoritesList);
+        		  
+        		        fragmentDemo.doSomething("some param");
+      		}
           }
         } 
 }

@@ -51,7 +51,7 @@ public class LoginActivity extends Activity {
 				ParseUser.logInInBackground(username, password, new LogInCallback() {
 					  public void done(ParseUser user, ParseException e) {
 					    if (user != null) {
-					    	Intent data = new Intent(getApplicationContext(), HomeActivity.class);
+					    	Intent data = new Intent();
 							//startActivity(i);
 					    	// Intent data = new Intent();
 					   	  // Pass relevant data back as a result
@@ -76,7 +76,15 @@ public class LoginActivity extends Activity {
 			public void onClick(View v) {
 				Intent i = new Intent(getApplicationContext(), SignUpActivity.class);
 				startActivity(i);
+				overridePendingTransition(R.anim.right_in, R.anim.left_out);
 			}
 		});
+	}
+	
+	@Override
+	public void onBackPressed() {
+		// TODO Auto-generated method stub
+		finish();
+		overridePendingTransition(R.anim.left_in, R.anim.right_out);
 	}
 }
