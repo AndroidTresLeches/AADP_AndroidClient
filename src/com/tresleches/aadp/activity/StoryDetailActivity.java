@@ -41,7 +41,7 @@ public class StoryDetailActivity extends Activity {
 	public void onBackPressed() {
 		// TODO Auto-generated method stub
 		super.onBackPressed();
-		this.overridePendingTransition(R.anim.left_in, R.anim.right_out);
+		this.overridePendingTransition(R.anim.open_main, R.anim.close_next);
 	}
 	
 	/**
