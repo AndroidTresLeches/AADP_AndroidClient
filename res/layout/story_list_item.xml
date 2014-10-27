@@ -12,7 +12,8 @@
         android:layout_height="50dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:src="@drawable/ic_launcher" />
+        android:src="@drawable/ic_aadp_logo"
+        android:background="@drawable/rounded_image" />
 
     <TextView
         android:id="@+id/tvStoryName"

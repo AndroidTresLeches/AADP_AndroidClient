@@ -129,9 +129,9 @@ public class EventArrayAdapter extends ArrayAdapter<Event> {
 				// getDate(event.getEventDate());
 				GregorianCalendar startTime = new GregorianCalendar(year,
 						month, day,
-						Integer.parseInt(event.getEventStartTime()), 0);
+						Integer.parseInt(event.getEventStartTime().substring(0,2)), 0);
 				GregorianCalendar endTime = new GregorianCalendar(year, month,
-						day, Integer.parseInt(event.getEventEndTime()), 0);
+						day, Integer.parseInt(event.getEventEndTime().substring(0,2)), 0);
 				// calIntent.putExtra(CalendarContract.EXTRA_EVENT_ALL_DAY,
 				// true);
 				calIntent.putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME,

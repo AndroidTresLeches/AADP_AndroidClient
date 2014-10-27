@@ -10,6 +10,8 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import com.easyandroidanimations.library.ExplodeAnimation;
+import com.easyandroidanimations.library.PuffOutAnimation;
 import com.tresleches.aadp.R;
 import com.tresleches.aadp.model.Story;
 
@@ -90,6 +92,8 @@ public class StoryBoardFragment extends Fragment {
 			FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
 			StoryFragment storyFragment = new StoryFragment();
 			storyFragment.setStoryType(view.getTag().toString()); //Passing Story type based on the view tag.
+			new PuffOutAnimation(view).animate();
+			ft.setCustomAnimations(R.anim.fadein, R.anim.fadeout);
 			ft.replace(R.id.flContainer,storyFragment,view.getTag().toString()); 
 			ft.addToBackStack(view.getTag().toString()); //get the back button working.
 			ft.commit();//start the fragment
