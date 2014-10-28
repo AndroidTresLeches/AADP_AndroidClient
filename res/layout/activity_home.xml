@@ -25,9 +25,9 @@
         android:layout_width="260dp"
         android:layout_height="match_parent"
         android:layout_gravity="start"
-        android:background="@color/actionBarBackground"
+        android:background="@color/pc_menuBackground"
         android:choiceMode="singleChoice"
-        android:divider="@color/menuBackground"
+        android:divider="@color/pc_separator"
         android:dividerHeight="1dp" />
 
 </com.tresleches.aadp.navigation.FragmentNavigationDrawer>

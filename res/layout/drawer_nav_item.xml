@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="48dp">
+    android:layout_height="48dp"
+    android:background="@drawable/nav_background">
  
     <ImageView
         android:id="@+id/ivIcon"
@@ -22,6 +23,6 @@
         android:textAppearance="?android:attr/textAppearanceListItemSmall"
         android:gravity="center_vertical"
         android:paddingRight="40dp"
-        android:textColor="@color/menuBackground"/>
+        android:textColor="@color/nav_text_color"/>
    
 </RelativeLayout>

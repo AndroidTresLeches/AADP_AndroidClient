@@ -30,7 +30,7 @@ public class DonorActivity extends FragmentActivity {
 	private MyPagerAdapter adapter;
 
 	private Drawable oldBackground = null;
-	private int currentColor = 0xFF885492;
+	private int currentColor ;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +48,7 @@ public class DonorActivity extends FragmentActivity {
 		pager.setPageMargin(pageMargin);
 
 		tabs.setViewPager(pager);
+		currentColor = getResources().getColor(R.color.pc_purple);
 
 		changeColor(currentColor);
 	}
@@ -67,8 +68,8 @@ public class DonorActivity extends FragmentActivity {
 			
 			//add dialog for selecting category
 			//add search text box
-//			QuickContactFragment dialog = new QuickContactFragment();
-//			dialog.show(getSupportFragmentManager(), "QuickContactFragment");
+			//QuickContactFragment dialog = new QuickContactFragment();
+			//dialog.show(getSupportFragmentManager(), "QuickContactFragment");
 			return true;
 
 		}

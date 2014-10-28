@@ -3,7 +3,7 @@
     android:id="@+id/fragmentStoryBoard"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/actionBarBackground"
+    android:background="@color/pc_purple"
     android:padding="10dp" >
 
     <ImageView
