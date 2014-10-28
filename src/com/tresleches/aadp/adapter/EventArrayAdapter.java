@@ -17,6 +17,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.TranslateAnimation;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -35,6 +37,7 @@ public class EventArrayAdapter extends ArrayAdapter<Event> {
 	private static class ViewHolder {
 		TextView tvEventName;
 		TextView tvDate;
+		TextView tvDay;
 		ImageView ivCoordinatorImg;
 		TextView tvTime;
 		TextView tvAddress;
@@ -69,6 +72,8 @@ public class EventArrayAdapter extends ArrayAdapter<Event> {
 					.findViewById(R.id.tvEventName);
 			viewHolder.tvDate = (TextView) convertView
 					.findViewById(R.id.tvDate);
+			viewHolder.tvDay = (TextView) convertView
+					.findViewById(R.id.tvDay);
 			viewHolder.ivCoordinatorImg = (ImageView) convertView
 					.findViewById(R.id.ivCoordinator);
 			viewHolder.tvTime = (TextView) convertView
@@ -90,9 +95,11 @@ public class EventArrayAdapter extends ArrayAdapter<Event> {
 
 		getDate(event.getEventDate());
 		viewHolder.tvEventName.setText(event.getEventName());
-		viewHolder.tvDate.setText(fullMonth + " " + day + ", " + year);
+		viewHolder.tvDate.setText(fullMonth);
+		//+ " " + Html.fromHtml("<br/>") +"  "+ day);
+		viewHolder.tvDay.setText(Integer.toString(day));
 		viewHolder.tvTime.setText(DateHelper.getTime(event.getEventStartTime())
-				+ " - " + DateHelper.getTime(event.getEventEndTime()));
+				+ DateHelper.getTime(event.getEventEndTime()));
 		viewHolder.tvAddress.setText(event.getLocationAddress());
 		viewHolder.tvCoordinatorName.setText(event.getCoordinatorName());
 		ParseFile imgFile = event.getProfileImage();
@@ -123,9 +130,9 @@ public class EventArrayAdapter extends ArrayAdapter<Event> {
 				// getDate(event.getEventDate());
 				GregorianCalendar startTime = new GregorianCalendar(year,
 						month, day,
-						Integer.parseInt(event.getEventStartTime()), 0);
+						Integer.parseInt(event.getEventStartTime().substring(0,2)), 0);
 				GregorianCalendar endTime = new GregorianCalendar(year, month,
-						day, Integer.parseInt(event.getEventEndTime()), 0);
+						day, Integer.parseInt(event.getEventEndTime().substring(0,2)), 0);
 				// calIntent.putExtra(CalendarContract.EXTRA_EVENT_ALL_DAY,
 				// true);
 				calIntent.putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME,
@@ -182,6 +189,12 @@ public class EventArrayAdapter extends ArrayAdapter<Event> {
 				context.startActivity(Intent.createChooser(intent, ""));
 			}
 		});
+		
+		
+		Animation animationY = new TranslateAnimation(0, 0, convertView.getHeight()/4, 0);
+		animationY.setDuration(1000);
+		convertView.startAnimation(animationY);  
+		animationY = null; 
 		return convertView;
 	}
 
