@@ -22,9 +22,11 @@ import com.parse.ParseQuery;
 import com.tresleches.aadp.R;
 import com.tresleches.aadp.activity.VolunteerEventsActivity;
 import com.tresleches.aadp.adapter.ContactArrayAdapter;
+import com.tresleches.aadp.helper.AADPTaskManager;
+import com.tresleches.aadp.interfaces.AADPTask;
 import com.tresleches.aadp.model.Contact;
 
-public class ContactFragment extends Fragment {
+public class ContactFragment extends Fragment implements AADPTask{
 	private ArrayAdapter<Contact> aContacts;
 	private ArrayList<Contact> contacts;
 	private String category;
@@ -58,7 +60,8 @@ public class ContactFragment extends Fragment {
 		View v = inflater.inflate(R.layout.fragment_contact, container, false);
 		ListView lvContact = (ListView) v.findViewById(R.id.lvContact);
 		lvContact.setAdapter(aContacts);
-		getContacts(category);
+		new AADPTaskManager(this, getActivity()).execute();//getContacts(category);
+		
 		lvContact.setOnItemClickListener(new OnItemClickListener() {
 
 			@Override
@@ -96,5 +99,16 @@ public class ContactFragment extends Fragment {
 
 	public void addAll(List<Contact> contacts) {
 		aContacts.addAll(contacts);
+	}
+
+	@Override
+	public void performTask() {
+		getContacts(category);
+	}
+
+	@Override
+	public void performOfflineTask() {
+		// TODO Auto-generated method stub
+		
 	}
 }
