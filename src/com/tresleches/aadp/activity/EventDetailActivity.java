@@ -141,9 +141,6 @@ public class EventDetailActivity extends FragmentActivity implements
 		tvNotes = (TextView) findViewById(R.id.tvNotes);
 		tvEventDate = (TextView) findViewById(R.id.tvEventDate);
 		tvEventAddress = (TextView) findViewById(R.id.tvEventAddress);
-		tvEventTime = (TextView) findViewById(R.id.tvEventTime);
-
-
 		ivProfileImg = (ImageView) findViewById(R.id.ivCoordinator);
 		tvOpenInMaps = (TextView) findViewById(R.id.tvOpenInMaps);
 		new AADPTaskManager((AADPTask)this, this).execute(); //Loads the Event
