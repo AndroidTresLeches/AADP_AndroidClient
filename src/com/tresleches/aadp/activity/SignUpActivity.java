@@ -2,6 +2,7 @@ package com.tresleches.aadp.activity;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -36,7 +37,14 @@ public class SignUpActivity extends Activity {
 		etPassword = (EditText) findViewById(R.id.etPassword);
 		etConfirmPassword = (EditText) findViewById(R.id.etConfirmPassword);
 		btnRegister = (Button) findViewById(R.id.btnRegister);
-
+		
+		Typeface font = Typeface.createFromAsset(getAssets(),
+				"fonts/OpenSans-Light.ttf");
+		etUserName.setTypeface(font);
+		etEmail.setTypeface(font);
+		etConfirmPassword.setTypeface(font);
+		etConfirmPassword.setTypeface(font);
+		btnRegister.setTypeface(font);
 		btnRegister.setOnClickListener(new OnClickListener() {
 
 			@Override
