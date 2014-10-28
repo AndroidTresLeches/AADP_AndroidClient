@@ -40,7 +40,7 @@ public class SplashScreenActivity extends Activity {
 		ivSplashScreen =  (ImageView)findViewById(R.id.ivSplashScreen);
 
 		FadeInAnimation fadeIn = new FadeInAnimation(ivSplashScreen);
-		fadeIn.setDuration(1000);
+		fadeIn.setDuration(3000);
 		fadeIn.animate();
         /*
          * Showing splash screen with a timer. This will be useful when you
@@ -54,7 +54,7 @@ public class SplashScreenActivity extends Activity {
                 // Start your app main activity
             	startAnimation();
             }
-        }, 1000);		
+        }, 3000);		
 		
 	}
 	
@@ -64,7 +64,7 @@ public class SplashScreenActivity extends Activity {
 		points.add(new Point(8, 4));
 
 		PathAnimation path = new PathAnimation(ivSplashScreen);
-		path = path.setPoints(points).setDuration(2000).setListener(new AnimationListener() {
+		path = path.setPoints(points).setDuration(5000).setListener(new AnimationListener() {
 			
 			@Override
 			public void onAnimationEnd(Animation arg0) {
