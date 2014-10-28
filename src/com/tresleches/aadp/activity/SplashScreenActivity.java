@@ -14,10 +14,8 @@ import com.easyandroidanimations.library.AnimationListener;
 import com.easyandroidanimations.library.FadeInAnimation;
 import com.easyandroidanimations.library.ParallelAnimator;
 import com.easyandroidanimations.library.PathAnimation;
+import com.easyandroidanimations.library.ScaleOutAnimation;
 import com.tresleches.aadp.R;
-import com.tresleches.aadp.R.anim;
-import com.tresleches.aadp.R.id;
-import com.tresleches.aadp.R.layout;
 
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
@@ -59,7 +57,7 @@ public class SplashScreenActivity extends Activity {
 	private void startAnimation() {
 		ArrayList<Point> points = new ArrayList<Point>();
 //		points.add(new Point(50, 50));
-		points.add(new Point(8, 4));
+		points.add(new Point(7, 4));
 
 		PathAnimation path = new PathAnimation(ivSplashScreen);
 		path = path.setPoints(points).setDuration(5000).setListener(new AnimationListener() {
@@ -74,7 +72,10 @@ public class SplashScreenActivity extends Activity {
 				
 			}
 		});
-		new ParallelAnimator().add(path).animate();
+		
+		ScaleOutAnimation zoomOut = new ScaleOutAnimation(ivSplashScreen, 0.2f, 0.2f, true);
+		zoomOut.setDuration(5000);
+		new ParallelAnimator().add(path).add(zoomOut).animate();
 		
 	}
 
