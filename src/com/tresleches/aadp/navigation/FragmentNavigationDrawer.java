@@ -13,12 +13,19 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.util.AttributeSet;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.tresleches.aadp.R;
 import com.tresleches.aadp.adapter.NavDrawerListAdapter;
+import com.tresleches.aadp.fragment.AboutFragment;
+import com.tresleches.aadp.fragment.DonateFragment;
+import com.tresleches.aadp.fragment.DonorPagerFragment;
+import com.tresleches.aadp.fragment.EventFragment;
+import com.tresleches.aadp.fragment.FavoriteFragment;
+import com.tresleches.aadp.fragment.StoryBoardFragment;
 import com.tresleches.aadp.model.NavDrawerItem;
 
 public class FragmentNavigationDrawer extends DrawerLayout {
@@ -29,6 +36,17 @@ public class FragmentNavigationDrawer extends DrawerLayout {
 	private ArrayList<FragmentNavItem> drawerNavItems;
 	private int drawerContainerRes;
 
+	private int[] drawerItemSelectedIcon = {
+			//R.drawable.ic_nav_login,
+			R.drawable.ic_nav_events,
+			R.drawable.ic_nav_stories,
+			R.drawable.ic_nav_donor,
+			R.drawable.ic_nav_favorite,
+			//R.drawable.ic_nav_twitter,
+			R.drawable.ic_nav_donate,
+			R.drawable.ic_nav_about,
+	};
+			
 	public FragmentNavigationDrawer(Context context, AttributeSet attrs,
 			int defStyle) {
 		super(context, attrs, defStyle);
@@ -133,8 +151,10 @@ public class FragmentNavigationDrawer extends DrawerLayout {
 				long id) {
 			selectDrawerItem(position);
 		}
+		
 	}
 
+	
 	private class FragmentNavItem {
 		private Class<? extends Fragment> fragmentClass;
 		private String title;

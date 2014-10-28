@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+    android:layout_height="match_parent"
+    android:background="@color/white" >
 
     <EditText
         android:id="@+id/etUserName"
@@ -22,9 +23,10 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@id/etUserName"
         android:layout_centerVertical="true"
-        android:ems="10" 
+        android:ems="10"
+        android:hint="@string/password"
         android:inputType="textPassword"
-        android:hint="@string/password"/>
+         />
 
     <Button
         android:id="@+id/btLogIn"
@@ -33,10 +35,9 @@
         android:layout_below="@id/etPassword"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
-        android:text="@string/login"
         android:background="@drawable/rounded_button"
-        android:textColor="@color/white"
-       />
+        android:text="@string/login"
+        android:textColor="@color/white" />
 
     <TextView
         android:id="@+id/tvSignUp"
@@ -46,5 +47,22 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="38dp"
         android:text="@string/signup" />
+
+    <ImageView
+        android:id="@+id/ivAadpText"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:layout_below="@+id/ivAadpIcon"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/aadp_text" />
+
+    <ImageView
+        android:id="@+id/ivAadpIcon"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="28dp"
+        android:src="@drawable/aadp" />
 
 </RelativeLayout>

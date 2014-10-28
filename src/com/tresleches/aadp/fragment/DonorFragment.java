@@ -36,9 +36,9 @@ public class DonorFragment extends Fragment {
 
 		Bitmap[] bList = {
 				BitmapFactory.decodeResource(getResources(),
-						R.drawable.donor_num6_small),
+						R.drawable.donor_num6_new2),
 				BitmapFactory.decodeResource(getResources(),
-						R.drawable.donor_2percent_small),
+						R.drawable.donor_2percent_new_small),
 				BitmapFactory.decodeResource(getResources(),
 						R.drawable.donor_6n2_small) };
 		String[] titles = { "1", "2", "3" };

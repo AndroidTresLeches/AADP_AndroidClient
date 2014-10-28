@@ -2,21 +2,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="${relativePackage}.${activityClass}" >
-
-    <EditText
-        android:id="@+id/etUserName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginLeft="14dp"
-        android:layout_marginTop="42dp"
-        android:ems="10"
-        android:hint="@string/userName" >
-
-        <requestFocus />
-    </EditText>
+    tools:context="${relativePackage}.${activityClass}"
+    android:background="@color/white" >
 
     <EditText
         android:id="@+id/etEmail"
@@ -61,5 +48,31 @@
         android:text="@string/register"
         android:background="@drawable/rounded_button"
         android:textColor="@color/white" />
+
+    <ImageView
+        android:id="@+id/ivAadpIcon"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="34dp"
+        android:src="@drawable/aadp" />
+
+    <ImageView
+        android:id="@+id/ivAadpText"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:layout_alignRight="@+id/etUserName"
+        android:layout_below="@+id/ivAadpIcon"
+        android:src="@drawable/aadp_text" />
+
+    <EditText
+        android:id="@+id/etUserName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ivAadpText"
+        android:layout_centerHorizontal="true"
+        android:ems="10"
+        android:hint="@string/userName" />
 
 </RelativeLayout>

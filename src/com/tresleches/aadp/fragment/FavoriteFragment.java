@@ -204,7 +204,7 @@ public class FavoriteFragment extends Fragment implements AADPTask {
 	@Override
 	public void performTask() {
 		// TODO Auto-generated method stub
-		getFavEvents()
+		getFavEvents();
 	}
 
 	@Override
