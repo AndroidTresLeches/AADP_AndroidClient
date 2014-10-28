@@ -30,12 +30,6 @@ public class AADPTaskManager {
 		onPreExecute();
 		if (NetworkUtils.isNetworkAvailable(context)) {
 			performTask();
-			try {
-				Thread.sleep(5000);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
 		}
 		else
 		{
