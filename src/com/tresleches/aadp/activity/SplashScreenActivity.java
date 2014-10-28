@@ -15,8 +15,8 @@ import com.easyandroidanimations.library.AnimationListener;
 import com.easyandroidanimations.library.FadeInAnimation;
 import com.easyandroidanimations.library.ParallelAnimator;
 import com.easyandroidanimations.library.PathAnimation;
+import com.easyandroidanimations.library.ScaleOutAnimation;
 import com.tresleches.aadp.R;
-
 
 
 /**
@@ -59,14 +59,15 @@ public class SplashScreenActivity extends Activity {
 	 */
 	private void startAnimation() {
 		ArrayList<Point> points = new ArrayList<Point>();
-		points.add(new Point(8, 4));
+		//points.add(new Point(50, 50));
+		points.add(new Point(7, 4));
 
 		PathAnimation path = new PathAnimation(ivSplashScreen);
-		path = path.setPoints(points).setDuration(3000).setListener(new AnimationListener() {
+		path = path.setPoints(points).setDuration(5000).setListener(new AnimationListener() {
 			
 			@Override
 			public void onAnimationEnd(Animation arg0) {
-//				Start Activity
+				//Start Activity
 				Log.d("DEBUG","Ending Animation");
 				Intent i = new Intent(SplashScreenActivity.this, HomeActivity.class);
 				startActivity(i);
@@ -77,9 +78,9 @@ public class SplashScreenActivity extends Activity {
 			}
 		});
 		
-		new ParallelAnimator().add(path).animate();
-		
+		ScaleOutAnimation zoomOut = new ScaleOutAnimation(ivSplashScreen, 0.2f, 0.2f, true);
+		zoomOut.setDuration(5000);
+		new ParallelAnimator().add(path).add(zoomOut).animate();
 	}
 
-	
 }
