@@ -1,6 +1,7 @@
 package com.tresleches.aadp.fragment;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import android.app.Activity;
@@ -19,6 +20,8 @@ import com.tresleches.aadp.adapter.StoryArrayAdapter;
 import com.tresleches.aadp.helper.AADPTaskManager;
 import com.tresleches.aadp.interfaces.AADPTask;
 import com.tresleches.aadp.model.Story;
+import com.tresleches.aadp.model.Story.Type;
+import com.tresleches.aadp.model.StoryTitle;
 
 
 public class StoryFragment extends Fragment implements AADPTask {
@@ -41,9 +44,11 @@ public class StoryFragment extends Fragment implements AADPTask {
 		super.onCreate(savedInstanceState);
 		stories = new ArrayList<Story>();
 		aStory = new StoryArrayAdapter(getActivity(), R.layout.story_list_item,stories);
-		getActivity().getActionBar().setTitle(getStoryType());
+		
 		if(getActivity().getIntent() !=null && getActivity().getIntent().getStringExtra("story_type") !=null)
 			setStoryType(getActivity().getIntent().getStringExtra("story_type"));
+		
+		getActivity().getActionBar().setTitle(StoryTitle.getTitle((Story.Type.valueOf(getStoryType()))));
 	}
 
 	/**
@@ -116,4 +121,6 @@ public class StoryFragment extends Fragment implements AADPTask {
 	}
 
 
+
 }
+
