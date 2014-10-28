@@ -1,5 +1,6 @@
 package com.tresleches.aadp.activity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
@@ -7,6 +8,7 @@ import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -31,6 +33,7 @@ import com.tresleches.aadp.navigation.FragmentNavigationDrawer;
 
 public class HomeActivity extends BaseActionBarActivity {
 	private static final int REQUEST_CODE = 20;
+	private static final int REQUEST_CODE_1 = 30;
 	private final int SEARCH_REQUEST = 100;
 	private FragmentNavigationDrawer dlDrawer;
 	LoginFragment loginFragment;
@@ -47,14 +50,14 @@ public class HomeActivity extends BaseActionBarActivity {
 				(ListView) findViewById(R.id.lvDrawer),
 				R.layout.drawer_nav_item, R.id.flContainer);
 		// Add navigation items
-		//dlDrawer.addNavItem("Login", R.drawable.ic_nav_login_dark, "Profile and Login", LoginFragment.class);
-		dlDrawer.addNavItem("Events", R.drawable.ic_nav_events_dark, "Events", EventFragment.class);
-		dlDrawer.addNavItem("Stories", R.drawable.ic_nav_stories_dark, "Stories", StoryBoardFragment.class);
-		dlDrawer.addNavItem("Be a donor", R.drawable.ic_nav_donor_dark, "Be a donor", DonorPagerFragment.class);	
-		dlDrawer.addNavItem("Favorites", R.drawable.ic_nav_favorite_dark, "Favorite Events", FavoriteFragment.class);
-		//dlDrawer.addNavItem("Twitter Feed", R.drawable.ic_nav_twitter_dark, "AADP Tweets", TwitterFragment.class);
-		dlDrawer.addNavItem("Donate", R.drawable.ic_nav_donate_dark, "Donate", DonateFragment.class);
-		dlDrawer.addNavItem("About", R.drawable.ic_nav_about_dark, "About AADP", AboutFragment.class);
+		//dlDrawer.addNavItem("Login", R.drawable.ic_nav_login_color, "Profile and Login", LoginFragment.class);
+		dlDrawer.addNavItem("Events", R.drawable.ic_nav_events_color, "Events", EventFragment.class);
+		dlDrawer.addNavItem("Stories", R.drawable.ic_nav_stories_color, "Stories", StoryBoardFragment.class);
+		dlDrawer.addNavItem("Favorites", R.drawable.ic_nav_favorite_color, "Favorite Events", FavoriteFragment.class);
+		dlDrawer.addNavItem("Be a donor", R.drawable.ic_nav_donor_color, "Be a donor", DonorPagerFragment.class);	
+		//dlDrawer.addNavItem("Twitter Feed", R.drawable.ic_nav_twitter_color, "AADP Tweets", TwitterFragment.class);
+		dlDrawer.addNavItem("Donate", R.drawable.ic_nav_donate_color, "Donate", DonateFragment.class);
+		dlDrawer.addNavItem("About", R.drawable.ic_nav_about_color, "About AADP", AboutFragment.class);
 		// Select default
 		if (savedInstanceState == null) {
 			dlDrawer.selectDrawerItem(0);
@@ -75,20 +78,20 @@ public class HomeActivity extends BaseActionBarActivity {
 	@Override
 	public boolean onPrepareOptionsMenu(Menu menu) {
 		// If the nav drawer is open, hide action items related to the content
-//		if (dlDrawer.isDrawerOpen()) {
-//			// hide menu items
-//			menu.findItem(R.id.action_search).setVisible(false);
-//		}
-//		else{menu.findItem(R.id.action_search).setVisible(true);
-//			
-//		}
+		if (dlDrawer.isDrawerOpen()) {
+			// hide menu items
+			menu.findItem(R.id.action_search).setVisible(false);
+		}
+		else{menu.findItem(R.id.action_search).setVisible(true);
+			
+		}
 		return super.onPrepareOptionsMenu(menu);
 	}
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-//		MenuInflater inflater = getMenuInflater();
-//		inflater.inflate(R.menu.menu_main, menu);
+		MenuInflater inflater = getMenuInflater();
+		inflater.inflate(R.menu.menu_main, menu);
 		return true;
 	}
 
@@ -150,6 +153,7 @@ public class HomeActivity extends BaseActionBarActivity {
         @Override
         protected void onActivityResult(int requestCode, int resultCode, Intent data) {
           // REQUEST_CODE is defined above
+        	System.out.println("RESULT      " + requestCode);
           if (resultCode == RESULT_OK && requestCode == REQUEST_CODE) {
              // Extract name value from result extras
              String user = data.getExtras().getString("username");
@@ -162,6 +166,13 @@ public class HomeActivity extends BaseActionBarActivity {
 			 favItem.saveInBackground();
 				Toast.makeText(this, "Favorite Saved", Toast.LENGTH_SHORT).show();
             // Toast.makeText(this, name, Toast.LENGTH_SHORT).show();
+          }else{
+        	  if (resultCode == Activity.RESULT_OK  && requestCode == REQUEST_CODE_1) {
+        		  FavoriteFragment fragmentDemo = (FavoriteFragment) 
+        		            getSupportFragmentManager().findFragmentById(R.id.lvFavoritesList);
+        		  
+        		        fragmentDemo.doSomething("some param");
+      		}
           }
         } 
 }

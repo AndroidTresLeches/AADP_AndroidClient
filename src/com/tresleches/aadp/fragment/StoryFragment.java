@@ -33,6 +33,7 @@ public class StoryFragment extends Fragment {
 		super.onAttach(activity);
 	}
 
+	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub

@@ -46,4 +46,5 @@
     <string name="volunteer">Volunteer</string>
     <string name="be_a_donor">Be a donor</string>
     <string name="button_start_label">Start</string>
+    <string name="title_activity_splash_screen">Splash Screen</string>
 </resources>

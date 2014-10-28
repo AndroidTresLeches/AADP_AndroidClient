@@ -9,6 +9,7 @@ import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentActivity;
 import android.text.Html;
 import android.util.Log;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -93,6 +94,7 @@ public class EventDetailActivity extends FragmentActivity implements
 	}
 
 	public void getEvent() {
+		
 		ParseQuery<Event> query = ParseQuery.getQuery(Event.class);
 		// First try to find from the cache and only then go to network
 		query.setCachePolicy(ParseQuery.CachePolicy.CACHE_ELSE_NETWORK); // or
