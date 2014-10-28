@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rlPagerPage"
+    android:layout_width="fill_parent"
+    android:layout_height="200dp" 
+    android:background="@color/menuBackground">
+
+     <TextView 
+        android:id="@+id/tvTest"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/hello_world" 
+        android:gravity="center"
+        android:textSize="28sp"
+        android:padding="20dp"
+        android:textColor="@color/softGreen"
+        android:textStyle="bold"/>
+
+     <ImageView
+         android:id="@+id/ivPageImage"
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:layout_alignParentBottom="true"
+         android:layout_alignParentLeft="true"
+         android:layout_alignParentRight="true"
+         android:layout_below="@+id/tvTest"
+         android:src="@drawable/ic_launcher"
+         android:contentDescription="@string/be_a_donor"/>
+
+     <Button
+         android:id="@+id/btStart"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_alignParentBottom="true"
+         android:layout_centerHorizontal="true"
+         android:layout_marginBottom="18dp"
+         android:background="@drawable/rounded_button"
+         android:drawableLeft="@drawable/ic_bird"
+         android:drawablePadding="10dp"
+         android:padding="10dp"
+         android:text="@string/button_start_label"
+         android:textColor="@color/menuBackground"
+         android:textSize="20sp"
+         android:visibility="visible" />
+    
+</RelativeLayout>
+   
+    
+    
+
+ 

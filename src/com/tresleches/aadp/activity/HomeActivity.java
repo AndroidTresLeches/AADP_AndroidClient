@@ -1,7 +1,5 @@
 package com.tresleches.aadp.activity;
 
-import java.util.List;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.content.res.Configuration;
@@ -15,7 +13,6 @@ import android.view.MenuItem;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.parse.FindCallback;
 import com.parse.GetCallback;
 import com.parse.ParseException;
 import com.parse.ParseFile;
@@ -24,7 +21,7 @@ import com.parse.ParseUser;
 import com.tresleches.aadp.R;
 import com.tresleches.aadp.fragment.AboutFragment;
 import com.tresleches.aadp.fragment.DonateFragment;
-import com.tresleches.aadp.fragment.DonorFragment;
+import com.tresleches.aadp.fragment.DonorPagerFragment;
 import com.tresleches.aadp.fragment.EventFragment;
 import com.tresleches.aadp.fragment.FavoriteFragment;
 import com.tresleches.aadp.fragment.LoginFragment;
@@ -53,14 +50,14 @@ public class HomeActivity extends BaseActionBarActivity {
 				(ListView) findViewById(R.id.lvDrawer),
 				R.layout.drawer_nav_item, R.id.flContainer);
 		// Add navigation items
-		//dlDrawer.addNavItem("Login", R.drawable.ic_nav_login, "Profile and Login", LoginFragment.class);
-		dlDrawer.addNavItem("Events", R.drawable.ic_nav_events, "Events", EventFragment.class);
-		dlDrawer.addNavItem("Stories", R.drawable.ic_nav_stories, "Stories", StoryBoardFragment.class);
-		dlDrawer.addNavItem("Be a donor", R.drawable.ic_nav_donor, "Be a donor", DonorFragment.class);	
-		dlDrawer.addNavItem("Favorites", R.drawable.ic_nav_favorite, "Favorite Events", FavoriteFragment.class);
-		//dlDrawer.addNavItem("Twitter Feed", R.drawable.ic_nav_twitter, "AADP Tweets", TwitterFragment.class);
-		dlDrawer.addNavItem("Donate", R.drawable.ic_nav_donate, "Donate", DonateFragment.class);
-		dlDrawer.addNavItem("About", R.drawable.ic_nav_about, "About AADP", AboutFragment.class);
+		//dlDrawer.addNavItem("Login", R.drawable.ic_nav_login_color, "Profile and Login", LoginFragment.class);
+		dlDrawer.addNavItem("Events", R.drawable.ic_nav_events_color, "Events", EventFragment.class);
+		dlDrawer.addNavItem("Stories", R.drawable.ic_nav_stories_color, "Stories", StoryBoardFragment.class);
+		dlDrawer.addNavItem("Favorites", R.drawable.ic_nav_favorite_color, "Favorite Events", FavoriteFragment.class);
+		dlDrawer.addNavItem("Be a donor", R.drawable.ic_nav_donor_color, "Be a donor", DonorPagerFragment.class);	
+		//dlDrawer.addNavItem("Twitter Feed", R.drawable.ic_nav_twitter_color, "AADP Tweets", TwitterFragment.class);
+		dlDrawer.addNavItem("Donate", R.drawable.ic_nav_donate_color, "Donate", DonateFragment.class);
+		dlDrawer.addNavItem("About", R.drawable.ic_nav_about_color, "About AADP", AboutFragment.class);
 		// Select default
 		if (savedInstanceState == null) {
 			dlDrawer.selectDrawerItem(0);
