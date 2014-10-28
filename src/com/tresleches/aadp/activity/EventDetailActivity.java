@@ -4,12 +4,19 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.content.Intent;
 import android.content.IntentSender;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentActivity;
 import android.text.Html;
 import android.util.Log;
-import android.widget.ProgressBar;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,8 +31,10 @@ import com.google.android.gms.maps.GoogleMap.OnMapLongClickListener;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import android.view.View.OnClickListener;
 import com.parse.GetCallback;
 import com.parse.ParseException;
+import com.parse.ParseFile;
 import com.parse.ParseQuery;
 import com.tresleches.aadp.R;
 import com.tresleches.aadp.helper.AddressHelper;
@@ -45,10 +54,15 @@ public class EventDetailActivity extends FragmentActivity implements
 	private TextView tvNotes;
 	private TextView tvEventDate;
 	private TextView tvEventAddress;
-	private TextView tvEventTime;
+	private ImageView ivProfileImg;
+	private TextView tvOpenInMaps;
 	private Event event;
 	private String eventId;
 	private String locationAddress;
+	private LatLng srcLatLng;
+	private LocationManager mLocationManager;
+	private String srcLatitude;
+	private String srcLongitude;
 	/*
 	 * Define a request code to send to Google Play services This code is
 	 * returned in Activity.onActivityResult
@@ -63,6 +77,10 @@ public class EventDetailActivity extends FragmentActivity implements
 		eventId = getIntent().getStringExtra("eventId");
 		locationAddress = getIntent().getStringExtra("location");
 		loadUI();
+		mLocationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
+
+	    mLocationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 3,
+	            1, mLocationListener);
 		mLocationClient = new LocationClient(this, this, this);
 		mapFragment = ((SupportMapFragment) getSupportFragmentManager()
 				.findFragmentById(R.id.map));
@@ -80,7 +98,21 @@ public class EventDetailActivity extends FragmentActivity implements
 			Toast.makeText(this, "Error - Map Fragment was null!!",
 					Toast.LENGTH_SHORT).show();
 		}
-		// map.setOnMapLongClickListener(this);
+		tvOpenInMaps.setOnClickListener(new OnClickListener() {
+			
+			LatLng latlng = AddressHelper.getAddress(getApplicationContext(), locationAddress);
+			String destinationLatitude = Double.toString(latlng.latitude);
+			String destinationLongitude = Double.toString(latlng.longitude);
+
+			@Override
+			public void onClick(View v) {
+				String uri = "http://maps.google.com/maps?saddr=" + srcLatitude+","+ srcLongitude+"&daddr="+ destinationLatitude+","+ destinationLongitude;
+	            Intent intent = new Intent(android.content.Intent.ACTION_VIEW, Uri.parse(uri));
+	            intent.setClassName("com.google.android.apps.maps", "com.google.android.maps.MapsActivity");
+	            startActivity(intent); 
+	            overridePendingTransition(R.anim.right_in, R.anim.left_out);
+			}
+		});
 	}
 
 	private void loadUI() {
@@ -89,7 +121,8 @@ public class EventDetailActivity extends FragmentActivity implements
 		tvNotes = (TextView) findViewById(R.id.tvNotes);
 		tvEventDate = (TextView) findViewById(R.id.tvEventDate);
 		tvEventAddress = (TextView) findViewById(R.id.tvEventAddress);
-		tvEventTime = (TextView) findViewById(R.id.tvEventTime);
+		ivProfileImg = (ImageView) findViewById(R.id.ivCoordinator);
+		tvOpenInMaps = (TextView) findViewById(R.id.tvOpenInMaps);
 		getEvent();
 	}
 
@@ -105,7 +138,7 @@ public class EventDetailActivity extends FragmentActivity implements
 				if (e == null) {
 					// item was found
 					event = item;
-					tvEventName.setText(Html.fromHtml("<i>" + event.getEventName()+ "</i>"));
+					tvEventName.setText(event.getEventName());
 					tvCoordinatorName.setText(event.getCoordinatorName());
 					tvCoordinatorName.setText(Html.fromHtml("<i>"
 							+ getResources().getString(R.string.by)
@@ -125,18 +158,29 @@ public class EventDetailActivity extends FragmentActivity implements
 									.getPublishedDate())));
 					tvNotes.setText(event.getNotes());
 
-					tvEventDate.setText(getResources().getString(R.string.event_date) + 
-							DateHelper.getMonthInString(event
+					tvEventDate.setText(DateHelper.getMonthInString(event
 							.getEventDate())
 							+ " "
 							+ DateHelper.getDate(event.getEventDate())
 							+ ", "
-							+ DateHelper.getYearInString(event.getEventDate()));
-					tvEventAddress.setText(Html.fromHtml("<i>"+ getResources().getString(R.string.event_address)) +"</i>"+ event.getLocationAddress());
-					tvEventTime.setText(getResources().getString(R.string.event_time) + DateHelper.getTime(event
-							.getEventStartTime())
-							+ " - "
-							+ DateHelper.getTime(event.getEventEndTime()));
+							+ DateHelper.getYearInString(event.getEventDate()) + " @ " +DateHelper.getTime(event
+									.getEventStartTime())
+									
+									+ DateHelper.getTime(event.getEventEndTime()));
+					tvEventAddress.setText(event.getLocationAddress());
+					ParseFile imgFile = event.getProfileImage();
+					if (imgFile != null) {
+						try {
+							byte[] profileImage = imgFile.getData();
+							Bitmap bmp = BitmapFactory.decodeByteArray(profileImage, 0,
+									profileImage.length);
+							ivProfileImg
+									.setImageResource(android.R.color.transparent);
+							ivProfileImg.setImageBitmap(bmp);
+						} catch (ParseException ex) {
+							ex.printStackTrace();
+						}
+					}
 				}
 			}
 		});
@@ -308,8 +352,29 @@ public class EventDetailActivity extends FragmentActivity implements
 
 	@Override
 	public void onBackPressed() {
-		// TODO Auto-generated method stub
 		finish();
 		overridePendingTransition(R.anim.left_in, R.anim.right_out);
 	}
+	
+	private final LocationListener mLocationListener = new LocationListener() {
+	    @Override
+	    public void onLocationChanged(final Location srcLocation) {
+	    	srcLatLng = new LatLng(srcLocation.getLatitude(), srcLocation.getLongitude());
+	    	srcLatitude = Double.toString(srcLatLng.latitude);
+			srcLongitude = Double.toString(srcLatLng.longitude);
+	    }
+
+		@Override
+		public void onStatusChanged(String provider, int status, Bundle extras) {
+		}
+
+		@Override
+		public void onProviderEnabled(String provider) {
+		}
+
+		@Override
+		public void onProviderDisabled(String provider) {
+		}
+	};
+
 }

@@ -2,7 +2,6 @@
 <resources>
 
     <string name="app_name">AADP</string>
-    <string name="app_name_full">Asian American \n Donor Program</string>
     <string name="hello_world">Hello world!</string>
     <string name="event_name">Event Name</string>
     <string name="event_coordinator">Event Coordinator</string>
@@ -46,5 +45,8 @@
     <string name="favorite">Favorite</string>
     <string name="volunteer">Volunteer</string>
     <string name="title_activity_splash_screen">Splash Screen</string>
+    <string name="title_activity_volunteer_events">VolunteerEventsActivity</string>
+    <string name="openInMaps">Open in Maps</string>
 
 </resources>
+

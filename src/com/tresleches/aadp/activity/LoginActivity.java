@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,6 +23,8 @@ public class LoginActivity extends Activity {
 	private EditText etPassword;
 	private Button btnLogin;
 	private TextView tvSignUp;
+	private ImageView ivAadpIcon;
+	private ImageView ivAadpText;
 	private String username;
 	private String password;
 	private String objectId;
@@ -39,6 +42,8 @@ public class LoginActivity extends Activity {
 		etPassword = (EditText) findViewById(R.id.etPassword);
 		btnLogin = (Button) findViewById(R.id.btLogIn);
 		tvSignUp = (TextView) findViewById(R.id.tvSignUp);
+		ivAadpIcon = (ImageView) findViewById(R.id.ivAadpIcon);
+		ivAadpText = (ImageView) findViewById(R.id.ivAadpText);
 		
 		btnLogin.setOnClickListener(new OnClickListener() {
 			
