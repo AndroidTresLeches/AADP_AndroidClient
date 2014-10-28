@@ -11,7 +11,6 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="152dp"
-        android:background="@drawable/border_textview"
         android:ems="10"
         android:hint="@string/userName" >
 
@@ -27,7 +26,7 @@
         android:ems="10"
         android:hint="@string/password"
         android:inputType="textPassword"
-        android:background="@drawable/border_textview" />
+         />
 
     <Button
         android:id="@+id/btLogIn"
