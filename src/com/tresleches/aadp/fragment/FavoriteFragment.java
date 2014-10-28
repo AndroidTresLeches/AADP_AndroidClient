@@ -23,11 +23,13 @@ import com.tresleches.aadp.R;
 import com.tresleches.aadp.activity.EventDetailActivity;
 import com.tresleches.aadp.activity.LoginActivity;
 import com.tresleches.aadp.adapter.EventArrayAdapter;
+import com.tresleches.aadp.helper.AADPTaskManager;
 import com.tresleches.aadp.helper.NetworkUtils;
+import com.tresleches.aadp.interfaces.AADPTask;
 import com.tresleches.aadp.model.Event;
 import com.tresleches.aadp.model.Favorite;
 
-public class FavoriteFragment extends Fragment {
+public class FavoriteFragment extends Fragment implements AADPTask {
 
 	private static final int REQUEST_CODE = 30;
 	private ArrayList<Event> favEvents;
@@ -56,7 +58,7 @@ public class FavoriteFragment extends Fragment {
 		View view = inflater.inflate(R.layout.fragment_favorite, container, false);
 		lvEvents = (ListView) view.findViewById(R.id.lvFavoritesList);
 		lvEvents.setAdapter(aFavEvent);
-		getFavEvents();
+		new AADPTaskManager(this, getActivity()).execute();		//getFavEvents();
 		lvEvents.setOnItemClickListener(new OnItemClickListener() {
 
 			@Override
@@ -198,4 +200,16 @@ public class FavoriteFragment extends Fragment {
 			});
 		}
 	  }
+
+	@Override
+	public void performTask() {
+		// TODO Auto-generated method stub
+		getFavEvents();
+	}
+
+	@Override
+	public void performOfflineTask() {
+		// TODO Auto-generated method stub
+		
+	}
 }

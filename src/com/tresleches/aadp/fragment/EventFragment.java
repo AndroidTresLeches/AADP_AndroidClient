@@ -20,10 +20,12 @@ import com.parse.ParseQuery;
 import com.tresleches.aadp.R;
 import com.tresleches.aadp.activity.EventDetailActivity;
 import com.tresleches.aadp.adapter.EventArrayAdapter;
+import com.tresleches.aadp.helper.AADPTaskManager;
 import com.tresleches.aadp.helper.NetworkUtils;
+import com.tresleches.aadp.interfaces.AADPTask;
 import com.tresleches.aadp.model.Event;
 
-public class EventFragment extends Fragment {
+public class EventFragment extends Fragment implements AADPTask{
 
 	private ArrayList<Event> events;
 	private EventArrayAdapter aEvent;
@@ -48,7 +50,7 @@ public class EventFragment extends Fragment {
 		View view = inflater.inflate(R.layout.event_list, container, false);
 		lvEvents = (ListView) view.findViewById(R.id.lvEventsList);
 		lvEvents.setAdapter(aEvent);
-		getEvents();
+		new AADPTaskManager(this,getActivity()).execute(); //Getting Event in Background
 		lvEvents.setOnItemClickListener(new OnItemClickListener() {
 
 			@Override
@@ -70,7 +72,7 @@ public class EventFragment extends Fragment {
 	 * Get the Events from net and fill in our List.
 	 */
 	public void getEvents() {
-		if (NetworkUtils.isNetworkAvailable(getActivity())) {
+		
 			// Define the class we would like to query
 			ParseQuery<Event> query = ParseQuery.getQuery(Event.class);
 			// Define our query conditions
@@ -86,10 +88,22 @@ public class EventFragment extends Fragment {
 					}
 				}
 			});
-		} else {
-			Toast.makeText(getActivity(),
-					getResources().getString(R.string.no_network),
-					Toast.LENGTH_SHORT).show();
-		}
+		
+		
+	}
+
+	@Override
+	public void performTask() {
+		getEvents();
+		
+	}
+
+	@Override
+	public void performOfflineTask() {
+		// TODO Auto-generated method stub
+		Toast.makeText(getActivity(),
+				getResources().getString(R.string.no_network),
+				Toast.LENGTH_SHORT).show();
+	
 	}
 }

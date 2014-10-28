@@ -38,14 +38,16 @@ import com.parse.ParseException;
 import com.parse.ParseFile;
 import com.parse.ParseQuery;
 import com.tresleches.aadp.R;
+import com.tresleches.aadp.helper.AADPTaskManager;
 import com.tresleches.aadp.helper.AddressHelper;
 import com.tresleches.aadp.helper.DateHelper;
+import com.tresleches.aadp.interfaces.AADPTask;
 import com.tresleches.aadp.model.Event;
 
 public class EventDetailActivity extends FragmentActivity implements
 		GooglePlayServicesClient.ConnectionCallbacks,
 		GooglePlayServicesClient.OnConnectionFailedListener,
-		OnMapLongClickListener {
+		OnMapLongClickListener,AADPTask {
 
 	private SupportMapFragment mapFragment;
 	private GoogleMap map;
@@ -141,7 +143,7 @@ public class EventDetailActivity extends FragmentActivity implements
 		tvEventAddress = (TextView) findViewById(R.id.tvEventAddress);
 		ivProfileImg = (ImageView) findViewById(R.id.ivCoordinator);
 		tvOpenInMaps = (TextView) findViewById(R.id.tvOpenInMaps);
-		getEvent();
+		new AADPTaskManager((AADPTask)this, this).execute(); //Loads the Event
 	}
 
 	public void getEvent() {
@@ -375,6 +377,17 @@ public class EventDetailActivity extends FragmentActivity implements
 		overridePendingTransition(R.anim.left_in, R.anim.right_out);
 	}
 
+	@Override
+	public void performTask() {
+		getEvent();
+		
+	}
+
+	@Override
+	public void performOfflineTask() {
+		// TODO Auto-generated method stub
+		//getOfflineEvent()
+	}
 	private final LocationListener mLocationListener = new LocationListener() {
 		@Override
 		public void onLocationChanged(final Location srcLocation) {

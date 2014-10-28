@@ -18,10 +18,12 @@ import com.parse.ParseException;
 import com.parse.ParseQuery;
 import com.tresleches.aadp.R;
 import com.tresleches.aadp.adapter.KnowledgeArrayAdapter;
+import com.tresleches.aadp.helper.AADPTaskManager;
+import com.tresleches.aadp.interfaces.AADPTask;
 //import com.tresleches.aadp.adapter.PlusListAdapter;
 import com.tresleches.aadp.model.KnowledgeBase;
 
-public class AboutFragment extends Fragment {
+public class AboutFragment extends Fragment implements AADPTask {
 
 	private SpeedScrollListener listener;
 	// private PlusListAdapter plusAdapter;
@@ -47,7 +49,7 @@ public class AboutFragment extends Fragment {
 		lvAbout = (ListView) v.findViewById(R.id.lvAbout);
 		lvAbout.setOnScrollListener(listener);
 		lvAbout.setAdapter(aboutAdapter);
-		getAbout();
+		new AADPTaskManager(this, getActivity()).execute();//getAbout();
 
 		return v;
 	}
@@ -74,5 +76,17 @@ public class AboutFragment extends Fragment {
 
 	public void addAll(List<KnowledgeBase> list) {
 		aboutAdapter.addAll(list);
+	}
+
+	@Override
+	public void performTask() {
+		// TODO Auto-generated method stub
+		getAbout();
+	}
+
+	@Override
+	public void performOfflineTask() {
+		// TODO Auto-generated method stub
+		
 	}
 }
