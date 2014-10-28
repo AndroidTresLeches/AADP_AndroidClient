@@ -3,10 +3,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    android:paddingBottom="20dp"
     android:paddingLeft="10dp"
     android:paddingRight="10dp"
-    android:paddingTop="20dp" >
+    android:paddingTop="10dp" >
 
     <TextView
         android:id="@+id/tvCoordinatorText"
@@ -18,10 +17,11 @@
 
     <TextView
         android:id="@+id/tvCoordinatorName"
-        android:layout_width="70dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_below="@+id/ivCoordinator"
+        android:gravity="right"
         android:text="@string/event_coordinator"
         android:textSize="12sp" />
 
@@ -40,25 +40,25 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/border_textview"
-        android:paddingBottom="10dp"
+        android:paddingBottom="2dp"
         android:paddingLeft="5dp"
         android:paddingRight="5dp"
-        android:paddingTop="5dp"
+        android:paddingTop="2dp"
         android:text="@string/event_date"
-        android:textColor="@color/realm_purple"
-        android:textSize="16sp" />
+        android:textColor="@color/white"
+        android:textSize="14sp" />
 
     <TextView
         android:id="@+id/tvDay"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@+id/tvCoordinatorName"
-        android:layout_alignBottom="@id/tvCoordinatorName"
+        android:layout_alignBottom="@id/ivCoordinator"
         android:layout_alignLeft="@+id/tvDate"
         android:layout_below="@+id/tvDate"
         android:layout_toLeftOf="@+id/tvEventName"
-        android:background="@drawable/border_textview"
-        android:paddingBottom="10dp"
+        android:background="@drawable/border_bottom_textview"
+        android:paddingBottom="5dp"
         android:paddingLeft="5dp"
         android:paddingRight="5dp"
         android:text="@string/event_date"
@@ -102,15 +102,15 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/tvDay"
         android:layout_alignRight="@+id/tvCoordinatorName"
-        android:layout_below="@+id/tvDay"
+        android:layout_below="@+id/tvCoordinatorName"
         android:orientation="horizontal"
         android:weightSum="3"
         android:paddingTop="15dp" >
 
         <ImageView
             android:id="@+id/ivCalendarIcon"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
             android:layout_marginLeft="16dp"
             android:layout_weight="1"
             android:paddingBottom="10dp"
@@ -118,16 +118,16 @@
 
         <ImageView
             android:id="@+id/ivFavoriteIcon"
-            android:layout_width="15dp"
-            android:layout_height="15dp"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
             android:layout_weight="1"
             android:contentDescription="@string/favorite"
             android:src="@drawable/ic_heart" />
 
         <ImageView
             android:id="@+id/ivVolunteerIcon"
-            android:layout_width="15dp"
-            android:layout_height="15dp"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
             android:layout_weight="1"
             android:contentDescription="@string/volunteer"
             android:src="@drawable/volunteer" />
