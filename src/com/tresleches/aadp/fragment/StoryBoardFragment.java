@@ -14,6 +14,7 @@ import com.easyandroidanimations.library.ExplodeAnimation;
 import com.easyandroidanimations.library.PuffOutAnimation;
 import com.tresleches.aadp.R;
 import com.tresleches.aadp.model.Story;
+import com.tresleches.aadp.model.StoryTitle;
 
 /**
  * This class deals with Story board which can open 4 types of story
@@ -48,7 +49,7 @@ public class StoryBoardFragment extends Fragment {
 
 		View view = inflater.inflate(R.layout.fragment_story_board, container,false);
 
-		//getActivity().getActionBar().setTitle("AADP");
+		getActivity().getActionBar().setTitle(StoryTitle.STORIES);
 		
 		//4 Image Views represents 4 story types.
 		//these ImagesViews can be changed to some other views 
