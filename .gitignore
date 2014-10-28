@@ -17,7 +17,6 @@ local.properties
 res/values/app_config.xml
 app_config.xml
 .DS_Store
-project.properties
 
 # Eclipse project files
 .classpath
