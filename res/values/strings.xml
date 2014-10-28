@@ -45,5 +45,7 @@
     <string name="favorite">Favorite</string>
     <string name="volunteer">Volunteer</string>
     <string name="title_activity_splash_screen">Splash Screen</string>
+    <string name="title_activity_volunteer_events">VolunteerEventsActivity</string>
+    <string name="openInMaps">Open in Maps</string>
 
 </resources>

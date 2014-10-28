@@ -64,7 +64,7 @@
         android:text="@string/event_date"
         android:gravity="center"
         android:textColor="@color/realm_purple"
-        android:textSize="18sp" />
+        android:textSize="20sp" />
 
     <TextView
         android:id="@+id/tvEventName"
@@ -80,7 +80,7 @@
 
     <TextView
         android:id="@+id/tvAddress"
-        android:layout_width="150dp"
+        android:layout_width="170dp"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/tvEventName"
         android:layout_below="@+id/tvEventName"
@@ -95,7 +95,6 @@
         android:layout_alignLeft="@+id/tvAddress"
         android:layout_below="@+id/tvAddress"
         android:text="@string/event_time"
-        android:textColor="@color/realm_purple"
         android:textSize="12sp" />
 
     <LinearLayout

@@ -1,4 +1,4 @@
-package com.tresleches.aadp;
+package com.tresleches.aadp.activity;
 
 import java.util.ArrayList;
 
@@ -14,7 +14,10 @@ import com.easyandroidanimations.library.AnimationListener;
 import com.easyandroidanimations.library.FadeInAnimation;
 import com.easyandroidanimations.library.ParallelAnimator;
 import com.easyandroidanimations.library.PathAnimation;
-import com.tresleches.aadp.activity.HomeActivity;
+import com.tresleches.aadp.R;
+import com.tresleches.aadp.R.anim;
+import com.tresleches.aadp.R.id;
+import com.tresleches.aadp.R.layout;
 
 
 

@@ -13,11 +13,12 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.provider.CalendarContract;
 import android.provider.CalendarContract.Events;
-import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.TranslateAnimation;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -188,6 +189,12 @@ public class EventArrayAdapter extends ArrayAdapter<Event> {
 				context.startActivity(Intent.createChooser(intent, ""));
 			}
 		});
+		
+		
+		Animation animationY = new TranslateAnimation(0, 0, convertView.getHeight()/4, 0);
+		animationY.setDuration(1000);
+		convertView.startAnimation(animationY);  
+		animationY = null; 
 		return convertView;
 	}
 
