@@ -20,7 +20,8 @@
     
     <color name="pc_brightGreen">#53A93F</color>
     <color name="pc_red">#DB4437</color> 
-    <color name="pc_purple">#AD62A7</color>
+    <color name="pc_purple">#A4148E</color>
+    <color name="pc_purple_1">#AD62A7</color>
     <color name="pc_grayBlue">#59A2BE</color>
     <color name="pc_orange">#F58559</color>
     <color name="pc_gold">#E4C62E</color>
@@ -39,7 +40,8 @@
     <color name="purple">#885492</color>
     <color name="realm_pink">#C10D6E</color>
     <color name="realm_purple">#791A89</color>
-    <color name="realm_navy">#43227B</color>
+    <color name="realm_navy">#00008B</color>
     <color name="realm_crimson">#E80629</color>
+    <color name="realm_magenta">#A4148E</color> 
 
 </resources>

@@ -3,7 +3,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-   
     android:paddingTop="5dp"
     tools:context=".MainActivity" >
 
@@ -21,11 +20,11 @@
 
     <View
         android:id="@+id/lineBelowName"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_alignBottom="@+id/tvEventName"
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
-        android:layout_height="0.5dp"
-        android:layout_width="match_parent"
-        android:layout_alignBottom="@+id/tvEventName"
         android:background="@color/purple"
         android:paddingBottom="10dp"
         android:paddingTop="10dp" />
@@ -36,9 +35,9 @@
         android:layout_height="50dp"
         android:layout_alignLeft="@+id/tvEventName"
         android:layout_alignTop="@+id/tvEventDate"
+        android:layout_marginLeft="10dp"
         android:paddingBottom="10dp"
         android:paddingTop="10dp"
-        android:layout_marginLeft="10dp"
         android:src="@drawable/ic_calender_add" />
 
     <TextView
@@ -61,16 +60,16 @@
         android:background="@color/purple"
         android:paddingBottom="10dp"
         android:paddingTop="10dp" />
-    
-     <ImageView
+
+    <ImageView
         android:id="@+id/ivMapPin"
         android:layout_width="20dp"
         android:layout_height="50dp"
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/ivCalenderIcon"
+        android:layout_marginLeft="10dp"
         android:paddingBottom="10dp"
         android:paddingTop="10dp"
-		android:layout_marginLeft="10dp"
         android:src="@drawable/ic_map_pin" />
 
     <TextView
@@ -79,8 +78,8 @@
         android:layout_height="wrap_content"
         android:layout_alignTop="@id/ivMapPin"
         android:layout_toRightOf="@+id/ivMapPin"
-        android:paddingTop="10dp"
         android:paddingLeft="5dp"
+        android:paddingTop="10dp"
         android:text="@string/event_address"
         android:textColor="@color/realm_pink" />
 
@@ -89,12 +88,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/tvEventAddress"
-        android:paddingLeft="5dp"
         android:layout_below="@id/tvEventAddress"
         android:paddingBottom="10dp"
+        android:paddingLeft="5dp"
         android:text="@string/notes"
-        android:textSize="12sp"
-        android:textColor="@color/realm_purple" />
+        android:textColor="@color/realm_purple"
+        android:textSize="12sp" />
 
     <View
         android:id="@+id/vLineBelowAddress"
@@ -106,20 +105,20 @@
         android:background="@color/purple"
         android:paddingBottom="10dp"
         android:paddingTop="10dp" />
-    
+
     <fragment
         android:id="@+id/map"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_above="@+id/ivCoordinator"
+        android:layout_above="@+id/tvOpenInMaps"
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/vLineBelowAddress"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-        android:paddingRight="10dp"
-        class="com.google.android.gms.maps.SupportMapFragment" />
-    
-       <View
+        class="com.google.android.gms.maps.SupportMapFragment"
+        android:paddingRight="10dp" />
+
+    <View
         android:id="@+id/vLineBelowMap"
         android:layout_width="match_parent"
         android:layout_height="0.5dp"
@@ -127,38 +126,49 @@
         android:background="@color/purple"
         android:paddingTop="10dp" />
 
-    <TextView
-        android:id="@+id/tvCoordinatorName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/ivCoordinator"
-        android:layout_toRightOf="@+id/ivCoordinator"
-        android:text="@string/coordinator"
-        android:paddingLeft="5dp"
-        android:textColor="@color/realm_pink"
-        android:textSize="12sp" />
-
     <ImageView
         android:id="@+id/ivCoordinator"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
-        android:contentDescription="@string/coordinator"
         android:layout_marginBottom="10dp"
-        android:paddingTop="10dp" />
+        android:contentDescription="@string/coordinator"
+        android:paddingTop="10dp"
+        android:scaleType="centerCrop" />
+
+    <TextView
+        android:id="@+id/tvBeVolunteer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvOpenInMaps"
+        android:text="@string/volunteer"
+        android:gravity="center" />
 
     <TextView
         android:id="@+id/tvOpenInMaps"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/tvCoordinatorName"
+        android:layout_above="@+id/ivCoordinator"
         android:layout_centerHorizontal="true"
+        android:autoLink="all"
         android:gravity="center_horizontal"
-        android:paddingTop="5dp"
+        android:linksClickable="true"
         android:paddingBottom="5dp"
+        android:paddingTop="5dp"
         android:text="@string/openInMaps"
         android:textColor="@color/realm_crimson"
         android:textSize="12sp" />
-    
+
+    <TextView
+        android:id="@+id/tvCoordinatorName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/ivCoordinator"
+        android:layout_alignRight="@+id/tvEventDate"
+        android:paddingLeft="5dp"
+        android:text="@string/coordinator"
+        android:textColor="@color/realm_pink"
+        android:textSize="12sp" />
+
 </RelativeLayout>

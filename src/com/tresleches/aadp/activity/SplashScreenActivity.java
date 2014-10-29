@@ -63,7 +63,7 @@ public class SplashScreenActivity extends Activity {
 		points.add(new Point(7, 4));
 
 		PathAnimation path = new PathAnimation(ivSplashScreen);
-		path = path.setPoints(points).setDuration(5000).setListener(new AnimationListener() {
+		path = path.setPoints(points).setDuration(2000).setListener(new AnimationListener() {
 			
 			@Override
 			public void onAnimationEnd(Animation arg0) {
@@ -79,7 +79,7 @@ public class SplashScreenActivity extends Activity {
 		});
 		
 		ScaleOutAnimation zoomOut = new ScaleOutAnimation(ivSplashScreen, 0.2f, 0.2f, true);
-		zoomOut.setDuration(5000);
+		zoomOut.setDuration(2000);
 		new ParallelAnimator().add(path).add(zoomOut).animate();
 	}
 

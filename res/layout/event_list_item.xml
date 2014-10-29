@@ -25,15 +25,15 @@
         android:text="@string/event_coordinator"
         android:textSize="12sp" />
 
-    <ImageView
+    <com.mikhaellopez.circularimageview.CircularImageView
         android:id="@+id/ivCoordinator"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         android:layout_alignRight="@+id/tvCoordinatorName"
         android:layout_below="@+id/tvCoordinatorText"
-        android:background="@drawable/rounded_image"
         android:contentDescription="@string/coordinator"
-        android:padding="2dp" />
+        android:padding="2dp"
+        android:scaleType="centerCrop" />
 
     <TextView
         android:id="@+id/tvDate"
@@ -58,7 +58,7 @@
         android:layout_below="@+id/tvDate"
         android:layout_toLeftOf="@+id/tvEventName"
         android:background="@drawable/border_bottom_textview"
-        android:paddingBottom="5dp"
+        android:paddingTop="5dp"
         android:paddingLeft="5dp"
         android:paddingRight="5dp"
         android:text="@string/event_date"
@@ -75,7 +75,7 @@
         android:layout_toLeftOf="@+id/tvCoordinatorText"
         android:layout_toRightOf="@+id/tvDate"
         android:text="@string/event_name"
-        android:textColor="@color/realm_pink"
+        android:textColor="@color/realm_navy"
         android:textSize="16sp" />
 
     <TextView
@@ -104,7 +104,7 @@
         android:layout_alignRight="@+id/tvCoordinatorName"
         android:layout_below="@+id/tvCoordinatorName"
         android:orientation="horizontal"
-        android:weightSum="3"
+        android:weightSum="2"
         android:paddingTop="15dp" >
 
         <ImageView
@@ -118,19 +118,12 @@
 
         <ImageView
             android:id="@+id/ivFavoriteIcon"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
             android:layout_weight="1"
             android:contentDescription="@string/favorite"
-            android:src="@drawable/ic_heart" />
+            android:src="@drawable/ic_unchecked_fav" />
 
-        <ImageView
-            android:id="@+id/ivVolunteerIcon"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:layout_weight="1"
-            android:contentDescription="@string/volunteer"
-            android:src="@drawable/volunteer" />
     </LinearLayout>
 
 </RelativeLayout>

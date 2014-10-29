@@ -6,6 +6,7 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
 
+import android.animation.ObjectAnimator;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -24,6 +25,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.mikhaellopez.circularimageview.CircularImageView;
 import com.parse.ParseException;
 import com.parse.ParseFile;
 import com.parse.ParseUser;
@@ -38,13 +40,12 @@ public class EventArrayAdapter extends ArrayAdapter<Event> {
 		TextView tvEventName;
 		TextView tvDate;
 		TextView tvDay;
-		ImageView ivCoordinatorImg;
+		CircularImageView ivCoordinatorImg;
 		TextView tvTime;
 		TextView tvAddress;
 		TextView tvCoordinatorName;
 		ImageView ivCalendarIcon;
 		ImageView ivFavoriteIcon;
-		ImageView ivVolunteerIcon;
 	}
 
 	private Context context;
@@ -53,6 +54,7 @@ public class EventArrayAdapter extends ArrayAdapter<Event> {
 	String fullMonth;
 	int day;
 	private final int REQUEST_CODE = 20;
+	private boolean isFav;
 
 	public EventArrayAdapter(Context context, int resource, List<Event> events) {
 		super(context, R.layout.event_list_item, events);
@@ -62,7 +64,7 @@ public class EventArrayAdapter extends ArrayAdapter<Event> {
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
 		// Get the item
-		ViewHolder viewHolder;
+		final ViewHolder viewHolder;
 		final Event event = getItem(position);
 		if (convertView == null) {
 			viewHolder = new ViewHolder();
@@ -74,7 +76,7 @@ public class EventArrayAdapter extends ArrayAdapter<Event> {
 					.findViewById(R.id.tvDate);
 			viewHolder.tvDay = (TextView) convertView
 					.findViewById(R.id.tvDay);
-			viewHolder.ivCoordinatorImg = (ImageView) convertView
+			viewHolder.ivCoordinatorImg = (CircularImageView) convertView
 					.findViewById(R.id.ivCoordinator);
 			viewHolder.tvTime = (TextView) convertView
 					.findViewById(R.id.tvTime);
@@ -86,8 +88,6 @@ public class EventArrayAdapter extends ArrayAdapter<Event> {
 					.findViewById(R.id.ivCalendarIcon);
 			viewHolder.ivFavoriteIcon = (ImageView) convertView
 					.findViewById(R.id.ivFavoriteIcon);
-			viewHolder.ivVolunteerIcon = (ImageView) convertView
-					.findViewById(R.id.ivVolunteerIcon);
 			convertView.setTag(viewHolder);
 		} else {
 			viewHolder = (ViewHolder) convertView.getTag();
@@ -148,7 +148,7 @@ public class EventArrayAdapter extends ArrayAdapter<Event> {
 		});
 
 		viewHolder.ivFavoriteIcon.setOnClickListener(new OnClickListener() {
-
+			
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
@@ -164,6 +164,9 @@ public class EventArrayAdapter extends ArrayAdapter<Event> {
 					favItem.saveInBackground();
 					Toast.makeText(context, "Favorite Saved",
 							Toast.LENGTH_SHORT).show();
+					ObjectAnimator fade = ObjectAnimator.ofFloat(v, "alpha", 1,0f, 0f);
+					fade.setDuration(3000);
+					viewHolder.ivFavoriteIcon.setImageResource(R.drawable.ic_heart);
 				} else {
 					// show the signup or login screen
 					Intent i = new Intent(getContext(), LoginActivity.class);
@@ -174,22 +177,6 @@ public class EventArrayAdapter extends ArrayAdapter<Event> {
 				}
 			}
 		});
-
-		viewHolder.ivVolunteerIcon.setOnClickListener(new OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				Intent intent = new Intent(Intent.ACTION_SEND);
-				intent.setType("plain/text");
-				intent.putExtra(Intent.EXTRA_EMAIL,
-						new String[] { "some@email.address" });
-				intent.putExtra(Intent.EXTRA_SUBJECT,
-						"Volunteer for " + event.getEventName());
-				intent.putExtra(Intent.EXTRA_TEXT, "mail body");
-				context.startActivity(Intent.createChooser(intent, ""));
-			}
-		});
-		
 		
 		Animation animationY = new TranslateAnimation(0, 0, convertView.getHeight()/4, 0);
 		animationY.setDuration(1000);
