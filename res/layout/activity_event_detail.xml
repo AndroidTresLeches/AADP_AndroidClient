@@ -156,7 +156,8 @@
         android:paddingTop="5dp"
         android:text="@string/openInMaps"
         android:textColor="@color/realm_crimson"
-        android:textSize="14sp" />
+        android:textSize="14sp"
+        android:clickable="true" />
 
     <TextView
         android:id="@+id/tvCoordinatorName"
