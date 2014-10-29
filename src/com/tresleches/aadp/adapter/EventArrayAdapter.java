@@ -25,12 +25,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.mikhaellopez.circularimageview.CircularImageView;
 import com.parse.ParseException;
 import com.parse.ParseFile;
 import com.parse.ParseUser;
 import com.tresleches.aadp.R;
 import com.tresleches.aadp.activity.LoginActivity;
+import com.tresleches.aadp.circularImageView.CircularImageView;
 import com.tresleches.aadp.helper.DateHelper;
 import com.tresleches.aadp.model.Event;
 import com.tresleches.aadp.model.Favorite;
@@ -54,7 +54,6 @@ public class EventArrayAdapter extends ArrayAdapter<Event> {
 	String fullMonth;
 	int day;
 	private final int REQUEST_CODE = 20;
-	private boolean isFav;
 
 	public EventArrayAdapter(Context context, int resource, List<Event> events) {
 		super(context, R.layout.event_list_item, events);

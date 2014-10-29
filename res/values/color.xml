@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <color name="menuBackground">#FFFFFF</color>
     <color name="menuText">#000000</color>
     <color name="tabindicator">#C9ADD1</color>
@@ -7,9 +8,7 @@
     <color name="white">#FFFFFF</color>
     <color name="tabBackground">#E9E9E9</color>
     <color name="background_tab_pressed">#6633B5E5</color>
-
     <color name="orig_purple">#E9E9E9</color>
-    
     <color name="darkBackground">#663F76</color>
     <color name="softGreen">#65ABA3</color>
     <color name="softOrange">#CE7576</color>
@@ -17,9 +16,8 @@
     <color name="grayBlue">#77A8B7</color>
     <color name="softLime">#BAB86D</color>
     <color name="lightBeige">#D3CFB4</color>
-    
     <color name="pc_brightGreen">#53A93F</color>
-    <color name="pc_red">#DB4437</color> 
+    <color name="pc_red">#DB4437</color>
     <color name="pc_purple">#A4148E</color>
     <color name="pc_purple_1">#AD62A7</color>
     <color name="pc_grayBlue">#59A2BE</color>
@@ -36,12 +34,12 @@
     <color name="pc_sectionSP">#C6C6C6</color>
     <color name="pc_menuTextGray">#58585B</color>
     <color name="pc_menuBackground">#F5F5F5</color>
-    
     <color name="purple">#885492</color>
     <color name="realm_pink">#C10D6E</color>
     <color name="realm_purple">#791A89</color>
     <color name="realm_navy">#00008B</color>
-    <color name="realm_crimson">#E80629</color>
-    <color name="realm_magenta">#A4148E</color> 
+    <color name="realm_crimson">#FF3232</color>
+    <color name="realm_magenta">#A4148E</color>
+    <color name="address_blue">#3B3178</color>
 
 </resources>
