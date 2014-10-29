@@ -118,7 +118,6 @@ public class EventArrayAdapter extends ArrayAdapter<Event> {
 
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
 				Intent calIntent = new Intent(Intent.ACTION_INSERT);
 				calIntent.setData(CalendarContract.Events.CONTENT_URI);
 				calIntent.setType("vnd.android.cursor.item/event");
@@ -150,7 +149,6 @@ public class EventArrayAdapter extends ArrayAdapter<Event> {
 			
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
 				Favorite favItem = new Favorite();
 				ParseUser currentUser = ParseUser.getCurrentUser();
 				if (currentUser != null) {

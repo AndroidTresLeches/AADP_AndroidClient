@@ -74,13 +74,10 @@ public class VounteerFragment extends Fragment {
 				startActivity(i);
 			}
 		});
-		Toast.makeText(getActivity(), getActivity().toString(),
-				Toast.LENGTH_SHORT).show();
 		return view;
 	}
 
 	private void getVolEvents() {
-		// TODO Auto-generated method stub
 		if (NetworkUtils.isNetworkAvailable(getActivity())) {
 			// Define the class we would like to query
 

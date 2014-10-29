@@ -51,7 +51,6 @@ public class Event extends ParseObject {
 	}
 
 	public ParseFile getProfileImage() {
-		// TODO Auto-generated method stub
 		return getParseFile("profileImage");
 	}
 	

@@ -72,7 +72,6 @@ public class FavoriteFragment extends Fragment implements AADPTask {
 				startActivity(i);
 			}
 		});
-		Toast.makeText(getActivity(), getActivity().toString(), Toast.LENGTH_SHORT).show();
 		return view;
 	}
 
@@ -123,7 +122,6 @@ public class FavoriteFragment extends Fragment implements AADPTask {
 	}
 
 	public void getEvents(ArrayList<Favorite> favorites) {
-		// TODO Auto-generated method stub
 		if (NetworkUtils.isNetworkAvailable(getActivity())) {
 			// Define the class we would like to query
 
@@ -154,8 +152,6 @@ public class FavoriteFragment extends Fragment implements AADPTask {
 
 	@Override
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
-		// TODO Auto-generated method stub
-		System.out.println("@@@@@@@@");
 		getActivity();
 		if (resultCode == Activity.RESULT_OK  && requestCode == REQUEST_CODE) {
 			ParseQuery<Favorite> query = ParseQuery.getQuery(Favorite.class);
@@ -203,13 +199,10 @@ public class FavoriteFragment extends Fragment implements AADPTask {
 
 	@Override
 	public void performTask() {
-		// TODO Auto-generated method stub
 		getFavEvents();
 	}
 
 	@Override
 	public void performOfflineTask() {
-		// TODO Auto-generated method stub
-		
 	}
 }

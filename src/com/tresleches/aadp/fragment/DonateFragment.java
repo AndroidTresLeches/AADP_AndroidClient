@@ -13,10 +13,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.parse.Parse;
 import com.parse.ParseUser;
 import com.paypal.android.sdk.payments.PayPalConfiguration;
-import com.paypal.android.sdk.payments.PayPalService;
 import com.tresleches.aadp.R;
 import com.tresleches.aadp.helper.PayPalManager;
 import com.tresleches.aadp.interfaces.Donatable;
@@ -47,7 +45,6 @@ public class DonateFragment extends Fragment {
 		etDonationAmount = (EditText)view.findViewById(R.id.etDonationAmount);
 		Button btnDonate = (Button)view.findViewById(R.id.btnDonate);
 		
-		
 		if(ParseUser.getCurrentUser() != null ){
 			etDonationName.setText(ParseUser.getCurrentUser().getUsername());
 			etDonationEmail.setText(ParseUser.getCurrentUser().getEmail());
@@ -69,8 +66,6 @@ public class DonateFragment extends Fragment {
 	 * Method Which take care of Donation 
 	 */
 	private void donate() {
-		// TODO Auto-generated method stub
-		
 		Donation donation = new Donation();
 		Double donationAmount =  Double.valueOf(etDonationAmount.getText().toString()); 
 		donation.setName(etDonationName.getText().toString());

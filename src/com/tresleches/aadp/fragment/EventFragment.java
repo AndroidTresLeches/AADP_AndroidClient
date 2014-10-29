@@ -100,7 +100,6 @@ public class EventFragment extends Fragment implements AADPTask{
 
 	@Override
 	public void performOfflineTask() {
-		// TODO Auto-generated method stub
 		Toast.makeText(getActivity(),
 				getResources().getString(R.string.no_network),
 				Toast.LENGTH_SHORT).show();

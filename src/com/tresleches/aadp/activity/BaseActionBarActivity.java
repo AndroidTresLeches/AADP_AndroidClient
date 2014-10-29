@@ -28,7 +28,6 @@ public class BaseActionBarActivity extends ActionBarActivity implements Donatabl
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		PayPalConfiguration config = PayPalManager.getPayPalConfiguration(this);
 		Intent intent = new Intent(this, PayPalService.class);

@@ -1,7 +1,6 @@
 package com.tresleches.aadp.fragment;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 import android.app.Activity;
@@ -20,7 +19,6 @@ import com.tresleches.aadp.adapter.StoryArrayAdapter;
 import com.tresleches.aadp.helper.AADPTaskManager;
 import com.tresleches.aadp.interfaces.AADPTask;
 import com.tresleches.aadp.model.Story;
-import com.tresleches.aadp.model.Story.Type;
 import com.tresleches.aadp.model.StoryTitle;
 
 
@@ -33,14 +31,12 @@ public class StoryFragment extends Fragment implements AADPTask {
 	private String storyType ;
 	
 	public void onAttach(Activity activity) {
-		// TODO Auto-generated method stub
 		super.onAttach(activity);
 	}
 
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		stories = new ArrayList<Story>();
 		aStory = new StoryArrayAdapter(getActivity(), R.layout.story_list_item,stories);
@@ -70,8 +66,6 @@ public class StoryFragment extends Fragment implements AADPTask {
 	
 	@Override
 	public void performTask() {
-		// TODO Auto-generated method stub
-		getStories();
 	}
 	
 	/**
@@ -101,7 +95,6 @@ public class StoryFragment extends Fragment implements AADPTask {
 			      }
 			    }
 			});
-			
 		}
 	}
 
@@ -116,11 +109,6 @@ public class StoryFragment extends Fragment implements AADPTask {
 
 	@Override
 	public void performOfflineTask() {
-		// TODO Auto-generated method stub
-		
 	}
-
-
-
 }
 
