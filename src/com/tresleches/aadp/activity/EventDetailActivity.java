@@ -33,6 +33,8 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import android.view.View.OnClickListener;
+
+import com.mikhaellopez.circularimageview.CircularImageView;
 import com.parse.GetCallback;
 import com.parse.ParseException;
 import com.parse.ParseFile;
@@ -47,7 +49,7 @@ import com.tresleches.aadp.model.Event;
 public class EventDetailActivity extends FragmentActivity implements
 		GooglePlayServicesClient.ConnectionCallbacks,
 		GooglePlayServicesClient.OnConnectionFailedListener,
-		OnMapLongClickListener,AADPTask {
+		OnMapLongClickListener, AADPTask {
 
 	private SupportMapFragment mapFragment;
 	private GoogleMap map;
@@ -59,6 +61,8 @@ public class EventDetailActivity extends FragmentActivity implements
 	private TextView tvEventAddress;
 	private ImageView ivProfileImg;
 	private TextView tvOpenInMaps;
+	private TextView tvVolunteer;
+
 	private Event event;
 	private String eventId;
 	private String locationAddress;
@@ -110,27 +114,46 @@ public class EventDetailActivity extends FragmentActivity implements
 
 			@Override
 			public void onClick(View v) {
-				String uri = "http://maps.google.com/maps?saddr=" + srcLatitude
-						+ "," + srcLongitude + "&daddr=" + destinationLatitude
-						+ "," + destinationLongitude;
-				Intent intent = new Intent(android.content.Intent.ACTION_VIEW,
-						Uri.parse(uri));
-				intent.setClassName("com.google.android.apps.maps",
-						"com.google.android.maps.MapsActivity");
-				try {
-					startActivity(intent);
-				} catch (ActivityNotFoundException ex) {
+
+				if (srcLatitude != null && srcLongitude != null) {
+					String uri = "http://maps.google.com/maps?saddr="
+							+ srcLatitude + "," + srcLongitude + "&daddr="
+							+ destinationLatitude + "," + destinationLongitude;
+					Intent intent = new Intent(
+							android.content.Intent.ACTION_VIEW, Uri.parse(uri));
+					intent.setClassName("com.google.android.apps.maps",
+							"com.google.android.maps.MapsActivity");
 					try {
-						Intent unrestrictedIntent = new Intent(
-								Intent.ACTION_VIEW, Uri.parse(uri));
-						startActivity(unrestrictedIntent);
-					} catch (ActivityNotFoundException innerEx) {
-						Toast.makeText(getApplicationContext(),
-								"Please install a maps application",
-								Toast.LENGTH_LONG).show();
+						startActivity(intent);
+					} catch (ActivityNotFoundException ex) {
+						try {
+							Intent unrestrictedIntent = new Intent(
+									Intent.ACTION_VIEW, Uri.parse(uri));
+							startActivity(unrestrictedIntent);
+						} catch (ActivityNotFoundException innerEx) {
+							Toast.makeText(getApplicationContext(),
+									"Please install a maps application",
+									Toast.LENGTH_LONG).show();
+						}
 					}
+					overridePendingTransition(R.anim.right_in, R.anim.left_out);
 				}
-				overridePendingTransition(R.anim.right_in, R.anim.left_out);
+			}
+		});
+
+		tvVolunteer.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				Intent intent = new Intent(Intent.ACTION_SEND);
+				intent.setType("plain/text");
+				intent.putExtra(Intent.EXTRA_EMAIL,
+						new String[] { "some@email.address" });
+				intent.putExtra(Intent.EXTRA_SUBJECT,
+						"Volunteer for " + event.getEventName());
+				intent.putExtra(Intent.EXTRA_TEXT, "mail body");
+				startActivity(Intent.createChooser(intent, ""));
+
 			}
 		});
 	}
@@ -143,7 +166,8 @@ public class EventDetailActivity extends FragmentActivity implements
 		tvEventAddress = (TextView) findViewById(R.id.tvEventAddress);
 		ivProfileImg = (ImageView) findViewById(R.id.ivCoordinator);
 		tvOpenInMaps = (TextView) findViewById(R.id.tvOpenInMaps);
-		new AADPTaskManager((AADPTask)this, this).execute(); //Loads the Event
+		tvVolunteer = (TextView) findViewById(R.id.tvBeVolunteer);
+		new AADPTaskManager((AADPTask) this, this).execute(); // Loads the Event
 	}
 
 	public void getEvent() {
@@ -380,14 +404,15 @@ public class EventDetailActivity extends FragmentActivity implements
 	@Override
 	public void performTask() {
 		getEvent();
-		
+
 	}
 
 	@Override
 	public void performOfflineTask() {
 		// TODO Auto-generated method stub
-		//getOfflineEvent()
+		// getOfflineEvent()
 	}
+
 	private final LocationListener mLocationListener = new LocationListener() {
 		@Override
 		public void onLocationChanged(final Location srcLocation) {
