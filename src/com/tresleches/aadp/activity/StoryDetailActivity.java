@@ -1,6 +1,7 @@
 package com.tresleches.aadp.activity;
 
 import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -13,11 +14,13 @@ import com.parse.ParseException;
 import com.parse.ParseQuery;
 import com.tresleches.aadp.R;
 import com.tresleches.aadp.adapter.StoryArrayAdapter.ViewHolder;
+import com.tresleches.aadp.helper.AADPTaskManager;
 import com.tresleches.aadp.helper.Utils;
+import com.tresleches.aadp.interfaces.AADPTask;
 import com.tresleches.aadp.interfaces.Shareable;
 import com.tresleches.aadp.model.Story;
 
-public class StoryDetailActivity extends Activity {
+public class StoryDetailActivity extends Activity implements AADPTask{
 
 	private String storyId;
 	private Story story;
@@ -31,9 +34,7 @@ public class StoryDetailActivity extends Activity {
 		setContentView(R.layout.activity_story_detail);
 		storyId = getIntent().getStringExtra("story_id");
 		
-		//1 load story based on Story Id.
-		loadStory();
-		
+		new AADPTaskManager((AADPTask)this, (Context)this).execute();
 
 	}
 
@@ -124,6 +125,20 @@ public class StoryDetailActivity extends Activity {
 			}
 		});
 
+	}
+
+	@Override
+	public void performTask() {
+		// TODO Auto-generated method stub
+		//1 load story based on Story Id.
+		loadStory();
+		
+	}
+
+	@Override
+	public void performOfflineTask() {
+		// TODO Auto-generated method stub
+		
 	}	
 	
 }

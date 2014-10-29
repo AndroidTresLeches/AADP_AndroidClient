@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.graphics.Point;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.widget.ImageView;
 
 import com.easyandroidanimations.library.Animation;
@@ -14,16 +15,13 @@ import com.easyandroidanimations.library.AnimationListener;
 import com.easyandroidanimations.library.FadeInAnimation;
 import com.easyandroidanimations.library.ParallelAnimator;
 import com.easyandroidanimations.library.PathAnimation;
+import com.easyandroidanimations.library.ScaleOutAnimation;
 import com.tresleches.aadp.R;
-import com.tresleches.aadp.R.anim;
-import com.tresleches.aadp.R.id;
-import com.tresleches.aadp.R.layout;
+
 
 /**
  * An example full-screen activity that shows and hides the system UI (i.e.
  * status bar and navigation/system bar) with user interaction.
- * 
- * @see SystemUiHider
  */
 public class SplashScreenActivity extends Activity {
 	
@@ -38,7 +36,7 @@ public class SplashScreenActivity extends Activity {
 		ivSplashScreen =  (ImageView)findViewById(R.id.ivSplashScreen);
 
 		FadeInAnimation fadeIn = new FadeInAnimation(ivSplashScreen);
-		fadeIn.setDuration(3000);
+		fadeIn.setDuration(1000);
 		fadeIn.animate();
         /*
          * Showing splash screen with a timer. This will be useful when you
@@ -52,31 +50,37 @@ public class SplashScreenActivity extends Activity {
                 // Start your app main activity
             	startAnimation();
             }
-        }, 3000);		
+        }, 1000);		
 		
 	}
-	
+
+	/** 
+	 * Method for Starting Flying Crane Animation and Opening up the Home Activity
+	 */
 	private void startAnimation() {
 		ArrayList<Point> points = new ArrayList<Point>();
-//		points.add(new Point(50, 50));
-		points.add(new Point(8, 4));
+		//points.add(new Point(50, 50));
+		points.add(new Point(7, 4));
 
 		PathAnimation path = new PathAnimation(ivSplashScreen);
-		path = path.setPoints(points).setDuration(5000).setListener(new AnimationListener() {
+		path = path.setPoints(points).setDuration(2000).setListener(new AnimationListener() {
 			
 			@Override
 			public void onAnimationEnd(Animation arg0) {
-//				Start Activity
+				//Start Activity
+				Log.d("DEBUG","Ending Animation");
 				Intent i = new Intent(SplashScreenActivity.this, HomeActivity.class);
 				startActivity(i);
-				overridePendingTransition(R.anim.fadein, R.anim.fadeout);
 				finish();
+				overridePendingTransition(R.anim.fadein, R.anim.fadeout);
+				
 				
 			}
 		});
-		new ParallelAnimator().add(path).animate();
 		
+		ScaleOutAnimation zoomOut = new ScaleOutAnimation(ivSplashScreen, 0.2f, 0.2f, true);
+		zoomOut.setDuration(2000);
+		new ParallelAnimator().add(path).add(zoomOut).animate();
 	}
 
-	
 }

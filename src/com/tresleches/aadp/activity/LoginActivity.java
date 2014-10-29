@@ -17,8 +17,10 @@ import com.parse.LogInCallback;
 import com.parse.ParseException;
 import com.parse.ParseUser;
 import com.tresleches.aadp.R;
+import com.tresleches.aadp.helper.AADPTaskManager;
+import com.tresleches.aadp.interfaces.AADPTask;
 
-public class LoginActivity extends Activity {
+public class LoginActivity extends Activity implements AADPTask{
 
 	private EditText etUserName;
 	private EditText etPassword;
@@ -58,27 +60,12 @@ public class LoginActivity extends Activity {
 				username = etUserName.getText().toString();
 				password = etPassword.getText().toString();
 				
-				ParseUser.logInInBackground(username, password, new LogInCallback() {
-					  public void done(ParseUser user, ParseException e) {
-					    if (user != null) {
-					    	Intent data = new Intent();
-							//startActivity(i);
-					    	// Intent data = new Intent();
-					   	  // Pass relevant data back as a result
-					   	  data.putExtra("username", username);
-					   	  data.putExtra("objectId", objectId);
-					   	  // Activity finished ok, return the data
-					   	  setResult(RESULT_OK, data); // set result code and bundle data for response
-					   	  finish(); // closes the activity, pass data to parent
-					    } else {
-					      // Signup failed. Look at the ParseException to see what happened.
-					    	Log.d("ERROR", "User login failed");
-					    	Toast.makeText(getApplicationContext(), "", Toast.LENGTH_SHORT).show();
-					    }
-					  }
-					});
+				new AADPTaskManager(LoginActivity.this, LoginActivity.this).execute(); 
 			}
+
 		});
+		
+		
 		
 		tvSignUp.setOnClickListener(new OnClickListener() {
 			
@@ -91,10 +78,49 @@ public class LoginActivity extends Activity {
 		});
 	}
 	
+
+	/**
+	 * Method To log In
+	 */
+	private void login() {
+		ParseUser.logInInBackground(username, password, new LogInCallback() {
+			  public void done(ParseUser user, ParseException e) {
+			    if (user != null) {
+			    	Intent data = new Intent();
+					//startActivity(i);
+			    	// Intent data = new Intent();
+			   	  // Pass relevant data back as a result
+			   	  data.putExtra("username", username);
+			   	  data.putExtra("objectId", objectId);
+			   	  // Activity finished ok, return the data
+			   	  setResult(RESULT_OK, data); // set result code and bundle data for response
+			   	  finish(); // closes the activity, pass data to parent
+			    } else {
+			      // Signup failed. Look at the ParseException to see what happened.
+			    	Log.d("ERROR", "User login failed");
+			    	Toast.makeText(getApplicationContext(), "", Toast.LENGTH_SHORT).show();
+			    }
+			  }
+			});
+	}	
+	
 	@Override
 	public void onBackPressed() {
 		// TODO Auto-generated method stub
 		finish();
 		overridePendingTransition(R.anim.left_in, R.anim.right_out);
+	}
+
+	@Override
+	public void performTask() {
+		// TODO Auto-generated method stub
+		login() ;
+		
+	}
+
+	@Override
+	public void performOfflineTask() {
+		// TODO Auto-generated method stub
+		//Offline login? 
 	}
 }

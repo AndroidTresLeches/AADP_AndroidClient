@@ -57,7 +57,7 @@ public class PageFragment extends Fragment {
 		Animator zoomIn = AnimatorInflater.loadAnimator(v.getContext(), R.animator.zoom_in);
 		zoomIn.setTarget(tvTest);
 		zoomIn.setDuration(1000);
-		Animator zoomBack = AnimatorInflater.loadAnimator(v.getContext(), R.animator.zoom_out);
+		Animator zoomBack = AnimatorInflater.loadAnimator(v.getContext(), R.animator.zoom_back);
 		zoomBack.setTarget(tvTest);
 		zoomBack.setDuration(1000);
 		AnimatorSet showText = new AnimatorSet();

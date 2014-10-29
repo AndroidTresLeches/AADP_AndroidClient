@@ -12,6 +12,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.mikhaellopez.circularimageview.CircularImageView;
 import com.parse.ParseException;
 import com.parse.ParseFile;
 import com.tresleches.aadp.R;
@@ -28,7 +29,7 @@ public class ContactArrayAdapter extends ArrayAdapter<Contact> {
 	}
 
 	private static class ViewHolder {
-		protected ImageView ivProfileImage;
+		protected CircularImageView ivProfileImage;
 		protected TextView tvContactName;
 		protected TextView tvPrimaryPhone;
 		protected TextView tvEmail;
@@ -45,7 +46,7 @@ public class ContactArrayAdapter extends ArrayAdapter<Contact> {
 			viewHolder = new ViewHolder();
 			LayoutInflater inflater = LayoutInflater.from(getContext());
 			view = inflater.inflate(R.layout.contact_item, parent, false);
-			viewHolder.ivProfileImage = (ImageView) view
+			viewHolder.ivProfileImage = (CircularImageView) view
 					.findViewById(R.id.ivProfileImage);
 			viewHolder.tvContactName = (TextView) view
 					.findViewById(R.id.tvContactName);

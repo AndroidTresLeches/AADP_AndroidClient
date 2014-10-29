@@ -1,10 +1,10 @@
 package com.tresleches.aadp.fragment;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import android.app.Activity;
-import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -17,10 +17,14 @@ import com.parse.ParseException;
 import com.parse.ParseQuery;
 import com.tresleches.aadp.R;
 import com.tresleches.aadp.adapter.StoryArrayAdapter;
+import com.tresleches.aadp.helper.AADPTaskManager;
+import com.tresleches.aadp.interfaces.AADPTask;
 import com.tresleches.aadp.model.Story;
+import com.tresleches.aadp.model.Story.Type;
+import com.tresleches.aadp.model.StoryTitle;
 
 
-public class StoryFragment extends Fragment {
+public class StoryFragment extends Fragment implements AADPTask {
 
 	private ArrayList<Story> stories;
 	private StoryArrayAdapter aStory;
@@ -40,9 +44,11 @@ public class StoryFragment extends Fragment {
 		super.onCreate(savedInstanceState);
 		stories = new ArrayList<Story>();
 		aStory = new StoryArrayAdapter(getActivity(), R.layout.story_list_item,stories);
-		getActivity().getActionBar().setTitle(getStoryType());
+		
 		if(getActivity().getIntent() !=null && getActivity().getIntent().getStringExtra("story_type") !=null)
 			setStoryType(getActivity().getIntent().getStringExtra("story_type"));
+		
+		getActivity().getActionBar().setTitle(StoryTitle.getTitle((Story.Type.valueOf(getStoryType()))));
 	}
 
 	/**
@@ -56,10 +62,16 @@ public class StoryFragment extends Fragment {
 		lvStories = (ListView) view.findViewById(R.id.lvStories);
 		lvStories.setAdapter(aStory);
 
-		getStories();
+		new AADPTaskManager(this,getActivity()).execute(); //Getting Stories in Background
 		
 		return view;
 
+	}
+	
+	@Override
+	public void performTask() {
+		// TODO Auto-generated method stub
+		getStories();
 	}
 	
 	/**
@@ -102,4 +114,13 @@ public class StoryFragment extends Fragment {
 	}
 
 
+	@Override
+	public void performOfflineTask() {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+
 }
+
