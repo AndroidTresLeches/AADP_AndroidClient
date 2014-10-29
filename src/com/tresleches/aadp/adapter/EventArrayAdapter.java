@@ -175,10 +175,10 @@ public class EventArrayAdapter extends ArrayAdapter<Event> {
 			}
 		});
 		
-		Animation animationY = new TranslateAnimation(0, 0, convertView.getHeight()/4, 0);
+		/*Animation animationY = new TranslateAnimation(0, 0, convertView.getHeight()/4, 0);
 		animationY.setDuration(1000);
 		convertView.startAnimation(animationY);  
-		animationY = null; 
+		animationY = null; */
 		return convertView;
 	}
 
