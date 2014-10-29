@@ -41,5 +41,6 @@
     <color name="realm_crimson">#FF3232</color>
     <color name="realm_magenta">#A4148E</color>
     <color name="address_blue">#3B3178</color>
-
+	<color name="gradientStart">#ad2b99</color>
+	<color name="gradientEnd">#ecd0e8</color>
 </resources>
