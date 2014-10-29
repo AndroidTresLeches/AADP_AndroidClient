@@ -175,28 +175,6 @@ public class FavoriteFragment extends Fragment implements AADPTask {
 		}
 	}
 	
-	public void doSomething(String param) {
-	      // do something in fragment
-		ParseQuery<Favorite> query = ParseQuery.getQuery(Favorite.class);
-		// Define our query conditions
-		String user = ParseUser.getCurrentUser().getUsername();
-		if (user != null) {
-			query.whereEqualTo("user", user);
-			query.findInBackground(new FindCallback<Favorite>() {
-				public void done(List<Favorite> results, ParseException e) {
-					if (e == null) {
-						// results have all the Story
-						favorites.addAll(results);
-						getEvents(favorites);
-						// aFavEvent.notifyDataSetChanged();
-					} else {
-						// There was an error
-					}
-				}
-			});
-		}
-	  }
-
 	@Override
 	public void performTask() {
 		getFavEvents();

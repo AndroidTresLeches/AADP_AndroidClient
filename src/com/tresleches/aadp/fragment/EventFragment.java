@@ -21,7 +21,6 @@ import com.tresleches.aadp.R;
 import com.tresleches.aadp.activity.EventDetailActivity;
 import com.tresleches.aadp.adapter.EventArrayAdapter;
 import com.tresleches.aadp.helper.AADPTaskManager;
-import com.tresleches.aadp.helper.NetworkUtils;
 import com.tresleches.aadp.interfaces.AADPTask;
 import com.tresleches.aadp.model.Event;
 
@@ -88,14 +87,11 @@ public class EventFragment extends Fragment implements AADPTask{
 					}
 				}
 			});
-		
-		
 	}
 
 	@Override
 	public void performTask() {
 		getEvents();
-		
 	}
 
 	@Override
@@ -103,6 +99,5 @@ public class EventFragment extends Fragment implements AADPTask{
 		Toast.makeText(getActivity(),
 				getResources().getString(R.string.no_network),
 				Toast.LENGTH_SHORT).show();
-	
 	}
 }

@@ -1,6 +1,5 @@
 package com.tresleches.aadp.activity;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
@@ -25,6 +24,7 @@ import com.tresleches.aadp.fragment.DonorPagerFragment;
 import com.tresleches.aadp.fragment.EventFragment;
 import com.tresleches.aadp.fragment.FavoriteFragment;
 import com.tresleches.aadp.fragment.LoginFragment;
+import com.tresleches.aadp.fragment.LogoutFragment;
 import com.tresleches.aadp.fragment.StoryBoardFragment;
 import com.tresleches.aadp.helper.Utils;
 import com.tresleches.aadp.model.Contact;
@@ -42,7 +42,7 @@ public class HomeActivity extends BaseActionBarActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_home);
-		//checkUserSignin();
+		ParseUser currentUser = ParseUser.getCurrentUser();
 		// navigation drawer - find drawer view
 		dlDrawer = (FragmentNavigationDrawer) findViewById(R.id.drawer_layout);
 		// Setup drawer view
@@ -51,14 +51,18 @@ public class HomeActivity extends BaseActionBarActivity {
 				R.layout.drawer_nav_item, R.id.flContainer);
 		// Add navigation items
 		
-		//dlDrawer.addNavItem("Login", R.drawable.ic_nav_login_color, "Profile and Login", LoginFragment.class);
 		dlDrawer.addNavItem("Events", R.drawable.ic_nav_events_color, "Events", EventFragment.class);
 		dlDrawer.addNavItem("Stories", R.drawable.ic_nav_stories_color, "Stories", StoryBoardFragment.class);
-		dlDrawer.addNavItem("Favorites", R.drawable.ic_nav_favorite_color, "Favorite Events", FavoriteFragment.class);
+		//dlDrawer.addNavItem("Favorites", R.drawable.ic_nav_favorite_color, "Favorite Events", FavoriteFragment.class);
 		dlDrawer.addNavItem("Be a donor", R.drawable.ic_nav_donor_color, "Be a donor", DonorPagerFragment.class);	
-		//dlDrawer.addNavItem("Twitter Feed", R.drawable.ic_nav_twitter_color, "AADP Tweets", TwitterFragment.class);
 		dlDrawer.addNavItem("Donate", R.drawable.ic_nav_donate_color, "Donate", DonateFragment.class);
 		dlDrawer.addNavItem("About", R.drawable.ic_nav_about_color, "About AADP", AboutFragment.class);
+		if (currentUser == null) {
+			dlDrawer.addNavItem("Login", R.drawable.ic_nav_login_color, "Profile and Login", LoginFragment.class);
+		}else{
+			dlDrawer.addNavItem("Favorites", R.drawable.ic_nav_favorite_color, "Favorite Events", FavoriteFragment.class);
+			dlDrawer.addNavItem("Logout", R.drawable.ic_nav_login_color, "Logout", LogoutFragment.class);
+		}
 		// Select default
 		if (savedInstanceState == null) {
 			dlDrawer.selectDrawerItem(0);
@@ -70,10 +74,10 @@ public class HomeActivity extends BaseActionBarActivity {
 		if (currentUser != null) {
 		  // do stuff with the user
 		} else {
-			//dlDrawer.addNavItem("Login", R.drawable.ic_nav_login_color, "Profile and Login", LoginActivity.class);
+			dlDrawer.addNavItem("Login", R.drawable.ic_nav_login_color, "Profile and Login", LoginFragment.class);
 		  // show the signup or login screen
-			Intent i = new Intent(this, LoginActivity.class);
-			startActivity(i);
+			//Intent i = new Intent(this, LoginActivity.class);
+			//startActivity(i);
 		}
 	}
 
@@ -168,13 +172,6 @@ public class HomeActivity extends BaseActionBarActivity {
 			 favItem.saveInBackground();
 				Toast.makeText(this, "Favorite Saved", Toast.LENGTH_SHORT).show();
             // Toast.makeText(this, name, Toast.LENGTH_SHORT).show();
-          }else{
-        	  if (resultCode == Activity.RESULT_OK  && requestCode == REQUEST_CODE_1) {
-        		  FavoriteFragment fragmentDemo = (FavoriteFragment) 
-        		            getSupportFragmentManager().findFragmentById(R.id.lvFavoritesList);
-        		  
-        		        fragmentDemo.doSomething("some param");
-      		}
           }
         } 
 }
