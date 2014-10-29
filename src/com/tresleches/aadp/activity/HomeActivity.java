@@ -50,6 +50,7 @@ public class HomeActivity extends BaseActionBarActivity {
 				(ListView) findViewById(R.id.lvDrawer),
 				R.layout.drawer_nav_item, R.id.flContainer);
 		// Add navigation items
+		
 		//dlDrawer.addNavItem("Login", R.drawable.ic_nav_login_color, "Profile and Login", LoginFragment.class);
 		dlDrawer.addNavItem("Events", R.drawable.ic_nav_events_color, "Events", EventFragment.class);
 		dlDrawer.addNavItem("Stories", R.drawable.ic_nav_stories_color, "Stories", StoryBoardFragment.class);
@@ -69,6 +70,7 @@ public class HomeActivity extends BaseActionBarActivity {
 		if (currentUser != null) {
 		  // do stuff with the user
 		} else {
+			//dlDrawer.addNavItem("Login", R.drawable.ic_nav_login_color, "Profile and Login", LoginActivity.class);
 		  // show the signup or login screen
 			Intent i = new Intent(this, LoginActivity.class);
 			startActivity(i);

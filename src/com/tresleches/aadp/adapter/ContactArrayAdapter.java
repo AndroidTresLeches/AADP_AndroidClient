@@ -9,13 +9,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.mikhaellopez.circularimageview.CircularImageView;
 import com.parse.ParseException;
 import com.parse.ParseFile;
 import com.tresleches.aadp.R;
+import com.tresleches.aadp.circularImageView.CircularImageView;
 import com.tresleches.aadp.model.Contact;
 
 public class ContactArrayAdapter extends ArrayAdapter<Contact> {
