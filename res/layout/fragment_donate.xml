@@ -21,7 +21,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="18dp"
-        android:textColor="#FFFFFF"
+        android:textColor="#000000"
         android:text="Make a Contribution" />
   	<View
          android:id="@+id/divder_down"
@@ -34,7 +34,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="12dp"
-        android:textColor="#FFFFFF"
+        android:textColor="#4c4c4c"
         android:text="Be the one to save a life" />
 
    
@@ -75,6 +75,7 @@
         android:layout_below="@+id/llDonate"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
+        style="@style/NiceButton"
         android:text="@string/button_label_donate"
         android:background="@drawable/gradient_bg_rounded"/>
 
