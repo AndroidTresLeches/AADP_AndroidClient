@@ -19,6 +19,7 @@ import com.parse.ParseUser;
 import com.tresleches.aadp.R;
 import com.tresleches.aadp.helper.AADPTaskManager;
 import com.tresleches.aadp.interfaces.AADPTask;
+import com.tresleches.aadp.model.StoryTitle;
 
 public class LoginActivity extends Activity implements AADPTask{
 
@@ -37,6 +38,7 @@ public class LoginActivity extends Activity implements AADPTask{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_login);
 		objectId = getIntent().getStringExtra("objectId");
+		getActionBar().setTitle(getResources().getString(R.string.login));
 		loadUI();
 	}
 
@@ -56,7 +58,6 @@ public class LoginActivity extends Activity implements AADPTask{
 			
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
 				username = etUserName.getText().toString();
 				password = etPassword.getText().toString();
 				
@@ -106,21 +107,18 @@ public class LoginActivity extends Activity implements AADPTask{
 	
 	@Override
 	public void onBackPressed() {
-		// TODO Auto-generated method stub
 		finish();
 		overridePendingTransition(R.anim.left_in, R.anim.right_out);
 	}
 
 	@Override
 	public void performTask() {
-		// TODO Auto-generated method stub
 		login() ;
 		
 	}
 
 	@Override
 	public void performOfflineTask() {
-		// TODO Auto-generated method stub
 		//Offline login? 
 	}
 }

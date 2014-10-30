@@ -50,7 +50,6 @@ public class ContactFragment extends Fragment implements AADPTask{
 		contacts = new ArrayList<Contact>();
 		aContacts = new ContactArrayAdapter(getActivity(), contacts);
 		category = getArguments().getString("category");
-		
 	}
 
 	@Override
@@ -108,7 +107,5 @@ public class ContactFragment extends Fragment implements AADPTask{
 
 	@Override
 	public void performOfflineTask() {
-		// TODO Auto-generated method stub
-		
 	}
 }

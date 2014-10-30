@@ -29,7 +29,6 @@ import com.google.android.gms.location.LocationClient;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.GoogleMap.OnMapLongClickListener;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -47,7 +46,7 @@ import com.tresleches.aadp.model.Event;
 public class EventDetailActivity extends FragmentActivity implements
 		GooglePlayServicesClient.ConnectionCallbacks,
 		GooglePlayServicesClient.OnConnectionFailedListener,
-		OnMapLongClickListener, AADPTask {
+		 AADPTask {
 
 	private SupportMapFragment mapFragment;
 	private GoogleMap map;
@@ -92,8 +91,8 @@ public class EventDetailActivity extends FragmentActivity implements
 		if (mapFragment != null) {
 			map = mapFragment.getMap();
 			if (map != null) {
-				Toast.makeText(this, "Map Fragment was loaded properly!",
-						Toast.LENGTH_SHORT).show();
+				//Toast.makeText(this, "Map Fragment was loaded properly!",
+					//	Toast.LENGTH_SHORT).show();
 				map.setMyLocationEnabled(true);
 			} else {
 				Toast.makeText(this, "Error - Map was null!!",
@@ -227,13 +226,6 @@ public class EventDetailActivity extends FragmentActivity implements
 				}
 			}
 		});
-	}
-
-	@Override
-	public void onMapLongClick(LatLng point) {
-		// TODO Auto-generated method stub
-		Toast.makeText(this, "Long Press", Toast.LENGTH_LONG).show();
-		// showAlertDialogForPoint(point);
 	}
 
 	/*
@@ -407,7 +399,6 @@ public class EventDetailActivity extends FragmentActivity implements
 
 	@Override
 	public void performOfflineTask() {
-		// TODO Auto-generated method stub
 		// getOfflineEvent()
 	}
 

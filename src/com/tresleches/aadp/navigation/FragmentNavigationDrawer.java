@@ -99,7 +99,7 @@ public class FragmentNavigationDrawer extends DrawerLayout {
 		 		lvDrawer.setAdapter(drawerAdapter);
 		 		drawerNavItems.add(new FragmentNavItem(windowTitle, fragmentClass));
 	}
-
+	
 	/** Swaps fragments in the main content view */
 	public void selectDrawerItem(int position) {
 		// Create a new fragment and specify the planet to show based on

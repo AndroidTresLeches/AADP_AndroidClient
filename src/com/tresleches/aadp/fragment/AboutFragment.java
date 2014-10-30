@@ -80,13 +80,10 @@ public class AboutFragment extends Fragment implements AADPTask {
 
 	@Override
 	public void performTask() {
-		// TODO Auto-generated method stub
 		getAbout();
 	}
 
 	@Override
 	public void performOfflineTask() {
-		// TODO Auto-generated method stub
-		
 	}
 }

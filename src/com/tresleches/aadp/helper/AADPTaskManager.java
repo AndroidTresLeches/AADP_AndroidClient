@@ -2,8 +2,6 @@ package com.tresleches.aadp.helper;
 
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.os.AsyncTask;
-import android.widget.Toast;
 
 import com.tresleches.aadp.interfaces.AADPTask;
 
@@ -74,7 +72,6 @@ public class AADPTaskManager {
 	 */
 	protected void performOfflineTask() {
 		task.performOfflineTask();
-		
 	}
 	
 	
@@ -90,7 +87,6 @@ public class AADPTaskManager {
 
 	@Override
 	protected void finalize() throws Throwable {
-		// TODO Auto-generated method stub
 		super.finalize();
 		if(dialog!=null) dialog.cancel();
 	}
