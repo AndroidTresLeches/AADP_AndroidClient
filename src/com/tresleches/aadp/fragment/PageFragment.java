@@ -76,6 +76,7 @@ public class PageFragment extends Fragment {
 				public void onClick(View v) {
 					Intent i = new Intent(getActivity(), DonorActivity.class);
 					startActivity(i);
+					getActivity().overridePendingTransition(R.anim.right_in, R.anim.left_out);
 				}
 			});
 		}
