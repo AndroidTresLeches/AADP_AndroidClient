@@ -76,6 +76,12 @@ public class DonorActivity extends FragmentActivity {
 
 		return super.onOptionsItemSelected(item);
 	}
+	
+	@Override
+	public void onBackPressed() {
+		finish();
+		overridePendingTransition(R.anim.left_in, R.anim.right_out);
+	}
 
 	private void changeColor(int newColor) {
 
