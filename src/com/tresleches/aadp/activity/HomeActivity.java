@@ -166,8 +166,12 @@ public class HomeActivity extends BaseActionBarActivity {
 		});
 	}
 
+
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		
+    	super.onActivityResult(requestCode, resultCode, data); //For Donation Activity Result
+		
 		// REQUEST_CODE is defined above
 		System.out.println("RESULT      " + requestCode);
 		if (resultCode == RESULT_OK && requestCode == REQUEST_CODE) {
