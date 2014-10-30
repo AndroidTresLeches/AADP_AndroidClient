@@ -27,6 +27,7 @@ public class DonateFragment extends Fragment {
 	private EditText etDonationAmount;
 	private PayPalConfiguration config;
 	
+	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 	
@@ -54,10 +55,11 @@ public class DonateFragment extends Fragment {
 			
 			@Override
 			public void onClick(View view) {
-				donate();
-				
+					donate();
 			}
 		});
+		
+
 		
 		return view;
 	}
@@ -66,6 +68,8 @@ public class DonateFragment extends Fragment {
 	 * Method Which take care of Donation 
 	 */
 	private void donate() {
+		if(!validate()) return;
+
 		Donation donation = new Donation();
 		Double donationAmount =  Double.valueOf(etDonationAmount.getText().toString()); 
 		donation.setName(etDonationName.getText().toString());
@@ -76,5 +80,18 @@ public class DonateFragment extends Fragment {
 		donatableActivity.setDonation(donation);
 		Intent ppIntent = PayPalManager.getFundTreatmentIntent(getActivity(), donationAmount, "AADP");
 		getActivity().startActivityForResult(ppIntent, 40);
+	}
+
+
+	private boolean validate() {
+		
+		if(etDonationAmount.getText()== null ||  etDonationAmount.getText().length()<1)
+		{
+			Toast.makeText(getActivity(), "Please enter donation amount in USD", Toast.LENGTH_SHORT).show();
+			return false;
+		}
+		
+		return true;
+		
 	}
 }
