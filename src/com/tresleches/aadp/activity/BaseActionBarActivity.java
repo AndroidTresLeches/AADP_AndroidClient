@@ -53,7 +53,7 @@ public class BaseActionBarActivity extends ActionBarActivity implements Donatabl
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		
-	    if (resultCode == Activity.RESULT_OK) {
+	    if (requestCode == 40 && resultCode == Activity.RESULT_OK) {
 	        PaymentConfirmation confirm = data.getParcelableExtra(PaymentActivity.EXTRA_RESULT_CONFIRMATION);
 	        if (confirm != null) {
 	            try {
@@ -68,10 +68,10 @@ public class BaseActionBarActivity extends ActionBarActivity implements Donatabl
 	            }
 	        }
 	    }
-	    else if (resultCode == Activity.RESULT_CANCELED) {
+	    else if (requestCode == 40 && resultCode == Activity.RESULT_CANCELED) {
 	        Log.i("paymentExample", "The user canceled.");
 	    }
-	    else if (resultCode == PaymentActivity.RESULT_EXTRAS_INVALID) {
+	    else if (requestCode == 40 && resultCode == PaymentActivity.RESULT_EXTRAS_INVALID) {
 	        Log.i("paymentExample", "An invalid Payment or PayPalConfiguration was submitted. Please see the docs.");
 	    }
 

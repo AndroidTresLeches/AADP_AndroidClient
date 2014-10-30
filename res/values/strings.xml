@@ -36,7 +36,7 @@
     <string name="userName">Username</string>
     <string name="noUser">User not logged in</string>
     <string name="button_label_donate">Donate</string>
-    <string name="amount_hint">Enter $ Amount</string>
+    <string name="amount_hint">$ Amount</string>
     <string name="donate_name">Your Name</string>
     <string name="donate_email">Your Email id</string>
     <string name="about_image">About image</string>

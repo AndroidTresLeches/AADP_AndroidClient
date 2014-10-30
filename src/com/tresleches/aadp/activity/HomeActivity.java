@@ -155,6 +155,7 @@ public class HomeActivity extends BaseActionBarActivity {
         @Override
         protected void onActivityResult(int requestCode, int resultCode, Intent data) {
           // REQUEST_CODE is defined above
+        	super.onActivityResult(requestCode, resultCode, data);
         	System.out.println("RESULT      " + requestCode);
           if (resultCode == RESULT_OK && requestCode == REQUEST_CODE) {
              // Extract name value from result extras
