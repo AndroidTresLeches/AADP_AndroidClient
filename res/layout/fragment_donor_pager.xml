@@ -19,7 +19,7 @@
         android:layout_width="fill_parent"
         android:background="@color/menuBackground"
         app:radius="6dp"
-        app:fillColor="@color/softGreen"
+        app:fillColor="@color/pc_purple"
         app:pageColor="@color/menuText"
         app:strokeColor="@color/menuText"
         app:strokeWidth="1dp"
