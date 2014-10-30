@@ -67,7 +67,8 @@ public class PageFragment extends Fragment {
 	    
 		ImageView ivPageImage = (ImageView)v.findViewById(R.id.ivPageImage);
 		if (mPosition ==3){
-			ivPageImage.setScaleType(ScaleType.CENTER);
+			//ivPageImage.setScaleType(ScaleType.CENTER);
+			ivPageImage.setVisibility(View.GONE);
 			btStart.setVisibility(View.VISIBLE);
 			btStart.setOnClickListener(new OnClickListener() {
 				
@@ -80,6 +81,7 @@ public class PageFragment extends Fragment {
 		}
 		else{
 			ivPageImage.setScaleType(ScaleType.FIT_XY);
+			ivPageImage.setVisibility(View.VISIBLE);
 			btStart.setVisibility(View.GONE);
 		}
 		ivPageImage.setImageResource(mImageResId);

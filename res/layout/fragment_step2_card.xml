@@ -1,0 +1,414 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/card_background" >
+
+    <TextView
+        android:id="@+id/tvStep2Title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:paddingBottom="10dp"
+        android:paddingLeft="10dp"
+        android:paddingTop="10dp"
+        android:text="@string/title_step2_homekit"
+        android:textColor="@color/actionBarBackground"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+    
+    <RelativeLayout 
+        android:id="@+id/rlContactHeading"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/tvStep2Title"
+        android:layout_margin="10dp"
+        android:background="@drawable/bg_card_knowledge" >
+
+         <TextView
+             android:id="@+id/tvStep2Heading"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_centerHorizontal="true"
+             android:layout_centerVertical="true"
+             android:text="@string/step2_contact"
+             android:textColor="@color/realm_navy"
+             android:textSize="16sp" />
+
+         <ImageView
+             android:id="@+id/ivShowMore"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_alignParentRight="true"
+             android:layout_centerVertical="true"
+             android:src="@drawable/ic_show_more" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rlContactInfo"
+        android:layout_width="match_parent"
+        android:layout_height="350dp"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/tvStep2Title"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="50dp"
+        android:background="@drawable/bg_card_knowledge"
+        android:visibility="gone" >
+
+        <TextView
+            android:id="@+id/tvStep2Name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginRight="6dp"
+            android:layout_marginTop="13dp"
+            android:layout_toLeftOf="@+id/etStep2Name"
+            android:paddingBottom="15dp"
+            android:text="@string/step2_name"
+            android:textColor="@color/realm_navy" />
+
+        <TextView
+            android:id="@+id/tvStep2Email"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignRight="@+id/tvStep2Name"
+            android:layout_below="@+id/tvStep2Name"
+            android:paddingBottom="15dp"
+            android:text="@string/step2_email"
+            android:textColor="@color/realm_navy" />
+
+        <TextView
+            android:id="@+id/tvStep2Address1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignRight="@+id/tvStep2Name"
+            android:layout_below="@+id/tvStep2Email"
+            android:paddingBottom="15dp"
+            android:text="@string/step2_addr1"
+            android:textColor="@color/realm_navy" />
+
+        <TextView
+            android:id="@+id/tvStep2Address2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignRight="@+id/tvStep2Name"
+            android:layout_below="@+id/tvStep2Address1"
+            android:paddingBottom="15dp"
+            android:text="@string/step2_addr2"
+            android:textColor="@color/realm_navy" />
+
+        <TextView
+            android:id="@+id/tvStep2City"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignRight="@+id/tvStep2Name"
+            android:layout_below="@+id/tvStep2Address2"
+            android:paddingBottom="15dp"
+            android:text="@string/step2_city"
+            android:textColor="@color/realm_navy" />
+
+        <TextView
+            android:id="@+id/tvStep2State"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignRight="@+id/tvStep2Name"
+            android:layout_below="@+id/tvStep2City"
+            android:paddingBottom="15dp"
+            android:text="@string/step2_state"
+            android:textColor="@color/realm_navy" />
+
+        <TextView
+            android:id="@+id/tvStep2ZipCode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignRight="@+id/tvStep2Name"
+            android:layout_below="@+id/tvStep2State"
+            android:paddingBottom="15dp"
+            android:text="@string/step2_zip_code"
+            android:textColor="@color/realm_navy" />
+
+        <TextView
+            android:id="@+id/tvStep2Phone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignRight="@+id/tvStep2Name"
+            android:layout_below="@+id/tvStep2ZipCode"
+            android:paddingBottom="15dp"
+            android:text="@string/step2_phone"
+            android:textColor="@color/realm_navy" />
+
+        <EditText
+            android:id="@+id/etStep2Name"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_alignParentRight="true"
+            android:layout_alignTop="@+id/tvStep2Name"
+            android:ems="10"
+            android:inputType="textPersonName" >
+
+            <requestFocus />
+        </EditText>
+
+        <EditText
+            android:id="@+id/etEmail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/etStep2Addreess1"
+            android:layout_alignLeft="@+id/etStep2Addreess1"
+            android:layout_alignTop="@+id/tvStep2Email"
+            android:ems="10"
+            android:inputType="textEmailAddress" />
+
+        <EditText
+            android:id="@+id/etStep2Addreess1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/tvStep2Address1"
+            android:layout_alignBottom="@+id/tvStep2Address1"
+            android:layout_alignLeft="@+id/etStep2Name"
+            android:ems="10"
+            android:inputType="textPostalAddress" />
+
+        <EditText
+            android:id="@+id/etStep2Address2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/tvStep2Address2"
+            android:layout_alignBottom="@+id/tvStep2Address2"
+            android:layout_alignLeft="@+id/etStep2Addreess1"
+            android:ems="10"
+            android:inputType="textPostalAddress" />
+
+        <EditText
+            android:id="@+id/etStep2City"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/tvStep2City"
+            android:layout_alignBottom="@+id/tvStep2City"
+            android:layout_alignLeft="@+id/etStep2Addreess1"
+            android:ems="10"
+            android:inputType="text" />
+
+        <EditText
+            android:id="@+id/etStep2State"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/tvStep2State"
+            android:layout_alignBottom="@+id/tvStep2State"
+            android:layout_alignLeft="@+id/etStep2Addreess1"
+            android:ems="10"
+            android:inputType="text" />
+
+        <EditText
+            android:id="@+id/etStep2ZipCode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/tvStep2ZipCode"
+            android:layout_alignLeft="@+id/etStep2Addreess1"
+            android:ems="10"
+            android:inputType="text" />
+
+        <EditText
+            android:id="@+id/etStep2Phone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/tvStep2Phone"
+            android:layout_alignBottom="@+id/tvStep2Phone"
+            android:layout_alignLeft="@+id/etStep2Addreess1"
+            android:layout_marginBottom="20dp"
+            android:ems="10"
+            android:inputType="phone" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/tvStep2Title"
+        android:layout_marginTop="55dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_toRightOf="@+id/rlContactInfo"
+        android:background="@drawable/bg_card_knowledge" >
+
+        <TextView
+            android:id="@+id/tvInfoAge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="10dp"
+            android:text="@string/step2_age" 
+            android:textColor="@color/realm_navy"/>
+
+        <TextView
+            android:id="@+id/tvMinority"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/rbAgeYes"
+            android:layout_below="@+id/rbAgeNo"
+            android:text="@string/step2_minority" 
+            android:textColor="@color/realm_navy"/>
+
+        <RadioButton
+            android:id="@+id/rbAgeNo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/rbAgeYes"
+            android:layout_alignBottom="@+id/rbAgeYes"
+            android:layout_marginLeft="16dp"
+            android:layout_toRightOf="@+id/rbAgeYes"
+            android:text="@string/step2_answer_no" 
+            android:textSize="12sp"
+            android:checked="false"/>
+
+        <RadioButton
+            android:id="@+id/rbAgeYes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/tvInfoAge"
+            android:layout_below="@+id/tvInfoAge"
+            android:text="@string/step2_answer_yes" 
+            android:textSize="12sp"
+            android:checked="true"/>
+
+        <RadioButton
+            android:id="@+id/rbMinorityYes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/tvMinority"
+            android:layout_below="@+id/tvMinority"
+            android:text="@string/step2_answer_yes" 
+            android:textSize="12sp"
+            android:checked="true"/>
+
+        <RadioButton
+            android:id="@+id/rbMinorityNo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/rbMinorityYes"
+            android:layout_alignBottom="@+id/rbMinorityYes"
+            android:layout_alignLeft="@+id/rbAgeNo"
+            android:text="@string/step2_answer_no" 
+            android:textSize="12sp"/>
+
+        <TextView
+            android:id="@+id/tvHipProblem"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/rbMinorityYes"
+            android:layout_below="@+id/rbMinorityYes"
+            android:text="@string/step2_hip_problem" 
+            android:textColor="@color/realm_navy"/>
+
+        <RadioButton
+            android:id="@+id/rbHipYes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignRight="@+id/rbMinorityYes"
+            android:layout_below="@+id/tvHipProblem"
+            android:text="@string/step2_answer_yes" 
+            android:textSize="12sp"
+            android:checked="false"/>
+
+        <RadioButton
+            android:id="@+id/rbHipNo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/rbHipYes"
+            android:layout_alignBottom="@+id/rbHipYes"
+            android:layout_alignLeft="@+id/rbMinorityNo"
+            android:text="@string/step2_answer_no" 
+            android:textSize="12sp"
+            android:checked="true"/>
+
+        <RadioButton
+            android:id="@+id/rbHeartYes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/tvHeartProblem"
+            android:layout_below="@+id/tvHeartProblem"
+            android:text="@string/step2_answer_yes" 
+            android:textSize="12sp"
+            android:checked="false"/>
+
+        <RadioButton
+            android:id="@+id/rbHeartNo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/rbHeartYes"
+            android:layout_alignBottom="@+id/rbHeartYes"
+            android:layout_alignLeft="@+id/rbHipNo"
+            android:text="@string/step2_answer_no" 
+            android:textSize="12sp"
+            android:checked="true"/>
+
+        <Spinner
+            android:id="@+id/spStep2Lang"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/rbHeartNo"
+            android:layout_alignTop="@+id/tvStep2Lang"
+            android:entries="@array/step2_lang"
+            android:gravity="end"
+            android:spinnerMode="dialog"/>
+
+        <TextView
+            android:id="@+id/tvStep2Notes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/tvStep2Lang"
+            android:layout_below="@+id/spStep2Lang"
+            android:text="@string/step2_notes" 
+            android:textColor="@color/realm_navy"/>
+
+        <EditText
+            android:id="@+id/editText1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/tvStep2Notes"
+            android:ems="10" />
+
+        <TextView
+            android:id="@+id/tvHeartProblem"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/rbHipYes"
+            android:layout_below="@+id/rbHipYes"
+            android:text="@string/step2_heart_problem"
+            android:textColor="@color/realm_navy" />
+
+        <TextView
+            android:id="@+id/tvStep2Lang"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/rbHeartYes"
+            android:layout_below="@+id/rbHeartYes"
+            android:text="@string/step2_language"
+            android:textColor="@color/realm_navy" />
+        
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/tvStep2Send"
+        android:layout_width="50dp"
+        android:layout_height="30dp"
+        android:layout_alignBaseline="@+id/tvStep2Title"
+        android:layout_alignBottom="@+id/tvStep2Title"
+        android:layout_alignRight="@+id/rlContactHeading"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/rounded_button"
+        android:text="@string/step2_send"
+        android:gravity="center_horizontal"
+        android:paddingTop="5dp"
+        android:textColor="@color/white" />
+
+</RelativeLayout>

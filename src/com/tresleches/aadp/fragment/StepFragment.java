@@ -3,6 +3,7 @@ package com.tresleches.aadp.fragment;
 import java.util.ArrayList;
 import java.util.List;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -15,12 +16,18 @@ import android.widget.FrameLayout;
 import android.widget.FrameLayout.LayoutParams;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseQuery;
+import com.parse.ParseUser;
 import com.tresleches.aadp.R;
+import com.tresleches.aadp.activity.LoginActivity;
 import com.tresleches.aadp.adapter.KnowledgeArrayAdapter;
+import com.tresleches.aadp.helper.NetworkUtils;
+import com.tresleches.aadp.model.Contact;
+import com.tresleches.aadp.model.Favorite;
 import com.tresleches.aadp.model.KnowledgeBase;
 
 //modified from PagerSlidingTabStrip sample
@@ -30,6 +37,7 @@ public class StepFragment extends Fragment {
 	private int position;
 	private KnowledgeArrayAdapter aKnowledge;
 	private ArrayList<KnowledgeBase> knowledgeList;
+	private Contact oneContact;
 
 	public static StepFragment newInstance(int position) {
 		StepFragment f = new StepFragment();
@@ -70,6 +78,10 @@ public class StepFragment extends Fragment {
 			fl.addView(v);
 			break;
 		case 1:
+			v = inflater.inflate(R.layout.fragment_step2_card, container, false);
+			
+			fl.addView(v);
+			break;
 		case 2:
 		case 3:
 		default:
@@ -86,6 +98,37 @@ public class StepFragment extends Fragment {
 
 		return fl;
 	}
+	
+	public void getContact() {
+		if (NetworkUtils.isNetworkAvailable(getActivity())) {
+			// Define the class we would like to query
+
+			ParseUser currentUser = ParseUser.getCurrentUser();
+			if (currentUser != null) {
+				ParseQuery<Contact> query = ParseQuery.getQuery(Contact.class);
+				// Define our query conditions
+				String user = ParseUser.getCurrentUser().getUsername();
+				if (user != null) {
+					query.whereEqualTo("firstName", user);
+					query.findInBackground(new FindCallback<Contact>() {
+						public void done(List<Contact> results,
+								ParseException e) {
+							if (e == null) {
+								oneContact = results.get(0);
+							} else {
+								// There was an error
+							}
+						}
+					});
+				} else {
+					Toast.makeText(getActivity(),
+							getResources().getString(R.string.no_network),
+							Toast.LENGTH_SHORT).show();
+				}
+			}
+		}
+	}
+
 	
 	public void getKnowledge(String queryField, String queryValue) {
 		// Define the class we would like to query
