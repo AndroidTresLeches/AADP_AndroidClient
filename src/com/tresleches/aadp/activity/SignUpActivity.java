@@ -27,11 +27,11 @@ public class SignUpActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_sign_up);
+		getActionBar().setTitle(getResources().getString(R.string.signup));
 		loadUI();
 	}
 
 	public void loadUI() {
-		// TODO Auto-generated method stub
 		etUserName = (EditText) findViewById(R.id.etUserName);
 		etEmail = (EditText) findViewById(R.id.etEmail);
 		etPassword = (EditText) findViewById(R.id.etPassword);
@@ -55,7 +55,6 @@ public class SignUpActivity extends Activity {
 	}
 
 	private void registerUser() {
-		// TODO Auto-generated method stub
 		String username = etUserName.getText().toString();
 		String password = etPassword.getText().toString();
 		String confirmPassword = etConfirmPassword.getText().toString();
@@ -92,7 +91,6 @@ public class SignUpActivity extends Activity {
 	
 	@Override
 	public void onBackPressed() {
-		// TODO Auto-generated method stub
 		finish();
 		overridePendingTransition(R.anim.left_in, R.anim.right_out);
 	}

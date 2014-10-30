@@ -13,10 +13,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.parse.Parse;
 import com.parse.ParseUser;
 import com.paypal.android.sdk.payments.PayPalConfiguration;
-import com.paypal.android.sdk.payments.PayPalService;
 import com.tresleches.aadp.R;
 import com.tresleches.aadp.helper.PayPalManager;
 import com.tresleches.aadp.interfaces.Donatable;
@@ -28,6 +26,7 @@ public class DonateFragment extends Fragment {
 	private EditText etDonationEmail;
 	private EditText etDonationAmount;
 	private PayPalConfiguration config;
+	
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -47,7 +46,6 @@ public class DonateFragment extends Fragment {
 		etDonationAmount = (EditText)view.findViewById(R.id.etDonationAmount);
 		Button btnDonate = (Button)view.findViewById(R.id.btnDonate);
 		
-		
 		if(ParseUser.getCurrentUser() != null ){
 			etDonationName.setText(ParseUser.getCurrentUser().getUsername());
 			etDonationEmail.setText(ParseUser.getCurrentUser().getEmail());
@@ -57,10 +55,11 @@ public class DonateFragment extends Fragment {
 			
 			@Override
 			public void onClick(View view) {
-				donate();
-				
+					donate();
 			}
 		});
+		
+
 		
 		return view;
 	}
@@ -69,8 +68,8 @@ public class DonateFragment extends Fragment {
 	 * Method Which take care of Donation 
 	 */
 	private void donate() {
-		// TODO Auto-generated method stub
-		
+		if(!validate()) return;
+
 		Donation donation = new Donation();
 		Double donationAmount =  Double.valueOf(etDonationAmount.getText().toString()); 
 		donation.setName(etDonationName.getText().toString());
@@ -81,5 +80,18 @@ public class DonateFragment extends Fragment {
 		donatableActivity.setDonation(donation);
 		Intent ppIntent = PayPalManager.getFundTreatmentIntent(getActivity(), donationAmount, "AADP");
 		getActivity().startActivityForResult(ppIntent, 40);
+	}
+
+
+	private boolean validate() {
+		
+		if(etDonationAmount.getText()== null ||  etDonationAmount.getText().length()<1)
+		{
+			Toast.makeText(getActivity(), "Please enter donation amount in USD", Toast.LENGTH_SHORT).show();
+			return false;
+		}
+		
+		return true;
+		
 	}
 }

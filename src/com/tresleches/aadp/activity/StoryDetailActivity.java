@@ -13,7 +13,6 @@ import com.parse.GetCallback;
 import com.parse.ParseException;
 import com.parse.ParseQuery;
 import com.tresleches.aadp.R;
-import com.tresleches.aadp.adapter.StoryArrayAdapter.ViewHolder;
 import com.tresleches.aadp.helper.AADPTaskManager;
 import com.tresleches.aadp.helper.Utils;
 import com.tresleches.aadp.interfaces.AADPTask;
@@ -40,7 +39,6 @@ public class StoryDetailActivity extends Activity implements AADPTask{
 
 	@Override
 	public void onBackPressed() {
-		// TODO Auto-generated method stub
 		super.onBackPressed();
 		this.overridePendingTransition(R.anim.open_main, R.anim.close_next);
 	}
@@ -129,7 +127,6 @@ public class StoryDetailActivity extends Activity implements AADPTask{
 
 	@Override
 	public void performTask() {
-		// TODO Auto-generated method stub
 		//1 load story based on Story Id.
 		loadStory();
 		
@@ -137,8 +134,6 @@ public class StoryDetailActivity extends Activity implements AADPTask{
 
 	@Override
 	public void performOfflineTask() {
-		// TODO Auto-generated method stub
-		
 	}	
 	
 }

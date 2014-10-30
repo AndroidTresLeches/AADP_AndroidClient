@@ -73,8 +73,7 @@ public class SplashScreenActivity extends Activity {
 				startActivity(i);
 				finish();
 				overridePendingTransition(R.anim.fadein, R.anim.fadeout);
-				
-				
+						
 			}
 		});
 		

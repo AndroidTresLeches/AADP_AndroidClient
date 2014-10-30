@@ -151,14 +151,13 @@
         android:layout_height="wrap_content"
         android:layout_above="@+id/ivCoordinator"
         android:layout_centerHorizontal="true"
-        android:autoLink="all"
         android:gravity="center_horizontal"
-        android:linksClickable="true"
         android:paddingBottom="5dp"
         android:paddingTop="5dp"
         android:text="@string/openInMaps"
         android:textColor="@color/realm_crimson"
-        android:textSize="12sp" />
+        android:textSize="14sp"
+        android:clickable="true" />
 
     <TextView
         android:id="@+id/tvCoordinatorName"

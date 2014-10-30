@@ -3,14 +3,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
 
-    <com.mikhaellopez.circularimageview.CircularImageView
+    <com.tresleches.aadp.circularImageView.CircularImageView
         android:id="@+id/ivProfileImage"
         android:layout_width="90dp"
         android:layout_height="90dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:src="@drawable/ic_launcher" 
-        android:scaleType="centerCrop"/>
+        android:scaleType="center"/>
 
     <TextView
         android:id="@+id/tvEmail"

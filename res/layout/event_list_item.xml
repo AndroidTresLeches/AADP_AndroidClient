@@ -2,10 +2,10 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
     android:paddingLeft="10dp"
     android:paddingRight="10dp"
-    android:paddingTop="10dp" >
+    android:paddingTop="10dp"
+    android:background="@color/white">
 
     <TextView
         android:id="@+id/tvCoordinatorText"
@@ -25,14 +25,13 @@
         android:text="@string/event_coordinator"
         android:textSize="12sp" />
 
-    <com.mikhaellopez.circularimageview.CircularImageView
+    <com.tresleches.aadp.circularImageView.CircularImageView
         android:id="@+id/ivCoordinator"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_alignRight="@+id/tvCoordinatorName"
         android:layout_below="@+id/tvCoordinatorText"
         android:contentDescription="@string/coordinator"
-        android:padding="2dp"
         android:scaleType="centerCrop" />
 
     <TextView

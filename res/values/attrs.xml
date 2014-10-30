@@ -61,5 +61,4 @@
     <declare-styleable name="Theme">
         <attr name="circularImageViewStyle" format="reference"></attr>
     </declare-styleable>
-
 </resources>

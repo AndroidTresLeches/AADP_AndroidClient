@@ -1,6 +1,5 @@
 package com.tresleches.aadp.activity;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
@@ -25,6 +24,7 @@ import com.tresleches.aadp.fragment.DonorPagerFragment;
 import com.tresleches.aadp.fragment.EventFragment;
 import com.tresleches.aadp.fragment.FavoriteFragment;
 import com.tresleches.aadp.fragment.LoginFragment;
+import com.tresleches.aadp.fragment.LogoutFragment;
 import com.tresleches.aadp.fragment.StoryBoardFragment;
 import com.tresleches.aadp.helper.Utils;
 import com.tresleches.aadp.model.Contact;
@@ -42,7 +42,7 @@ public class HomeActivity extends BaseActionBarActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_home);
-		//checkUserSignin();
+		ParseUser currentUser = ParseUser.getCurrentUser();
 		// navigation drawer - find drawer view
 		dlDrawer = (FragmentNavigationDrawer) findViewById(R.id.drawer_layout);
 		// Setup drawer view
@@ -50,28 +50,44 @@ public class HomeActivity extends BaseActionBarActivity {
 				(ListView) findViewById(R.id.lvDrawer),
 				R.layout.drawer_nav_item, R.id.flContainer);
 		// Add navigation items
-		//dlDrawer.addNavItem("Login", R.drawable.ic_nav_login_color, "Profile and Login", LoginFragment.class);
-		dlDrawer.addNavItem("Events", R.drawable.ic_nav_events_color, "Events", EventFragment.class);
-		dlDrawer.addNavItem("Stories", R.drawable.ic_nav_stories_color, "Stories", StoryBoardFragment.class);
-		dlDrawer.addNavItem("Favorites", R.drawable.ic_nav_favorite_color, "Favorite Events", FavoriteFragment.class);
-		dlDrawer.addNavItem("Be a donor", R.drawable.ic_nav_donor_color, "Be a donor", DonorPagerFragment.class);	
-		//dlDrawer.addNavItem("Twitter Feed", R.drawable.ic_nav_twitter_color, "AADP Tweets", TwitterFragment.class);
-		dlDrawer.addNavItem("Donate", R.drawable.ic_nav_donate_color, "Donate", DonateFragment.class);
-		dlDrawer.addNavItem("About", R.drawable.ic_nav_about_color, "About AADP", AboutFragment.class);
+
+		dlDrawer.addNavItem("Events", R.drawable.ic_nav_events_color, "Events",
+				EventFragment.class);
+		dlDrawer.addNavItem("Stories", R.drawable.ic_nav_stories_color,
+				"Stories", StoryBoardFragment.class);
+		// dlDrawer.addNavItem("Favorites", R.drawable.ic_nav_favorite_color,
+		// "Favorite Events", FavoriteFragment.class);
+		dlDrawer.addNavItem("Be a donor", R.drawable.ic_nav_donor_color,
+				"Be a donor", DonorPagerFragment.class);
+		dlDrawer.addNavItem("Donate", R.drawable.ic_nav_donate_color, "Donate",
+				DonateFragment.class);
+		dlDrawer.addNavItem("About", R.drawable.ic_nav_about_color,
+				"About AADP", AboutFragment.class);
+		if (currentUser == null) {
+			dlDrawer.addNavItem("Login", R.drawable.ic_nav_login_color,
+					"Profile and Login", LoginFragment.class);
+		} else {
+			dlDrawer.addNavItem("Favorites", R.drawable.ic_nav_favorite_color,
+					"Favorite Events", FavoriteFragment.class);
+			dlDrawer.addNavItem("Logout", R.drawable.ic_nav_login_color,
+					"Logout", LogoutFragment.class);
+		}
 		// Select default
 		if (savedInstanceState == null) {
 			dlDrawer.selectDrawerItem(0);
 		}
 	}
 
-        public void checkUserSignin() {
+	public void checkUserSignin() {
 		ParseUser currentUser = ParseUser.getCurrentUser();
 		if (currentUser != null) {
-		  // do stuff with the user
+			// do stuff with the user
 		} else {
-		  // show the signup or login screen
-			Intent i = new Intent(this, LoginActivity.class);
-			startActivity(i);
+			dlDrawer.addNavItem("Login", R.drawable.ic_nav_login_color,
+					"Profile and Login", LoginFragment.class);
+			// show the signup or login screen
+			// Intent i = new Intent(this, LoginActivity.class);
+			// startActivity(i);
 		}
 	}
 
@@ -81,9 +97,8 @@ public class HomeActivity extends BaseActionBarActivity {
 		if (dlDrawer.isDrawerOpen()) {
 			// hide menu items
 			menu.findItem(R.id.action_search).setVisible(false);
-		}
-		else{menu.findItem(R.id.action_search).setVisible(true);
-			
+		} else {
+			menu.findItem(R.id.action_search).setVisible(true);
 		}
 		return super.onPrepareOptionsMenu(menu);
 	}
@@ -128,9 +143,10 @@ public class HomeActivity extends BaseActionBarActivity {
 		dlDrawer.getDrawerToggle().onConfigurationChanged(newConfig);
 	}
 
-        public void updateAvatarForContact(String objId, int drawableId) {
+	public void updateAvatarForContact(String objId, int drawableId) {
 
-		Bitmap bitmap = BitmapFactory.decodeResource(getResources(), drawableId);
+		Bitmap bitmap = BitmapFactory
+				.decodeResource(getResources(), drawableId);
 		final ParseFile pImgFile = new ParseFile("avatar.jpg",
 				Utils.CompressConvertBitmapTobyteArray(bitmap,
 						Bitmap.CompressFormat.JPEG));
@@ -149,30 +165,27 @@ public class HomeActivity extends BaseActionBarActivity {
 			}
 		});
 	}
-        
-        @Override
-        protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-          // REQUEST_CODE is defined above
-        	System.out.println("RESULT      " + requestCode);
-          if (resultCode == RESULT_OK && requestCode == REQUEST_CODE) {
-             // Extract name value from result extras
-             String user = data.getExtras().getString("username");
-             String objectId = data.getExtras().getString("objectId");
-             // Toast the name to display temporarily on screen
-             Favorite favItem = new Favorite();
-             favItem.setUser(user);
-			 favItem.setEventObjId(objectId);
-			 // Immediately save the data asynchronously
-			 favItem.saveInBackground();
-				Toast.makeText(this, "Favorite Saved", Toast.LENGTH_SHORT).show();
-            // Toast.makeText(this, name, Toast.LENGTH_SHORT).show();
-          }else{
-        	  if (resultCode == Activity.RESULT_OK  && requestCode == REQUEST_CODE_1) {
-        		  FavoriteFragment fragmentDemo = (FavoriteFragment) 
-        		            getSupportFragmentManager().findFragmentById(R.id.lvFavoritesList);
-        		  
-        		        fragmentDemo.doSomething("some param");
-      		}
-          }
-        } 
+
+
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		
+    	super.onActivityResult(requestCode, resultCode, data); //For Donation Activity Result
+		
+		// REQUEST_CODE is defined above
+		System.out.println("RESULT      " + requestCode);
+		if (resultCode == RESULT_OK && requestCode == REQUEST_CODE) {
+			// Extract name value from result extras
+			String user = data.getExtras().getString("username");
+			String objectId = data.getExtras().getString("objectId");
+			// Toast the name to display temporarily on screen
+			Favorite favItem = new Favorite();
+			favItem.setUser(user);
+			favItem.setEventObjId(objectId);
+			// Immediately save the data asynchronously
+			favItem.saveInBackground();
+			Toast.makeText(this, "Favorite Saved", Toast.LENGTH_SHORT).show();
+			// Toast.makeText(this, name, Toast.LENGTH_SHORT).show();
+		}
+	}
 }
