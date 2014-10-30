@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" 
-    android:background="@drawable/searching"
+    android:layout_height="match_parent"
+    android:background="@drawable/gradient_bg_rounded"
     >
 
     <LinearLayout
@@ -14,7 +14,7 @@
         android:orientation="vertical"
         android:gravity="center"
  		android:padding="20dp"
-        android:background="@drawable/gradient_bg_rounded" 
+        android:background="@color/white" 
         >
 
     <TextView
@@ -22,20 +22,20 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="18dp"
-        android:textColor="@color/white"
+        android:textColor="#000000"
         android:text="Make a Contribution" />
   	<View
          android:id="@+id/divder_down"
          android:layout_width="match_parent"
          android:layout_height="1dp"
          android:layout_marginBottom="8dp"
-         android:background="@color/white" />    
+         android:background="@android:color/black" />    
     <TextView
         android:id="@+id/tvSaveLife"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="12dp"
-        android:textColor="@color/white"
+        android:textColor="#4c4c4c"
         android:text="Be the one to save a life" />
 
    
@@ -45,8 +45,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="22dp"
-        android:textColor="@color/white"
-        android:textColorHint="@color/gray"
+        android:textSize="14dp"
         android:ems="10"
         android:hint="@string/donate_name" />
 
@@ -55,8 +54,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="22dp"
-        android:textColor="@color/white"
         android:ems="10"
+        android:textSize="14dp"
         android:hint="@string/donate_email"
         android:inputType="textEmailAddress" />
         
@@ -65,8 +64,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="22dp"
-        android:numeric="integer"
-        android:textColor="@color/white"
+        android:textSize="14dp"
+        
+        android:inputType="numberDecimal"
         android:ems="10"
         android:hint="@string/amount_hint" >
         <requestFocus />
@@ -75,13 +75,14 @@
 
     <Button
         android:id="@+id/btnDonate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
         android:layout_below="@+id/llDonate"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
-        style="@style/NiceButton"
+        android:background="@drawable/rounded_button"
+        android:textColor="@color/white"
         android:text="@string/button_label_donate"
-        android:background="@drawable/gradient_bg_rounded"/>
+        />
 
 </RelativeLayout>
