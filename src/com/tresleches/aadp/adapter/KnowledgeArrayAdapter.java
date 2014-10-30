@@ -6,10 +6,12 @@ import android.app.Activity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AnimationUtils;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import android.view.animation.Animation;
 import com.tresleches.aadp.R;
 import com.tresleches.aadp.model.KnowledgeBase;
 
@@ -18,6 +20,7 @@ public class KnowledgeArrayAdapter extends ArrayAdapter<KnowledgeBase> {
 	private final Activity _context;
 	private String _titleField;
 	private boolean _hasImage;
+	private int lastPosition = -1;
 
 	public KnowledgeArrayAdapter(Activity context, List<KnowledgeBase> list, String titleField, boolean hasImage) {
 		super(context, 0, list);
@@ -79,6 +82,11 @@ public class KnowledgeArrayAdapter extends ArrayAdapter<KnowledgeBase> {
 		}
 		viewHolder.tvAboutTitle.setText(caption);
 		viewHolder.tvAboutContent.setText(content);
+
+		Animation animation = AnimationUtils.loadAnimation(getContext(), (position > lastPosition) ? R.anim.up_from_bottom : R.anim.down_from_top);
+
+		view.startAnimation(animation);
+		lastPosition = position;
 		
 		return view;
 	}
