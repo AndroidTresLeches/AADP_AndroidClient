@@ -106,8 +106,8 @@ public class EventDetailActivity extends FragmentActivity implements
 
 			LatLng latlng = AddressHelper.getAddress(getApplicationContext(),
 					locationAddress);
-			String destinationLatitude = Double.toString(latlng.latitude);
-			String destinationLongitude = Double.toString(latlng.longitude);
+			String destinationLatitude = Double.toString(latlng!=null?latlng.latitude:27.02); //Some Default Values
+			String destinationLongitude = Double.toString(latlng!=null?latlng.longitude:139.20); //Some Default Values
 
 			@Override
 			public void onClick(View v) {
