@@ -19,7 +19,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
-import android.view.animation.TranslateAnimation;
+import android.view.animation.AnimationUtils;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -36,6 +36,8 @@ import com.tresleches.aadp.model.Event;
 import com.tresleches.aadp.model.Favorite;
 
 public class EventArrayAdapter extends ArrayAdapter<Event> {
+
+
 	private static class ViewHolder {
 		TextView tvEventName;
 		TextView tvDate;
@@ -54,17 +56,20 @@ public class EventArrayAdapter extends ArrayAdapter<Event> {
 	String fullMonth;
 	int day;
 	private final int REQUEST_CODE = 20;
+	private int lastPosition = -1;
 
 	public EventArrayAdapter(Context context, int resource, List<Event> events) {
 		super(context, R.layout.event_list_item, events);
 		this.context = context;
 	}
 
+
+
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
 		// Get the item
 		final ViewHolder viewHolder;
-		final Event event = getItem(position);
+		final Event event = (Event) getItem(position);
 		if (convertView == null) {
 			viewHolder = new ViewHolder();
 			convertView = LayoutInflater.from(getContext()).inflate(
@@ -95,7 +100,6 @@ public class EventArrayAdapter extends ArrayAdapter<Event> {
 		getDate(event.getEventDate());
 		viewHolder.tvEventName.setText(event.getEventName());
 		viewHolder.tvDate.setText(fullMonth);
-		//+ " " + Html.fromHtml("<br/>") +"  "+ day);
 		viewHolder.tvDay.setText(Integer.toString(day));
 		viewHolder.tvTime.setText(DateHelper.getTime(event.getEventStartTime())
 				+ DateHelper.getTime(event.getEventEndTime()));
@@ -163,7 +167,7 @@ public class EventArrayAdapter extends ArrayAdapter<Event> {
 							Toast.LENGTH_SHORT).show();
 					ObjectAnimator fade = ObjectAnimator.ofFloat(v, "alpha", 1,0f, 0f);
 					fade.setDuration(3000);
-					viewHolder.ivFavoriteIcon.setImageResource(R.drawable.ic_heart);
+					viewHolder.ivFavoriteIcon.setImageResource(R.drawable.ic_checked_fav);
 				} else {
 					// show the signup or login screen
 					Intent i = new Intent(getContext(), LoginActivity.class);
@@ -175,10 +179,9 @@ public class EventArrayAdapter extends ArrayAdapter<Event> {
 			}
 		});
 		
-		/*Animation animationY = new TranslateAnimation(0, 0, convertView.getHeight()/4, 0);
-		animationY.setDuration(1000);
-		convertView.startAnimation(animationY);  
-		animationY = null; */
+		Animation animation = AnimationUtils.loadAnimation(getContext(), (position > lastPosition) ? R.anim.up_from_bottom : R.anim.down_from_top);
+		convertView.startAnimation(animation);
+	    lastPosition = position;
 		return convertView;
 	}
 
