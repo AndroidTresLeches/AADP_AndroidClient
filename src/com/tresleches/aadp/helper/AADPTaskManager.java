@@ -47,8 +47,8 @@ public class AADPTaskManager {
 		dialog = new ProgressDialog(context);
 		dialog.setMessage("Loading, please wait");
 		dialog.setTitle("Loading ");
-		dialog.show();
 		dialog.setCancelable(false);
+		dialog.show();
 	}
 
 	/**
