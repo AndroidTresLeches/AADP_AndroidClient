@@ -1,19 +1,19 @@
 package com.tresleches.aadp.fragment;
 
+import java.util.ArrayList;
+
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 
-import com.easyandroidanimations.library.ExplodeAnimation;
-import com.easyandroidanimations.library.PuffOutAnimation;
+import com.etsy.android.grid.StaggeredGridView;
 import com.tresleches.aadp.R;
+import com.tresleches.aadp.adapter.ImageArrayAdapter;
 import com.tresleches.aadp.model.Story;
+import com.tresleches.aadp.model.StoryImage;
 import com.tresleches.aadp.model.StoryTitle;
 
 /**
@@ -27,6 +27,10 @@ import com.tresleches.aadp.model.StoryTitle;
  */
 
 public class StoryBoardFragment extends Fragment {
+	
+	ArrayList<StoryImage> storyImages ; //List of images to be displayed on Grid
+	StaggeredGridView gridView ;
+	ImageArrayAdapter imageAdapter;
 
 	public void onAttach(Activity activity) {
 		super.onAttach(activity);
@@ -36,6 +40,7 @@ public class StoryBoardFragment extends Fragment {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		storyImages = new ArrayList();
 	}
 
 	/**
@@ -49,55 +54,50 @@ public class StoryBoardFragment extends Fragment {
 
 		getActivity().getActionBar().setTitle(StoryTitle.STORIES);
 		
-		//4 Image Views represents 4 story types.
-		//these ImagesViews can be changed to some other views 
-		ImageView ivSearching = (ImageView)view.findViewById(R.id.ivSearching);
-		ImageView ivSurvivor = (ImageView)view.findViewById(R.id.ivSurvivor);
-		ImageView ivDonor = (ImageView)view.findViewById(R.id.ivDonor);
-		ImageView ivInMemory = (ImageView)view.findViewById(R.id.ivInMemory);
+		gridView = (StaggeredGridView) view.findViewById(R.id.gvList);
+		imageAdapter = new ImageArrayAdapter(getActivity(),storyImages);
+		gridView.setAdapter(imageAdapter);
+		loadImageData();
 		
-		//Setting Story Type Tags to each view
-		ivSearching.setTag(Story.Type.SEARCHING);
-		ivSurvivor.setTag(Story.Type.SURVIVOR);
-		ivDonor.setTag(Story.Type.DONOR);
-		ivInMemory.setTag(Story.Type.IN_LOVING_MEMORY);
 		
-	
-		//Setting a common listener - which will open a new Fragment passing Story Type
-		ivSearching.setOnClickListener(new StoryBoardOnClickListener() );
-		ivSurvivor.setOnClickListener(new StoryBoardOnClickListener() );
-		ivDonor.setOnClickListener(new StoryBoardOnClickListener() );
-		ivInMemory.setOnClickListener(new StoryBoardOnClickListener() );
+		
+		
+		
+//		//4 Image Views represents 4 story types.
+//		//these ImagesViews can be changed to some other views 
+//		ImageView ivSearching = (ImageView)view.findViewById(R.id.ivSearching);
+//		ImageView ivSurvivor = (ImageView)view.findViewById(R.id.ivSurvivor);
+//		ImageView ivDonor = (ImageView)view.findViewById(R.id.ivDonor);
+//		ImageView ivInMemory = (ImageView)view.findViewById(R.id.ivInMemory);
+//		
+//		//Setting Story Type Tags to each view
+//		ivSearching.setTag(Story.Type.SEARCHING);
+//		ivSurvivor.setTag(Story.Type.SURVIVOR);
+//		ivDonor.setTag(Story.Type.DONOR);
+//		ivInMemory.setTag(Story.Type.IN_LOVING_MEMORY);
+//		
+//	
+//		//Setting a common listener - which will open a new Fragment passing Story Type
+//		ivSearching.setOnClickListener(new StoryBoardOnClickListener() );
+//		ivSurvivor.setOnClickListener(new StoryBoardOnClickListener() );
+//		ivDonor.setOnClickListener(new StoryBoardOnClickListener() );
+//		ivInMemory.setOnClickListener(new StoryBoardOnClickListener() );
 		
 		return view;
 
 	}
 	
 	
-	/**
-	 * Common Listener for the views.
-	 * They open up the Fragment based on Story Type tag.
-	 * @author sagpa03
-	 *
-	 */
-	class StoryBoardOnClickListener implements OnClickListener {
-
-		/**
-		 * Method to start the new Fragment based on the Stroy type
-		 */
-		@Override
-		public void onClick(View view) {
-			
-			FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
-			StoryFragment storyFragment = new StoryFragment();
-			storyFragment.setStoryType(view.getTag().toString()); //Passing Story type based on the view tag.
-			new PuffOutAnimation(view).animate();
-			ft.setCustomAnimations(R.anim.fadein, R.anim.fadeout);
-			ft.replace(R.id.flContainer,storyFragment,view.getTag().toString()); 
-			ft.addToBackStack(view.getTag().toString()); //get the back button working.
-			ft.commit();//start the fragment
-		}
+	private void loadImageData() {
+		// TODO Auto-generated method stub
 		
+		storyImages.add(new StoryImage(R.drawable.searching, "Searching...",Story.Type.SEARCHING.toString()));
+		storyImages.add(new StoryImage(R.drawable.survivor, "Survivor...", Story.Type.SURVIVOR.toString()));
+		storyImages.add(new StoryImage(R.drawable.donor, "Donor Heroes...", Story.Type.DONOR.toString()));
+		storyImages.add(new StoryImage(R.drawable.inmemory, "In Loving Memory...",Story.Type.IN_LOVING_MEMORY.toString()));
+		imageAdapter.notifyDataSetChanged();
 	}
+
+
 	
 }

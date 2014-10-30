@@ -10,14 +10,16 @@
     	android:layout_width="match_parent"
     	android:layout_height="match_parent"
      	>    
-	    <ImageView
+
+	    <com.tresleches.aadp.circularImageView.CircularImageView
 	        android:id="@+id/ivStoryDetailPic"
-	        android:layout_width="wrap_content"
+	        android:layout_width="match_parent"
 	        android:layout_height="150dp"
 	        android:layout_alignParentLeft="true"
 	        android:layout_alignParentRight="true"
 	        android:layout_alignParentTop="true"
-	        android:src="@drawable/ic_aadp_logo" />
+	        android:layout_gravity="center"
+	         />
 	  
 	    <ImageView
 	        android:id="@+id/ivFacebook"
@@ -54,7 +56,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="215dp"
         android:padding="5dp"
-        android:text="TextView" />
+        android:text="TextView"
+        android:textColor="@color/address_blue" />
 	
 
 </RelativeLayout>

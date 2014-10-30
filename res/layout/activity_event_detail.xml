@@ -105,6 +105,35 @@
         android:background="@color/purple"
         android:paddingBottom="10dp"
         android:paddingTop="10dp" />
+    
+    <ImageView
+        android:id="@+id/ivVolunteerIcon"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:layout_alignTop="@+id/tvBeVolunteer"
+        android:layout_toLeftOf="@+id/tvEventDate"
+        android:src="@drawable/ic_volunteer" />
+    
+    <TextView
+        android:id="@+id/tvBeVolunteer"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_below="@+id/vLineBelowAddress"
+        android:layout_toRightOf="@id/ivVolunteerIcon"
+        android:paddingTop="10dp"
+        android:text="@string/volunteer"
+        android:textColor="@color/realm_navy" />
+    
+    <View
+        android:id="@+id/vLineAboveMap"
+        android:layout_width="100dp"
+        android:layout_height="0.5dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignRight="@+id/lineBelowName"
+        android:layout_below="@id/ivVolunteerIcon"
+        android:background="@color/purple"
+        android:paddingBottom="10dp"
+        android:paddingTop="10dp" />
 
     <fragment
         android:id="@+id/map"
@@ -112,7 +141,7 @@
         android:layout_height="50dp"
         android:layout_above="@+id/tvOpenInMaps"
         android:layout_alignParentLeft="true"
-        android:layout_below="@+id/vLineBelowAddress"
+        android:layout_below="@+id/ivVolunteerIcon"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         class="com.google.android.gms.maps.SupportMapFragment"
@@ -126,38 +155,19 @@
         android:background="@color/purple"
         android:paddingTop="10dp" />
 
-    <ImageView
-        android:id="@+id/ivCoordinator"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_marginBottom="10dp"
-        android:contentDescription="@string/coordinator"
-        android:paddingTop="10dp"
-        android:scaleType="centerCrop" />
-
-    <TextView
-        android:id="@+id/tvBeVolunteer"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/tvOpenInMaps"
-        android:text="@string/volunteer"
-        android:gravity="center" />
-
-    <TextView
+    <Button
         android:id="@+id/tvOpenInMaps"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="110dp"
+        android:layout_height="20dp"
         android:layout_above="@+id/ivCoordinator"
         android:layout_centerHorizontal="true"
         android:gravity="center_horizontal"
-        android:paddingBottom="5dp"
-        android:paddingTop="5dp"
         android:text="@string/openInMaps"
-        android:textColor="@color/realm_crimson"
+        android:textColor="@color/white"
         android:textSize="14sp"
-        android:clickable="true" />
+        android:clickable="true"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/rounded_button" />
 
     <TextView
         android:id="@+id/tvCoordinatorName"
@@ -169,5 +179,16 @@
         android:text="@string/coordinator"
         android:textColor="@color/realm_pink"
         android:textSize="12sp" />
+
+    <ImageView
+        android:id="@+id/ivCoordinator"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_alignLeft="@+id/map"
+        android:layout_alignParentBottom="true"
+        android:contentDescription="@string/coordinator"
+        android:paddingTop="10dp"
+        android:scaleType="centerCrop"
+        android:layout_marginBottom="15dp" />
 
 </RelativeLayout>

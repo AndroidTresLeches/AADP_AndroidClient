@@ -18,6 +18,7 @@ import android.text.Html;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -77,6 +78,7 @@ public class EventDetailActivity extends FragmentActivity implements
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_event_detail);
+		getActionBar().setDisplayHomeAsUpEnabled(true);
 		event = new Event();
 		eventId = getIntent().getStringExtra("eventId");
 		locationAddress = getIntent().getStringExtra("location");
@@ -106,8 +108,8 @@ public class EventDetailActivity extends FragmentActivity implements
 
 			LatLng latlng = AddressHelper.getAddress(getApplicationContext(),
 					locationAddress);
-			String destinationLatitude = Double.toString(latlng.latitude);
-			String destinationLongitude = Double.toString(latlng.longitude);
+			String destinationLatitude = Double.toString(latlng!=null?latlng.latitude:27.02); //Some Default Values
+			String destinationLongitude = Double.toString(latlng!=null?latlng.longitude:139.20); //Some Default Values
 
 			@Override
 			public void onClick(View v) {
