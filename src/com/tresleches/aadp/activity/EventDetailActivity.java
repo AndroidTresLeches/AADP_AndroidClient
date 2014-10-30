@@ -308,8 +308,8 @@ public class EventDetailActivity extends FragmentActivity implements
 
 		LatLng latLng = AddressHelper.getAddress(this, locationAddress);
 		if (latLng != null) {
-			Toast.makeText(this, "Location was found!", Toast.LENGTH_SHORT)
-					.show();
+			//Toast.makeText(this, "Location was found!", Toast.LENGTH_SHORT)
+				//	.show();
 			CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(
 					latLng, 15);
 			map.animateCamera(cameraUpdate);
