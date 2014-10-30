@@ -34,7 +34,7 @@
         android:layout_alignRight="@+id/tvCoordinatorName"
         android:layout_below="@+id/tvCoordinatorText"
         android:contentDescription="@string/coordinator"
-        android:scaleType="centerCrop" />
+        android:scaleType="fitCenter" />
 
     <TextView
         android:id="@+id/tvDate"

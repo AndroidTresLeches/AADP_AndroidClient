@@ -188,6 +188,7 @@
         android:layout_alignParentBottom="true"
         android:contentDescription="@string/coordinator"
         android:paddingTop="10dp"
-        android:scaleType="centerCrop" />
+        android:scaleType="centerCrop"
+        android:layout_marginBottom="15dp" />
 
 </RelativeLayout>

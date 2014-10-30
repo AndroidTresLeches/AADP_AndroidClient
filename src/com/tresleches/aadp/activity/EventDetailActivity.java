@@ -78,6 +78,7 @@ public class EventDetailActivity extends FragmentActivity implements
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_event_detail);
+		getActionBar().setDisplayHomeAsUpEnabled(true);
 		event = new Event();
 		eventId = getIntent().getStringExtra("eventId");
 		locationAddress = getIntent().getStringExtra("location");
