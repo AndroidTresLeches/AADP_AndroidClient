@@ -18,7 +18,7 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
-        app:column_count_portrait="3"
+        app:column_count_portrait="2"
         app:grid_paddingLeft="5dp"
         app:grid_paddingRight="5dp"
         app:grid_paddingTop="20dp"
