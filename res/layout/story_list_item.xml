@@ -42,7 +42,7 @@
         android:id="@+id/ivFacebook"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/tvStoryDetail"
+        android:layout_toLeftOf="@+id/ivTwitter"
         android:layout_below="@+id/tvStoryDetail"
         android:src="@drawable/ic_facebook"
         android:paddingBottom="5dp" />
@@ -52,7 +52,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/ivFacebook"
-        android:layout_toRightOf="@+id/ivFacebook"
+        android:layout_centerHorizontal="true"
         android:layout_marginLeft="32dp"
         android:paddingBottom="5dp"
         android:src="@drawable/ic_twitter" />
