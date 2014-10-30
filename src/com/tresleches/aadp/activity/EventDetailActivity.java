@@ -224,6 +224,7 @@ public class EventDetailActivity extends FragmentActivity implements
 				if (e == null) {
 					// item was found
 					event = item;
+					getDate(event.getEventDate());
 					tvEventName.setText(event.getEventName());
 					tvCoordinatorName.setText(event.getCoordinatorName());
 					tvCoordinatorName.setText(Html.fromHtml("<i>"
@@ -252,7 +253,7 @@ public class EventDetailActivity extends FragmentActivity implements
 							+ DateHelper.getYearInString(event.getEventDate())
 							+ " @ "
 							+ DateHelper.getTime(event.getEventStartTime())
-
+							+ " - "
 							+ DateHelper.getTime(event.getEventEndTime()));
 					tvEventAddress.setText(event.getLocationAddress());
 					ParseFile imgFile = event.getProfileImage();
