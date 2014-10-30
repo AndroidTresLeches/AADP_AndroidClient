@@ -3,6 +3,7 @@ package com.tresleches.aadp.fragment;
 import java.util.ArrayList;
 import java.util.List;
 
+import android.R.string;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -174,6 +175,21 @@ public class StepFragment extends Fragment {
 			fl.addView(v);
 			break;
 		case 2:
+			v = inflater.inflate(R.layout.fragment_step3_card, container, false);
+			Spinner spCategory = (Spinner)v.findViewById(R.id.spCategory);
+			String category = spCategory.getSelectedItem().toString();
+			ListView lvMoreKnowledge = (ListView)v.findViewById(R.id.lvMoreKnowledge);
+			lvMoreKnowledge.setAdapter(aKnowledge);
+			String[] categories = getResources().getStringArray(R.array.step3_category);
+			for (int i = 0; i < categories.length; i++){
+				if (category.equals(categories[i])){
+					getKnowledge("category", categories[i]);
+					break;
+				}
+			}
+		
+			fl.addView(v);
+			break;
 		case 3:
 		default:
 			TextView tv = new TextView(getActivity());

@@ -70,6 +70,7 @@
     <string name="step2_answer_no">No</string>
     <string name="step2_send">Send</string>
     <string name="Step2_note_hint">add comment</string>
+    <string name="Step3_title">Get to know more ...</string>
 
     <string-array name="step2_lang">
         <item>English</item>
@@ -77,6 +78,15 @@
         <item>Vietnamese</item>
         <item>Korean</item>
         <item>Spanish</item>
+    </string-array>
+    
+     <string-array name="step3_category">
+        <item>The need for donors</item>
+        <item>Who needs transplant</item>
+        <item>Donation Process</item>
+        <item>Hold a registration drive</item>
+        <item>Join AADP Team</item>
+        <item>More about registration</item>
     </string-array>
 
 </resources>
