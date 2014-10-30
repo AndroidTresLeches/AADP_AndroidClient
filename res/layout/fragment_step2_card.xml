@@ -265,7 +265,8 @@
             android:layout_toRightOf="@+id/rbAgeYes"
             android:text="@string/step2_answer_no" 
             android:textSize="12sp"
-            android:checked="false"/>
+            android:checked="false"
+            android:tag="12"/>
 
         <RadioButton
             android:id="@+id/rbAgeYes"
@@ -275,7 +276,8 @@
             android:layout_below="@+id/tvInfoAge"
             android:text="@string/step2_answer_yes" 
             android:textSize="12sp"
-            android:checked="true"/>
+            android:checked="true"
+            android:tag="11"/>
 
         <RadioButton
             android:id="@+id/rbMinorityYes"
@@ -285,7 +287,8 @@
             android:layout_below="@+id/tvMinority"
             android:text="@string/step2_answer_yes" 
             android:textSize="12sp"
-            android:checked="true"/>
+            android:checked="true"
+            android:tag="21"/>
 
         <RadioButton
             android:id="@+id/rbMinorityNo"
@@ -295,7 +298,8 @@
             android:layout_alignBottom="@+id/rbMinorityYes"
             android:layout_alignLeft="@+id/rbAgeNo"
             android:text="@string/step2_answer_no" 
-            android:textSize="12sp"/>
+            android:textSize="12sp"
+            android:tag="22"/>
 
         <TextView
             android:id="@+id/tvHipProblem"
@@ -314,7 +318,8 @@
             android:layout_below="@+id/tvHipProblem"
             android:text="@string/step2_answer_yes" 
             android:textSize="12sp"
-            android:checked="false"/>
+            android:checked="false"
+            android:tag="31"/>
 
         <RadioButton
             android:id="@+id/rbHipNo"
@@ -325,7 +330,8 @@
             android:layout_alignLeft="@+id/rbMinorityNo"
             android:text="@string/step2_answer_no" 
             android:textSize="12sp"
-            android:checked="true"/>
+            android:checked="true"
+            android:tag="32"/>
 
         <RadioButton
             android:id="@+id/rbHeartYes"
@@ -335,7 +341,8 @@
             android:layout_below="@+id/tvHeartProblem"
             android:text="@string/step2_answer_yes" 
             android:textSize="12sp"
-            android:checked="false"/>
+            android:checked="false"
+            android:tag="41"/>
 
         <RadioButton
             android:id="@+id/rbHeartNo"
@@ -346,17 +353,8 @@
             android:layout_alignLeft="@+id/rbHipNo"
             android:text="@string/step2_answer_no" 
             android:textSize="12sp"
-            android:checked="true"/>
-
-        <Spinner
-            android:id="@+id/spStep2Lang"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/rbHeartNo"
-            android:layout_alignTop="@+id/tvStep2Lang"
-            android:entries="@array/step2_lang"
-            android:gravity="end"
-            android:spinnerMode="dialog"/>
+            android:checked="true"
+            android:tag="42"/>
 
         <TextView
             android:id="@+id/tvStep2Notes"
@@ -368,13 +366,15 @@
             android:textColor="@color/realm_navy"/>
 
         <EditText
-            android:id="@+id/editText1"
+            android:id="@+id/etNotes"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_alignParentLeft="true"
             android:layout_below="@+id/tvStep2Notes"
-            android:ems="10" />
+            android:ems="10" 
+            android:hint="@string/Step2_note_hint"
+            android:textSize="12sp"/>
 
         <TextView
             android:id="@+id/tvHeartProblem"
@@ -393,6 +393,16 @@
             android:layout_below="@+id/rbHeartYes"
             android:text="@string/step2_language"
             android:textColor="@color/realm_navy" />
+
+        <Spinner
+            android:id="@+id/spStep2Lang"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/tvStep2Lang"
+            android:layout_toRightOf="@+id/tvMinority"
+            android:entries="@array/step2_lang"
+            android:gravity="end"
+            android:spinnerMode="dialog" />
         
     </RelativeLayout>
 

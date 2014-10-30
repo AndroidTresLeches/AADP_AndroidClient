@@ -64,11 +64,12 @@
     <string name="step2_age">Are you 18 to 44 years old?</string>
     <string name="step2_hip_problem">Have neck back hip or spine problems?</string>
     <string name="step2_heart_problem">Any Asthma, Cancer, Diabetes, Hepatitis, and/or Heart Problems?</string>
-    <string name="step2_language">Language:</string>
+    <string name="step2_language">Language Preference:</string>
     <string name="step2_notes">Notes:</string>
     <string name="step2_answer_yes">Yes</string>
     <string name="step2_answer_no">No</string>
     <string name="step2_send">Send</string>
+    <string name="Step2_note_hint">add comment</string>
 
     <string-array name="step2_lang">
         <item>English</item>
