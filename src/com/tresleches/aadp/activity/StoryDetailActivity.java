@@ -13,6 +13,7 @@ import com.parse.GetCallback;
 import com.parse.ParseException;
 import com.parse.ParseQuery;
 import com.tresleches.aadp.R;
+import com.tresleches.aadp.circularImageView.CircularImageView;
 import com.tresleches.aadp.helper.AADPTaskManager;
 import com.tresleches.aadp.helper.Utils;
 import com.tresleches.aadp.interfaces.AADPTask;
@@ -69,7 +70,7 @@ public class StoryDetailActivity extends Activity implements AADPTask{
 	private void setupWidgets() {
 		
 		getActionBar().setTitle(story.getName());
-		ImageView ivStoryDetailPic = (ImageView)findViewById(R.id.ivStoryDetailPic);
+		CircularImageView ivStoryDetailPic = (CircularImageView)findViewById(R.id.ivStoryDetailPic);
 		TextView tvStoryDetail = (TextView) findViewById(R.id.tvStoryDetailDesc);
 		
 		

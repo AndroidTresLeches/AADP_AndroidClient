@@ -28,12 +28,12 @@ import com.tresleches.aadp.fragment.LogoutFragment;
 import com.tresleches.aadp.fragment.StoryBoardFragment;
 import com.tresleches.aadp.helper.Utils;
 import com.tresleches.aadp.model.Contact;
+import com.tresleches.aadp.model.Event;
 import com.tresleches.aadp.model.Favorite;
 import com.tresleches.aadp.navigation.FragmentNavigationDrawer;
 
 public class HomeActivity extends BaseActionBarActivity {
 	private static final int REQUEST_CODE = 20;
-	private static final int REQUEST_CODE_1 = 30;
 	private final int SEARCH_REQUEST = 100;
 	private FragmentNavigationDrawer dlDrawer;
 	LoginFragment loginFragment;
@@ -42,6 +42,7 @@ public class HomeActivity extends BaseActionBarActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_home);
+		
 		ParseUser currentUser = ParseUser.getCurrentUser();
 		// navigation drawer - find drawer view
 		dlDrawer = (FragmentNavigationDrawer) findViewById(R.id.drawer_layout);
@@ -89,6 +90,28 @@ public class HomeActivity extends BaseActionBarActivity {
 			// Intent i = new Intent(this, LoginActivity.class);
 			// startActivity(i);
 		}
+	}
+	
+	public void updateAvatarForEvent(String objId, int drawableId) {
+
+		Bitmap bitmap = BitmapFactory.decodeResource(getResources(), drawableId);
+		final ParseFile pImgFile = new ParseFile("avatar.jpg",
+				Utils.CompressConvertBitmapTobyteArray(bitmap,
+						Bitmap.CompressFormat.JPEG));
+
+		ParseQuery<Event> query = ParseQuery.getQuery(Event.class);
+
+		query.getInBackground(objId, new GetCallback<Event>() {
+			public void done(Event item, ParseException e) {
+				if (e == null) {
+					item.setProfileImage(pImgFile);
+					item.saveInBackground();
+
+				} else {
+					Log.d("ERROR", e.toString());
+				}
+			}
+		});
 	}
 
 	@Override
@@ -142,30 +165,6 @@ public class HomeActivity extends BaseActionBarActivity {
 		// Pass any configuration change to the drawer toggles
 		dlDrawer.getDrawerToggle().onConfigurationChanged(newConfig);
 	}
-
-	public void updateAvatarForContact(String objId, int drawableId) {
-
-		Bitmap bitmap = BitmapFactory
-				.decodeResource(getResources(), drawableId);
-		final ParseFile pImgFile = new ParseFile("avatar.jpg",
-				Utils.CompressConvertBitmapTobyteArray(bitmap,
-						Bitmap.CompressFormat.JPEG));
-
-		ParseQuery<Contact> query = ParseQuery.getQuery(Contact.class);
-
-		query.getInBackground(objId, new GetCallback<Contact>() {
-			public void done(Contact item, ParseException e) {
-				if (e == null) {
-					item.setProfileImage(pImgFile);
-					item.saveInBackground();
-
-				} else {
-					Log.d("ERROR", e.toString());
-				}
-			}
-		});
-	}
-
 
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {

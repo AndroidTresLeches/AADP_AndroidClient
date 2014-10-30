@@ -6,14 +6,13 @@
 	android:background="@drawable/bg_card_top_no_padding"    
     android:padding="5dp">
 
-    <ImageView
+    <com.tresleches.aadp.circularImageView.CircularImageView
         android:id="@+id/ivStoryImage"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:src="@drawable/ic_aadp_logo"
-        android:background="@drawable/rounded_image" />
+        />
 
     <TextView
         android:id="@+id/tvStoryName"
@@ -24,6 +23,7 @@
         android:text="Name" 
         android:textSize="14dp"
         android:layout_toRightOf="@+id/ivStoryImage"
+        android:textColor="@color/address_blue"
      />
 
     <TextView
@@ -36,7 +36,8 @@
         android:textSize="12dp"
         android:lines="3"
         android:ellipsize="end" 
-        android:paddingBottom="10dp"/>
+        android:paddingBottom="10dp"
+        android:textColor="@color/realm_purple"/>
  
     <ImageView
         android:id="@+id/ivFacebook"
