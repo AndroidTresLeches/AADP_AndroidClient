@@ -61,6 +61,8 @@ public class VounteerFragment extends Fragment {
 		lvEvents = (ListView) view.findViewById(R.id.lvEventsList);
 		lvEvents.setAdapter(aVolEvent);
 		getVolEvents();
+		getActivity().overridePendingTransition(R.anim.right_in,
+				R.anim.left_out);
 		lvEvents.setOnItemClickListener(new OnItemClickListener() {
 
 			@Override
@@ -85,6 +87,7 @@ public class VounteerFragment extends Fragment {
 			// Define our query conditions
 
 			query.whereContains("coordinateName", contact);
+			query.orderByAscending("eventDate");
 			query.findInBackground(new FindCallback<Event>() {
 				public void done(List<Event> results, ParseException e) {
 					if (e == null) {
