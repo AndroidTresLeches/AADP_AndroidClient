@@ -1,27 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/fragmentStoryBoard"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/pc_purple"
-    android:padding="10dp" >
+    android:layout_height="match_parent" 
+    android:padding="5dp">
 
-    
-    
-    <com.etsy.android.grid.StaggeredGridView
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/gvList"
+    <RelativeLayout
+        android:id="@+id/rlSearching"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
+        android:layout_height="250dp"
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
-        app:column_count_portrait="2"
-        app:grid_paddingLeft="5dp"
-        app:grid_paddingRight="5dp"
-        app:grid_paddingTop="20dp"
-        app:item_margin="10dp" />
+        android:layout_marginRight="185dp"
+        android:background="@drawable/searching" >
+        
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="25dp"
+        android:layout_alignParentBottom="true"
+        
+        android:src="@color/grayBlue"
+        android:orientation="vertical"
+        android:background="@color/address_blue_transparent" >
+
+        <TextView
+            android:id="@+id/tvStoryTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Searching" 
+            android:textSize="18dp"
+            android:textColor="@color/white"/>
+
+    	</LinearLayout>        
+    </RelativeLayout>
     
+        <RelativeLayout
+        android:id="@+id/rlSurvivor"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="170dp"
+        android:background="@drawable/survivor" >
+        
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="25dp"
+        android:layout_alignParentBottom="true"
+        
+        android:src="@color/grayBlue"
+        android:orientation="vertical"
+        android:background="@color/address_blue_transparent" >
+
+        <TextView
+            android:id="@+id/tvStoryTitle2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Survivor" 
+            android:textSize="18dp"
+            android:textColor="@color/white"/>
+
+    	</LinearLayout>        
+    </RelativeLayout>
+    
+    
+    <RelativeLayout
+        android:id="@+id/rlDonor"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginRight="185dp"
+        android:layout_marginTop="260dp"
+        android:background="@drawable/donor" >
+        
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="25dp"
+        android:layout_alignParentBottom="true"
+        
+        android:src="@color/grayBlue"
+        android:orientation="vertical"
+        android:background="@color/address_blue_transparent" >
+
+        <TextView
+            android:id="@+id/tvStoryTitle4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Donor Heroes" 
+            android:textSize="18dp"
+            android:textColor="@color/white"/>
+
+    	</LinearLayout>        
+    </RelativeLayout>     
+    
+
+    
+    <RelativeLayout
+        android:id="@+id/rlInMemory"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="170dp"
+        android:layout_marginTop="260dp"
+        android:background="@drawable/inmemory" >
+        
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="25dp"
+        android:layout_alignParentBottom="true"
+        
+        android:src="@color/grayBlue"
+        android:orientation="vertical"
+        android:background="@color/address_blue_transparent" >
+
+        <TextView
+            android:id="@+id/tvStoryTitle3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="In Loving Memory" 
+            android:textSize="18dp"
+            android:textColor="@color/white"/>
+
+    	</LinearLayout>        
+    </RelativeLayout>
+    
+   
+
 </RelativeLayout>
