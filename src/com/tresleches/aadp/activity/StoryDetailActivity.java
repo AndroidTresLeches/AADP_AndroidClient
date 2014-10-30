@@ -32,7 +32,6 @@ public class StoryDetailActivity extends Activity implements AADPTask{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_story_detail);
 		storyId = getIntent().getStringExtra("story_id");
-		
 		new AADPTaskManager((AADPTask)this, (Context)this).execute();
 
 	}

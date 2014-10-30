@@ -62,7 +62,11 @@
 
         <activity
             android:name=".activity.SearchResultActivity"
-            android:label="@string/title_activity_search_result" >
+            android:label="@string/title_activity_search_result"
+            android:parentActivityName="com.tresleches.aadp.activity.HomeActivity">
+             <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.tresleches.aadp.activity.HomeActivity" /> 
         </activity>
         <activity
             android:name=".activity.DonorActivity"
@@ -71,6 +75,14 @@
         <activity
             android:name=".activity.StoryDetailActivity"
             android:label="@string/title_activity_story_detail" >
+        </activity>
+        <activity
+            android:name="com.tresleches.aadp.activity.VolunteerEventsActivity"
+            android:label="@string/title_activity_volunteer_events"
+            android:parentActivityName="com.tresleches.aadp.activity.SearchResultActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.tresleches.aadp.activity.SearchResultActivity" />
         </activity>
         <activity
             android:name=".activity.LoginActivity"
@@ -107,10 +119,6 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-        <activity
-            android:name="com.tresleches.aadp.activity.VolunteerEventsActivity"
-            android:label="@string/title_activity_volunteer_events" >
         </activity>
     </application>
 
