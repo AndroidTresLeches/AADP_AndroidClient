@@ -40,7 +40,19 @@ public class StoryBoardFragment extends Fragment {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		storyImages = new ArrayList();
+		
+	}
+	
+	@Override
+	public void onResume() {
+		// TODO Auto-generated method stub
+		super.onResume();
+		storyImages = new ArrayList<StoryImage>();
+	
+		imageAdapter = new ImageArrayAdapter(getActivity(),storyImages);
+		gridView.setAdapter(imageAdapter);
+
+		loadImageData();
 	}
 
 	/**
@@ -55,9 +67,7 @@ public class StoryBoardFragment extends Fragment {
 		getActivity().getActionBar().setTitle(StoryTitle.STORIES);
 		
 		gridView = (StaggeredGridView) view.findViewById(R.id.gvList);
-		imageAdapter = new ImageArrayAdapter(getActivity(),storyImages);
-		gridView.setAdapter(imageAdapter);
-		loadImageData();
+		
 		
 		
 		
