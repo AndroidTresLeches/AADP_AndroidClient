@@ -42,6 +42,7 @@
     <string name="about_image">About image</string>
     <string name="title_activity_donor">Be a donor</string>
     <string name="title_step1_eligible">Am I eiligible ?</string>
+    <string name="title_step2_homekit">Request a homekit</string>
     <string name="favorite">Favorite</string>
     <string name="volunteer">Be a Volunteer</string>
     <string name="be_a_donor">Be a donor</string>
@@ -49,6 +50,33 @@
     <string name="title_activity_splash_screen">Splash Screen</string>
     <string name="title_activity_volunteer_events">Events by Volunteer</string>
     <string name="openInMaps">Open in Maps</string>
+    <string name="step2_contact">Contact Info</string>
+    <string name="step2_name">Name:</string>
+    <string name="step2_email">Email:</string>
+    <string name="step2_addr1">Addr1:</string>
+    <string name="step2_addr2">Addr2:</string>
+    <string name="step2_city">City:</string>
+    <string name="step2_state">State:</string>
+    <string name="step2_zip_code">Zip Code:</string>
+    <string name="step2_phone">Phone:</string>
+    <string name="step2_minority">Are you of ethnic minority?</string>
+    <string name="step2_race">If Mixed Race Please Specify:</string>
+    <string name="step2_age">Are you 18 to 44 years old?</string>
+    <string name="step2_hip_problem">Have neck back hip or spine problems?</string>
+    <string name="step2_heart_problem">Any Asthma, Cancer, Diabetes, Hepatitis, and/or Heart Problems?</string>
+    <string name="step2_language">Language Preference:</string>
+    <string name="step2_notes">Notes:</string>
+    <string name="step2_answer_yes">Yes</string>
+    <string name="step2_answer_no">No</string>
+    <string name="step2_send">Send</string>
+    <string name="Step2_note_hint">add comment</string>
+
+    <string-array name="step2_lang">
+        <item>English</item>
+        <item>Chinese</item>
+        <item>Vietnamese</item>
+        <item>Korean</item>
+        <item>Spanish</item>
+    </string-array>
 
 </resources>
-

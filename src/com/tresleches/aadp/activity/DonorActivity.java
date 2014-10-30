@@ -164,7 +164,7 @@ public class DonorActivity extends FragmentActivity {
 
 	public class MyPagerAdapter extends FragmentPagerAdapter {
 
-		private final String[] TITLES = { "Step 1", "Step 2", "Step 3", "More info" };
+		private final String[] TITLES = { "Step 1", "Step 2", "Step 3" };
 
 		public MyPagerAdapter(FragmentManager fm) {
 			super(fm);
