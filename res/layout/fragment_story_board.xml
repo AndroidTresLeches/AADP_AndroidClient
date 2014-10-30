@@ -3,58 +3,9 @@
     android:id="@+id/fragmentStoryBoard"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/gradient_bg"
+    android:background="@color/pc_purple"
     android:padding="10dp" >
 
-    
-    <LinearLayout
-        android:id="@+id/ll1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentTop="true"
-         >
-        
-	    <ImageView
-	        android:id="@+id/ivSearching"
-	        android:layout_width="140dp"
-	        android:layout_height="238dp"
-	        android:src="@drawable/searching" />
-	
-	    <ImageView
-	        android:id="@+id/ivSurvivor"
-	        android:layout_width="140dp"
-	        android:layout_height="match_parent"
-	        android:src="@drawable/survivor" />
-            
-    </LinearLayout>
-    
-        <LinearLayout
-        android:id="@+id/ll2"
-        android:layout_below="@id/ll1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentTop="true"
-         >
-        
-	    <ImageView
-	        android:id="@+id/ivDonor"
-	        android:layout_width="140dp"
-	        android:layout_height="238dp"
-	        android:src="@drawable/donor" />
-	
-	    <ImageView
-	        android:id="@+id/ivInMemory"
-	        android:layout_width="140dp"
-	        android:layout_height="match_parent"
-	        android:src="@drawable/inmemory" />
-            
-    </LinearLayout>
-    
-    <!-- 
     <ImageView
         android:id="@+id/ivSearching"
         android:layout_width="150dp"
@@ -91,8 +42,5 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
          />
- -->
-
-
 
 </RelativeLayout>
