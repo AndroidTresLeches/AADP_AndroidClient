@@ -13,6 +13,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -27,7 +29,7 @@ import com.tresleches.aadp.model.Story;
 public class StoryArrayAdapter extends ArrayAdapter<Story> {
 
 	private ViewHolder viewHolder = null;
-
+	private int lastPosition = -1;
 
 	public StoryArrayAdapter(Context context, int resource, List<Story> objects) {
 		super(context, resource, objects);
@@ -68,7 +70,9 @@ public class StoryArrayAdapter extends ArrayAdapter<Story> {
 		
 		setupListeners(convertView);
 		setShareListeners(viewHolder);
-
+		Animation animation = AnimationUtils.loadAnimation(getContext(), (position > lastPosition) ? R.anim.up_from_bottom : R.anim.down_from_top);
+		convertView.startAnimation(animation);
+	    lastPosition = position;
 		return convertView;
 	}
 	

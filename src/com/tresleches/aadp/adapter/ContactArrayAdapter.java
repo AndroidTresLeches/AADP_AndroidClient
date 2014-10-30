@@ -8,6 +8,8 @@ import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
@@ -20,6 +22,7 @@ import com.tresleches.aadp.model.Contact;
 public class ContactArrayAdapter extends ArrayAdapter<Contact> {
     private List<Contact> _contacts;
 	private final Activity _context;
+	private int lastPosition = -1;
 
 	public ContactArrayAdapter(Activity context, List<Contact> contacts) {
 		super(context, 0, contacts);
@@ -83,6 +86,9 @@ public class ContactArrayAdapter extends ArrayAdapter<Contact> {
 				e.printStackTrace();
 			}
 		}
+		Animation animation = AnimationUtils.loadAnimation(getContext(), (position > lastPosition) ? R.anim.up_from_bottom : R.anim.down_from_top);
+		view.startAnimation(animation);
+	    lastPosition = position;
 		return view;
 	}
 
