@@ -2,10 +2,10 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     android:paddingLeft="10dp"
     android:paddingRight="10dp"
-    android:paddingTop="10dp"
-    android:background="@color/white">
+    android:paddingTop="10dp" >
 
     <TextView
         android:id="@+id/tvCoordinatorText"
@@ -13,6 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_alignRight="@+id/ivCoordinator"
         android:text="@string/coordinator"
+        android:textColor="@color/gray"
         android:textSize="12sp" />
 
     <TextView
@@ -23,12 +24,13 @@
         android:layout_below="@+id/ivCoordinator"
         android:gravity="right"
         android:text="@string/event_coordinator"
+        android:textColor="@color/gray"
         android:textSize="12sp" />
 
     <com.tresleches.aadp.circularImageView.CircularImageView
         android:id="@+id/ivCoordinator"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
         android:layout_alignRight="@+id/tvCoordinatorName"
         android:layout_below="@+id/tvCoordinatorText"
         android:contentDescription="@string/coordinator"
@@ -52,16 +54,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@+id/tvCoordinatorName"
-        android:layout_alignBottom="@id/ivCoordinator"
         android:layout_alignLeft="@+id/tvDate"
         android:layout_below="@+id/tvDate"
         android:layout_toLeftOf="@+id/tvEventName"
         android:background="@drawable/border_bottom_textview"
-        android:paddingTop="5dp"
+        android:gravity="center"
         android:paddingLeft="5dp"
         android:paddingRight="5dp"
+        android:paddingTop="5dp"
         android:text="@string/event_date"
-        android:gravity="center"
         android:textColor="@color/realm_purple"
         android:textSize="20sp" />
 
@@ -94,6 +95,7 @@
         android:layout_alignLeft="@+id/tvAddress"
         android:layout_below="@+id/tvAddress"
         android:text="@string/event_time"
+        android:textColor="@color/gray"
         android:textSize="12sp" />
 
     <LinearLayout
@@ -103,8 +105,8 @@
         android:layout_alignRight="@+id/tvCoordinatorName"
         android:layout_below="@+id/tvCoordinatorName"
         android:orientation="horizontal"
-        android:weightSum="2"
-        android:paddingTop="15dp" >
+        android:paddingTop="5dp"
+        android:weightSum="2" >
 
         <ImageView
             android:id="@+id/ivCalendarIcon"
@@ -122,7 +124,6 @@
             android:layout_weight="1"
             android:contentDescription="@string/favorite"
             android:src="@drawable/ic_unchecked_fav" />
-
     </LinearLayout>
 
 </RelativeLayout>

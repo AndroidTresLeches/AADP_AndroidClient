@@ -99,6 +99,6 @@ public class Event extends ParseObject {
 	}
 	
 	public void setProfileImage(ParseFile img) {
-		put("profileImg", img);
+		put("profileImage", img);
 	}
 }
