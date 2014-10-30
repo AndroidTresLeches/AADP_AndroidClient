@@ -25,8 +25,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseFile;
+import com.parse.ParseQuery;
 import com.parse.ParseUser;
 import com.tresleches.aadp.R;
 import com.tresleches.aadp.activity.LoginActivity;
@@ -36,7 +38,6 @@ import com.tresleches.aadp.model.Event;
 import com.tresleches.aadp.model.Favorite;
 
 public class EventArrayAdapter extends ArrayAdapter<Event> {
-
 
 	private static class ViewHolder {
 		TextView tvEventName;
@@ -57,13 +58,12 @@ public class EventArrayAdapter extends ArrayAdapter<Event> {
 	int day;
 	private final int REQUEST_CODE = 20;
 	private int lastPosition = -1;
+	boolean isFav;
 
 	public EventArrayAdapter(Context context, int resource, List<Event> events) {
 		super(context, R.layout.event_list_item, events);
 		this.context = context;
 	}
-
-
 
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
@@ -78,8 +78,7 @@ public class EventArrayAdapter extends ArrayAdapter<Event> {
 					.findViewById(R.id.tvEventName);
 			viewHolder.tvDate = (TextView) convertView
 					.findViewById(R.id.tvDate);
-			viewHolder.tvDay = (TextView) convertView
-					.findViewById(R.id.tvDay);
+			viewHolder.tvDay = (TextView) convertView.findViewById(R.id.tvDay);
 			viewHolder.ivCoordinatorImg = (CircularImageView) convertView
 					.findViewById(R.id.ivCoordinator);
 			viewHolder.tvTime = (TextView) convertView
@@ -102,9 +101,15 @@ public class EventArrayAdapter extends ArrayAdapter<Event> {
 		viewHolder.tvDate.setText(fullMonth);
 		viewHolder.tvDay.setText(Integer.toString(day));
 		viewHolder.tvTime.setText(DateHelper.getTime(event.getEventStartTime())
-				+ DateHelper.getTime(event.getEventEndTime()));
+				+ " - " + DateHelper.getTime(event.getEventEndTime()));
 		viewHolder.tvAddress.setText(event.getLocationAddress());
 		viewHolder.tvCoordinatorName.setText(event.getCoordinatorName());
+
+		/*if (isFavorite(event)) {
+			viewHolder.ivFavoriteIcon
+					.setImageResource(R.drawable.ic_checked_fav);
+		}*/
+
 		ParseFile imgFile = event.getProfileImage();
 		if (imgFile != null) {
 			try {
@@ -131,10 +136,11 @@ public class EventArrayAdapter extends ArrayAdapter<Event> {
 				calIntent.putExtra(Events.DESCRIPTION, "");
 				// getDate(event.getEventDate());
 				GregorianCalendar startTime = new GregorianCalendar(year,
-						month, day,
-						Integer.parseInt(event.getEventStartTime().substring(0,2)), 0);
+						month, day, Integer.parseInt(event.getEventStartTime()
+								.substring(0, 2)), 0);
 				GregorianCalendar endTime = new GregorianCalendar(year, month,
-						day, Integer.parseInt(event.getEventEndTime().substring(0,2)), 0);
+						day, Integer.parseInt(event.getEventEndTime()
+								.substring(0, 2)), 0);
 				// calIntent.putExtra(CalendarContract.EXTRA_EVENT_ALL_DAY,
 				// true);
 				calIntent.putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME,
@@ -150,7 +156,7 @@ public class EventArrayAdapter extends ArrayAdapter<Event> {
 		});
 
 		viewHolder.ivFavoriteIcon.setOnClickListener(new OnClickListener() {
-			
+
 			@Override
 			public void onClick(View v) {
 				Favorite favItem = new Favorite();
@@ -165,9 +171,11 @@ public class EventArrayAdapter extends ArrayAdapter<Event> {
 					favItem.saveInBackground();
 					Toast.makeText(context, "Favorite Saved",
 							Toast.LENGTH_SHORT).show();
-					ObjectAnimator fade = ObjectAnimator.ofFloat(v, "alpha", 1,0f, 0f);
+					ObjectAnimator fade = ObjectAnimator.ofFloat(v, "alpha", 1,
+							0f, 0f);
 					fade.setDuration(3000);
-					viewHolder.ivFavoriteIcon.setImageResource(R.drawable.ic_checked_fav);
+					viewHolder.ivFavoriteIcon
+							.setImageResource(R.drawable.ic_checked_fav);
 				} else {
 					// show the signup or login screen
 					Intent i = new Intent(getContext(), LoginActivity.class);
@@ -178,21 +186,50 @@ public class EventArrayAdapter extends ArrayAdapter<Event> {
 				}
 			}
 		});
-		
-		Animation animation = AnimationUtils.loadAnimation(getContext(), (position > lastPosition) ? R.anim.up_from_bottom : R.anim.down_from_top);
+
+		Animation animation = AnimationUtils.loadAnimation(getContext(),
+				(position > lastPosition) ? R.anim.up_from_bottom
+						: R.anim.down_from_top);
 		convertView.startAnimation(animation);
-	    lastPosition = position;
+		lastPosition = position;
 		return convertView;
 	}
 
 	public void getDate(Date date) {
 		Calendar cal = Calendar.getInstance();
-		if(date !=null){
+		if (date != null) {
 			cal.setTime(date);
 			year = cal.get(Calendar.YEAR);
 			month = cal.get(Calendar.MONTH);
 			fullMonth = new SimpleDateFormat("MMMM").format(date);
 			day = cal.get(Calendar.DAY_OF_MONTH);
 		}
+	}
+
+	public boolean isFavorite(Event event) {
+		ParseQuery<Favorite> query = ParseQuery.getQuery(Favorite.class);
+		// Define our query conditions
+		try {
+			String user = ParseUser.getCurrentUser().getUsername();
+			if (user != null) {
+				query.whereEqualTo("objectId", event.getObjectId());
+				query.whereEqualTo("user", user);
+				query.findInBackground(new FindCallback<Favorite>() {
+					public void done(List<Favorite> results, ParseException e) {
+						if (e == null) {
+							// results have all the Story
+							isFav = true;
+							// viewHolder.ivFavoriteIcon
+							// .setImageResource(R.drawable.ic_checked_fav);
+						} else {
+							// There was an error
+						}
+					}
+				});
+			}
+		} catch (Exception ex) {
+			isFav = false;
+		}
+		return isFav;
 	}
 }
