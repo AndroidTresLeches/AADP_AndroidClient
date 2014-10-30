@@ -1,5 +1,10 @@
 package com.tresleches.aadp.activity;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
+
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.ActivityNotFoundException;
@@ -12,6 +17,8 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.CalendarContract;
+import android.provider.CalendarContract.Events;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentActivity;
 import android.text.Html;
@@ -59,6 +66,7 @@ public class EventDetailActivity extends FragmentActivity implements
 	private ImageView ivProfileImg;
 	private TextView tvOpenInMaps;
 	private TextView tvVolunteer;
+	private ImageView ivCalendarIcon;
 
 	private Event event;
 	private String eventId;
@@ -67,6 +75,10 @@ public class EventDetailActivity extends FragmentActivity implements
 	private LocationManager mLocationManager;
 	private String srcLatitude;
 	private String srcLongitude;
+	private int year;
+	private int month;
+	private String fullMonth;
+	private int day;
 	/*
 	 * Define a request code to send to Google Play services This code is
 	 * returned in Activity.onActivityResult
@@ -154,6 +166,37 @@ public class EventDetailActivity extends FragmentActivity implements
 
 			}
 		});
+		
+		ivCalendarIcon.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				Intent calIntent = new Intent(Intent.ACTION_INSERT);
+				calIntent.setData(CalendarContract.Events.CONTENT_URI);
+				calIntent.setType("vnd.android.cursor.item/event");
+				calIntent.putExtra(Events.TITLE, event.getEventName());
+				calIntent.putExtra(Events.EVENT_LOCATION,
+						event.getLocationAddress());
+				calIntent.putExtra(Events.DESCRIPTION, "");
+				// getDate(event.getEventDate());
+				GregorianCalendar startTime = new GregorianCalendar(year,
+						month, day,
+						Integer.parseInt(event.getEventStartTime().substring(0,2)), 0);
+				GregorianCalendar endTime = new GregorianCalendar(year, month,
+						day, Integer.parseInt(event.getEventEndTime().substring(0,2)), 0);
+				// calIntent.putExtra(CalendarContract.EXTRA_EVENT_ALL_DAY,
+				// true);
+				calIntent.putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME,
+						startTime.getTimeInMillis());
+				calIntent.putExtra(CalendarContract.EXTRA_EVENT_END_TIME,
+						endTime.getTimeInMillis());
+				calIntent.putExtra(Events.ACCESS_LEVEL, Events.ACCESS_PRIVATE);
+				calIntent.putExtra(Events.AVAILABILITY,
+						Events.AVAILABILITY_BUSY);
+
+				startActivity(calIntent);
+			}
+		});
 	}
 
 	private void loadUI() {
@@ -165,6 +208,7 @@ public class EventDetailActivity extends FragmentActivity implements
 		ivProfileImg = (ImageView) findViewById(R.id.ivCoordinator);
 		tvOpenInMaps = (TextView) findViewById(R.id.tvOpenInMaps);
 		tvVolunteer = (TextView) findViewById(R.id.tvBeVolunteer);
+		ivCalendarIcon = (ImageView) findViewById(R.id.ivCalenderIcon);
 		new AADPTaskManager((AADPTask) this, this).execute(); // Loads the Event
 	}
 
@@ -424,5 +468,16 @@ public class EventDetailActivity extends FragmentActivity implements
 		public void onProviderDisabled(String provider) {
 		}
 	};
+	
+	public void getDate(Date date) {
+		Calendar cal = Calendar.getInstance();
+		if(date !=null){
+			cal.setTime(date);
+			year = cal.get(Calendar.YEAR);
+			month = cal.get(Calendar.MONTH);
+			fullMonth = new SimpleDateFormat("MMMM").format(date);
+			day = cal.get(Calendar.DAY_OF_MONTH);
+		}
+	}
 
 }
