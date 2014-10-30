@@ -66,6 +66,7 @@ public class StoryFragment extends Fragment implements AADPTask {
 	
 	@Override
 	public void performTask() {
+		getStories();
 	}
 	
 	/**

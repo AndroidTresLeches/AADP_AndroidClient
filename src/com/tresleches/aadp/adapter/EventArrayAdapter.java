@@ -187,10 +187,12 @@ public class EventArrayAdapter extends ArrayAdapter<Event> {
 
 	public void getDate(Date date) {
 		Calendar cal = Calendar.getInstance();
-		cal.setTime(date);
-		year = cal.get(Calendar.YEAR);
-		month = cal.get(Calendar.MONTH);
-		fullMonth = new SimpleDateFormat("MMMM").format(date);
-		day = cal.get(Calendar.DAY_OF_MONTH);
+		if(date !=null){
+			cal.setTime(date);
+			year = cal.get(Calendar.YEAR);
+			month = cal.get(Calendar.MONTH);
+			fullMonth = new SimpleDateFormat("MMMM").format(date);
+			day = cal.get(Calendar.DAY_OF_MONTH);
+		}
 	}
 }

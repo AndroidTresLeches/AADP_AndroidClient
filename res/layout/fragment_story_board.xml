@@ -6,41 +6,22 @@
     android:background="@color/pc_purple"
     android:padding="10dp" >
 
-    <ImageView
-        android:id="@+id/ivSearching"
-        android:layout_width="150dp"
-        android:layout_height="250dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:src="@drawable/searching" />
-
-    <ImageView
-        android:id="@+id/ivSurvivor"
-        android:layout_width="150dp"
-        android:layout_height="250dp"
-        android:layout_marginTop="30dp"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentTop="true"
-        android:layout_toRightOf="@+id/ivSearching"
-        android:src="@drawable/survivor" />
     
-    <ImageView
-        android:id="@+id/ivDonor"
-        android:layout_width="150dp"
-        android:layout_height="250dp"
+    
+    <com.etsy.android.grid.StaggeredGridView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/gvList"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentBottom="true"
-        android:src="@drawable/donor" />
-
-    <ImageView
-        android:id="@+id/ivInMemory"
-        android:layout_width="150dp"
-        android:layout_height="250dp"
-        android:layout_toRightOf="@+id/ivSearching"
-        android:layout_below="@+id/ivSurvivor"
-        android:src="@drawable/inmemory"
         android:layout_alignParentRight="true"
-        android:layout_alignParentBottom="true"
-         />
-
+        android:layout_alignParentTop="true"
+        app:column_count_portrait="3"
+        app:grid_paddingLeft="5dp"
+        app:grid_paddingRight="5dp"
+        app:grid_paddingTop="20dp"
+        app:item_margin="10dp" />
+    
 </RelativeLayout>
