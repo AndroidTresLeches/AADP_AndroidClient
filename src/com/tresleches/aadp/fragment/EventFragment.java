@@ -38,6 +38,13 @@ public class EventFragment extends Fragment implements AADPTask{
 		aEvent = new EventArrayAdapter(getActivity(), R.layout.event_list_item,
 				events);
 	}
+	
+	@Override
+	public void onResume() {
+		// TODO Auto-generated method stub
+		super.onResume();
+		new AADPTaskManager(this,getActivity()).execute(); //Getting Event in Background
+	}
 
 	/**
 	 * Called on Fragment after the Activity is setup
@@ -52,7 +59,7 @@ public class EventFragment extends Fragment implements AADPTask{
 		//AnimatedListViewAdapter eventListAdapter = new AnimatedListViewAdapter(getActivity(), R.layout.event_list_item, events, objectMapper);
 		lvEvents.setAdapter(aEvent);
 		
-		new AADPTaskManager(this,getActivity()).execute(); //Getting Event in Background
+		
 		lvEvents.setOnItemClickListener(new OnItemClickListener() {
 
 			@Override
