@@ -19,7 +19,6 @@ import com.parse.ParseUser;
 import com.tresleches.aadp.R;
 import com.tresleches.aadp.helper.AADPTaskManager;
 import com.tresleches.aadp.interfaces.AADPTask;
-import com.tresleches.aadp.model.StoryTitle;
 
 public class LoginActivity extends Activity implements AADPTask{
 
@@ -50,7 +49,7 @@ public class LoginActivity extends Activity implements AADPTask{
 		ivAadpIcon = (ImageView) findViewById(R.id.ivAadpIcon);
 		ivAadpText = (ImageView) findViewById(R.id.ivAadpText);
 		Typeface font = Typeface.createFromAsset(getAssets(),
-				"fonts/OpenSans-Light.ttf");
+				"fonts/Roboto-Regular.ttf");
 		etUserName.setTypeface(font);
 		etPassword.setTypeface(font);
 		btnLogin.setTypeface(font);
