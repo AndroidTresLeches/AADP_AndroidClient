@@ -29,14 +29,12 @@ import com.tresleches.aadp.model.StoryTitle;
 public class StoryBoardFragment extends Fragment {
 
 	public void onAttach(Activity activity) {
-		// TODO Auto-generated method stub
 		super.onAttach(activity);
 	
 	}
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 	}
 

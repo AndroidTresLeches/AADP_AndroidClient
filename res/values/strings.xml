@@ -47,7 +47,7 @@
     <string name="be_a_donor">Be a donor</string>
     <string name="button_start_label">Start</string>
     <string name="title_activity_splash_screen">Splash Screen</string>
-    <string name="title_activity_volunteer_events">VolunteerEventsActivity</string>
+    <string name="title_activity_volunteer_events">Events by Volunteer</string>
     <string name="openInMaps">Open in Maps</string>
 
 </resources>

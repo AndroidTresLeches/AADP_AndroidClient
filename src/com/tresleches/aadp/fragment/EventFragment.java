@@ -10,18 +10,21 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Toast;
 
+import com.kylewbanks.animlv.AnimatedListView;
+import com.kylewbanks.animlv.AnimatedListViewObjectMapper;
+import com.kylewbanks.animlv.AnimatedListViewAdapter;
 import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseQuery;
 import com.tresleches.aadp.R;
 import com.tresleches.aadp.activity.EventDetailActivity;
+
 import com.tresleches.aadp.adapter.EventArrayAdapter;
 import com.tresleches.aadp.helper.AADPTaskManager;
-import com.tresleches.aadp.helper.NetworkUtils;
 import com.tresleches.aadp.interfaces.AADPTask;
 import com.tresleches.aadp.model.Event;
 
@@ -49,7 +52,17 @@ public class EventFragment extends Fragment implements AADPTask{
 
 		View view = inflater.inflate(R.layout.event_list, container, false);
 		lvEvents = (ListView) view.findViewById(R.id.lvEventsList);
-		lvEvents.setAdapter(aEvent);
+		
+		/*AnimatedListViewObjectMapper objectMapper = new AnimatedListViewObjectMapper() {
+		    @Override
+		    public void bindObjectToView(Object object, View view) {
+		    	event = (Event) object;
+		        //Populate and stylize the view however you want...
+		    }
+		};
+		AnimatedListViewAdapter eventListAdapter = new AnimatedListViewAdapter(getActivity(), R.layout.event_list, events, objectMapper);
+		*/lvEvents.setAdapter(aEvent);
+		
 		new AADPTaskManager(this,getActivity()).execute(); //Getting Event in Background
 		lvEvents.setOnItemClickListener(new OnItemClickListener() {
 
@@ -88,22 +101,17 @@ public class EventFragment extends Fragment implements AADPTask{
 					}
 				}
 			});
-		
-		
 	}
 
 	@Override
 	public void performTask() {
 		getEvents();
-		
 	}
 
 	@Override
 	public void performOfflineTask() {
-		// TODO Auto-generated method stub
 		Toast.makeText(getActivity(),
 				getResources().getString(R.string.no_network),
 				Toast.LENGTH_SHORT).show();
-	
 	}
 }

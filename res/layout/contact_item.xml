@@ -10,7 +10,7 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:src="@drawable/ic_launcher" 
-        android:scaleType="centerCrop"/>
+        android:scaleType="center"/>
 
     <TextView
         android:id="@+id/tvEmail"

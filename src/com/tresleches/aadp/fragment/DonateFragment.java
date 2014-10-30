@@ -5,11 +5,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.View.OnKeyListener;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
@@ -48,7 +46,6 @@ public class DonateFragment extends Fragment {
 		etDonationAmount = (EditText)view.findViewById(R.id.etDonationAmount);
 		Button btnDonate = (Button)view.findViewById(R.id.btnDonate);
 		
-		
 		if(ParseUser.getCurrentUser() != null ){
 			etDonationName.setText(ParseUser.getCurrentUser().getUsername());
 			etDonationEmail.setText(ParseUser.getCurrentUser().getEmail());
@@ -71,8 +68,8 @@ public class DonateFragment extends Fragment {
 	 * Method Which take care of Donation 
 	 */
 	private void donate() {
-		// TODO Auto-generated method stub
 		if(!validate()) return;
+
 		Donation donation = new Donation();
 		Double donationAmount =  Double.valueOf(etDonationAmount.getText().toString()); 
 		donation.setName(etDonationName.getText().toString());

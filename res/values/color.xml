@@ -17,9 +17,9 @@
     <color name="softLime">#BAB86D</color>
     <color name="lightBeige">#D3CFB4</color>
     <color name="pc_brightGreen">#53A93F</color>
-    <color name="pc_red">#DB4437</color>
+    <color name="pc_red">#DB4437</color> 
     <color name="pc_purple">#A4148E</color>
-    <color name="pc_purple_1">#AD62A7</color>
+    <color name="pc_lighterPurple">#AD62A7</color>
     <color name="pc_grayBlue">#59A2BE</color>
     <color name="pc_orange">#F58559</color>
     <color name="pc_gold">#E4C62E</color>
