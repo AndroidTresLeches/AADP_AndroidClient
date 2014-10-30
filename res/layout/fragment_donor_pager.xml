@@ -21,7 +21,7 @@
         app:radius="6dp"
         app:fillColor="@color/pc_purple"
         app:pageColor="@color/menuText"
-        app:strokeColor="@color/menuText"
+        app:strokeColor="@color/pc_purple"
         app:strokeWidth="1dp"
         app:snap="true"/>
 
