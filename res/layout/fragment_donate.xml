@@ -2,6 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent" 
+    android:background="@drawable/searching"
     >
 
     <LinearLayout
@@ -21,20 +22,20 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="18dp"
-        android:textColor="#000000"
+        android:textColor="@color/white"
         android:text="Make a Contribution" />
   	<View
          android:id="@+id/divder_down"
          android:layout_width="match_parent"
          android:layout_height="1dp"
          android:layout_marginBottom="8dp"
-         android:background="@android:color/darker_gray" />    
+         android:background="@color/white" />    
     <TextView
         android:id="@+id/tvSaveLife"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="12dp"
-        android:textColor="#4c4c4c"
+        android:textColor="@color/white"
         android:text="Be the one to save a life" />
 
    
@@ -44,6 +45,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="22dp"
+        android:textColor="@color/white"
+        android:textColorHint="@color/gray"
         android:ems="10"
         android:hint="@string/donate_name" />
 
@@ -52,6 +55,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="22dp"
+        android:textColor="@color/white"
         android:ems="10"
         android:hint="@string/donate_email"
         android:inputType="textEmailAddress" />
@@ -62,6 +66,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="22dp"
         android:numeric="integer"
+        android:textColor="@color/white"
         android:ems="10"
         android:hint="@string/amount_hint" >
         <requestFocus />

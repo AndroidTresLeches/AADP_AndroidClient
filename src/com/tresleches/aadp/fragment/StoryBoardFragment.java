@@ -1,7 +1,5 @@
 package com.tresleches.aadp.fragment;
 
-import java.util.ArrayList;
-
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -14,11 +12,8 @@ import android.view.View.OnClickListener;
 import android.widget.RelativeLayout;
 
 import com.easyandroidanimations.library.PuffOutAnimation;
-import com.etsy.android.grid.StaggeredGridView;
 import com.tresleches.aadp.R;
-import com.tresleches.aadp.adapter.ImageArrayAdapter;
 import com.tresleches.aadp.model.Story;
-import com.tresleches.aadp.model.StoryImage;
 import com.tresleches.aadp.model.StoryTitle;
 
 /**
