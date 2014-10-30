@@ -22,6 +22,7 @@ import android.widget.TextView;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.tresleches.aadp.R;
 import com.tresleches.aadp.activity.StoryDetailActivity;
+import com.tresleches.aadp.circularImageView.CircularImageView;
 import com.tresleches.aadp.helper.Utils;
 import com.tresleches.aadp.interfaces.Shareable;
 import com.tresleches.aadp.model.Story;
@@ -44,7 +45,7 @@ public class StoryArrayAdapter extends ArrayAdapter<Story> {
 		if (convertView == null) {
 			viewHolder = new ViewHolder();
 			convertView = LayoutInflater.from(getContext()).inflate(R.layout.story_list_item, parent, false);
-			viewHolder.ivStoryImage = (ImageView) convertView.findViewById(R.id.ivStoryImage);
+			viewHolder.ivStoryImage = (CircularImageView) convertView.findViewById(R.id.ivStoryImage);
 			viewHolder.tvStoryName = (TextView) convertView.findViewById(R.id.tvStoryName);
 			viewHolder.tvStoryDetail = (TextView) convertView.findViewById(R.id.tvStoryDetail);
 			viewHolder.ivTwitter = (ImageView) convertView.findViewById(R.id.ivTwitter);
@@ -142,7 +143,7 @@ public class StoryArrayAdapter extends ArrayAdapter<Story> {
 		public ImageView ivTwitter;
 		public TextView tvStoryName;
 		public TextView tvStoryDetail;
-		public ImageView ivStoryImage;
+		public CircularImageView ivStoryImage;
 	}
 
 }
