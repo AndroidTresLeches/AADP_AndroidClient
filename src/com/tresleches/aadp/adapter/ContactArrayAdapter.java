@@ -1,7 +1,5 @@
 package com.tresleches.aadp.adapter;
 
-import java.util.List;
-
 import android.app.Activity;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -13,11 +11,13 @@ import android.view.animation.AnimationUtils;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import com.mikhaellopez.circularimageview.CircularImageView;
 import com.parse.ParseException;
 import com.parse.ParseFile;
 import com.tresleches.aadp.R;
-import com.tresleches.aadp.circularImageView.CircularImageView;
 import com.tresleches.aadp.model.Contact;
+
+import java.util.List;
 
 public class ContactArrayAdapter extends ArrayAdapter<Contact> {
     private List<Contact> _contacts;

@@ -25,12 +25,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.mikhaellopez.circularimageview.CircularImageView;
 import com.parse.ParseException;
 import com.parse.ParseFile;
 import com.parse.ParseUser;
 import com.tresleches.aadp.R;
 import com.tresleches.aadp.activity.LoginActivity;
-import com.tresleches.aadp.circularImageView.CircularImageView;
 import com.tresleches.aadp.helper.DateHelper;
 import com.tresleches.aadp.model.Event;
 import com.tresleches.aadp.model.Favorite;

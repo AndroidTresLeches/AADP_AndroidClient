@@ -19,10 +19,10 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.mikhaellopez.circularimageview.CircularImageView;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.tresleches.aadp.R;
 import com.tresleches.aadp.activity.StoryDetailActivity;
-import com.tresleches.aadp.circularImageView.CircularImageView;
 import com.tresleches.aadp.helper.Utils;
 import com.tresleches.aadp.interfaces.Shareable;
 import com.tresleches.aadp.model.Story;
