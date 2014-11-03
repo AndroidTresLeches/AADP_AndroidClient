@@ -54,10 +54,12 @@ public class LoginFragment extends Fragment {
 		ivAadpIcon = (ImageView) view.findViewById(R.id.ivAadpIcon);
 		ivAadpText = (ImageView) view.findViewById(R.id.ivAadpText);
 		Typeface font = Typeface.createFromAsset(getActivity().getAssets(),
-				"fonts/OpenSans-Light.ttf");
+				"fonts/Roboto-Regular.ttf");
+		Typeface fontBtn = Typeface.createFromAsset(getActivity().getAssets(),
+				"fonts/Roboto-Bold.ttf");
 		etUserName.setTypeface(font);
 		etPassword.setTypeface(font);
-		btnLogin.setTypeface(font);
+		btnLogin.setTypeface(fontBtn);
 		btnLogin.setOnClickListener(new OnClickListener() {
 			
 			@Override
@@ -67,11 +69,8 @@ public class LoginFragment extends Fragment {
 				login();
 				//new AADPTaskManager(LoginActivity.this, LoginActivity.this).execute(); 
 			}
-
 		});
-		
-		
-		
+		tvSignUp.setTypeface(fontBtn);
 		tvSignUp.setOnClickListener(new OnClickListener() {
 			
 			@Override
@@ -83,7 +82,6 @@ public class LoginFragment extends Fragment {
 		});
 		return view;
 	}
-	
 
 	/**
 	 * Method To log In
@@ -93,15 +91,10 @@ public class LoginFragment extends Fragment {
 			  public void done(ParseUser user, ParseException e) {
 			    if (user != null) {
 			    	Intent data = new Intent(getActivity(), HomeActivity.class);
-					//startActivity(i);
-			    	// Intent data = new Intent();
 			   	  // Pass relevant data back as a result
 			   	  data.putExtra("username", username);
 			   	  data.putExtra("objectId", objectId);
-			   	  // Activity finished ok, return the data
-			   	 // getActivity().setRsetResult(RESULT_OK, data); // set result code and bundle data for response
 			   	  startActivity(data);
-			   	  //getActivity().finish(); // closes the activity, pass data to parent
 			    } else {
 			      // Signup failed. Look at the ParseException to see what happened.
 			    	Log.d("ERROR", "User login failed");

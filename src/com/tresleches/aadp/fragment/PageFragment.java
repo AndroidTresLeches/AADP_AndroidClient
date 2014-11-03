@@ -67,7 +67,8 @@ public class PageFragment extends Fragment {
 	    
 		ImageView ivPageImage = (ImageView)v.findViewById(R.id.ivPageImage);
 		if (mPosition ==3){
-			ivPageImage.setScaleType(ScaleType.CENTER);
+			//ivPageImage.setScaleType(ScaleType.CENTER);
+			ivPageImage.setVisibility(View.GONE);
 			btStart.setVisibility(View.VISIBLE);
 			btStart.setOnClickListener(new OnClickListener() {
 				
@@ -75,11 +76,13 @@ public class PageFragment extends Fragment {
 				public void onClick(View v) {
 					Intent i = new Intent(getActivity(), DonorActivity.class);
 					startActivity(i);
+					getActivity().overridePendingTransition(R.anim.right_in, R.anim.left_out);
 				}
 			});
 		}
 		else{
 			ivPageImage.setScaleType(ScaleType.FIT_XY);
+			ivPageImage.setVisibility(View.VISIBLE);
 			btStart.setVisibility(View.GONE);
 		}
 		ivPageImage.setImageResource(mImageResId);

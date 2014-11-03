@@ -39,7 +39,7 @@ public class SignUpActivity extends Activity {
 		btnRegister = (Button) findViewById(R.id.btnRegister);
 		
 		Typeface font = Typeface.createFromAsset(getAssets(),
-				"fonts/OpenSans-Light.ttf");
+				"fonts/Roboto-Regular.ttf");
 		etUserName.setTypeface(font);
 		etEmail.setTypeface(font);
 		etConfirmPassword.setTypeface(font);

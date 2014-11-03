@@ -64,6 +64,7 @@ public class DonorFragment extends Fragment {
 					int position, long id) {
 				Intent i = new Intent(getActivity(), DonorActivity.class);
 				startActivity(i);
+				getActivity().overridePendingTransition(R.anim.right_in, R.anim.left_out);
 			}
 		});
 		

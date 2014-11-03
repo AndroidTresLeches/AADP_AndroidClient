@@ -11,6 +11,7 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="152dp"
+        android:background="@drawable/border_login"
         android:ems="10"
         android:hint="@string/userName" >
 
@@ -23,15 +24,15 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@id/etUserName"
         android:layout_centerVertical="true"
+        android:background="@drawable/border_login"
         android:ems="10"
         android:hint="@string/password"
-        android:inputType="textPassword"
-         />
+        android:inputType="textPassword" />
 
     <Button
         android:id="@+id/btLogIn"
-        android:layout_width="60dp"
-        android:layout_height="30dp"
+        android:layout_width="80dp"
+        android:layout_height="50dp"
         android:layout_below="@id/etPassword"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"

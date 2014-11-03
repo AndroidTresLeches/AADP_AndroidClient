@@ -3,7 +3,7 @@
     android:id="@+id/rlAboutItem"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg_card_pad_less" >
+    android:background="@drawable/bg_card_knowledge" >
 
     <ImageView
         android:id="@+id/ivAboutImage"
@@ -35,7 +35,7 @@
         android:layout_alignParentRight="true"
         android:layout_below="@+id/tvAboutTitle"
         android:ellipsize="end"
-        android:lines="7"
+        android:lines="8"
         android:paddingBottom="20dp"
         android:text="@string/hello_world"/>
 

@@ -27,8 +27,7 @@
         android:layout_alignParentRight="true"
         android:layout_below="@+id/tvStepTitle"
         android:layout_margin="8dp" 
-        android:background="@drawable/background_card">
+        android:background="@color/tabBackground"/>
 
-    </ListView>
 
 </RelativeLayout>

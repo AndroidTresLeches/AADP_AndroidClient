@@ -36,12 +36,12 @@ public class DateHelper {
 		//System.out.println("#######" + time);
 		time = time.substring(0, time.indexOf(':')!=-1?time.indexOf(':'):time.length());//IN windows Date comes as 10:00
 		if(Integer.parseInt(time) > 12){
-			newTime = Integer.parseInt(time.substring(0, 1)) -12;
+			newTime = Integer.parseInt(time.substring(0, 2)) -12;
 			exactTime = Integer.toString(newTime) + ":00 PM";
 		}else if(Integer.parseInt(time) == 12){
 			exactTime = time + ":00 PM";
 		}else{
-			exactTime = time + ":00 PM";
+			exactTime = time + ":00 AM";
 		}
 		return exactTime;
 	}

@@ -169,17 +169,6 @@
         android:layout_marginTop="5dp"
         android:background="@drawable/rounded_button" />
 
-    <TextView
-        android:id="@+id/tvCoordinatorName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/ivCoordinator"
-        android:layout_alignRight="@+id/tvEventDate"
-        android:paddingLeft="5dp"
-        android:text="@string/coordinator"
-        android:textColor="@color/realm_pink"
-        android:textSize="12sp" />
-
     <ImageView
         android:id="@+id/ivCoordinator"
         android:layout_width="40dp"
@@ -190,5 +179,16 @@
         android:paddingTop="10dp"
         android:scaleType="centerCrop"
         android:layout_marginBottom="15dp" />
+
+    <TextView
+        android:id="@+id/tvCoordinatorName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/ivCoordinator"
+        android:layout_toRightOf="@+id/ivCoordinator"
+        android:paddingLeft="5dp"
+        android:text="@string/coordinator"
+        android:textColor="@color/realm_pink"
+        android:textSize="12sp" />
 
 </RelativeLayout>
