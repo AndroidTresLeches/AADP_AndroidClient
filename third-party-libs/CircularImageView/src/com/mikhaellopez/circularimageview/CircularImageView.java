@@ -1,6 +1,4 @@
-package com.tresleches.aadp.circularImageView;
-
-import com.tresleches.aadp.R;
+package com.mikhaellopez.circularimageview;
 
 import android.content.Context;
 import android.content.res.TypedArray;

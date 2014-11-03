@@ -17,7 +17,6 @@ local.properties
 res/values/app_config.xml
 app_config.xml
 .DS_Store
-project.properties
 
 # Eclipse project files
 .classpath
@@ -33,10 +32,7 @@ proguard-project.txt
 *.iws
 .gradle/
 build/
-.idea/workspace.xml
-.idea/tasks.xml
-.idea/datasources.xml
-.idea/dataSources.ids
+.idea
 
 *.pydevproject
 .project

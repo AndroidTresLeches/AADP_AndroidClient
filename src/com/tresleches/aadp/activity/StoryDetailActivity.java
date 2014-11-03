@@ -8,12 +8,12 @@ import android.view.View.OnClickListener;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.mikhaellopez.circularimageview.CircularImageView;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.parse.GetCallback;
 import com.parse.ParseException;
 import com.parse.ParseQuery;
 import com.tresleches.aadp.R;
-import com.tresleches.aadp.circularImageView.CircularImageView;
 import com.tresleches.aadp.helper.AADPTaskManager;
 import com.tresleches.aadp.helper.Utils;
 import com.tresleches.aadp.interfaces.AADPTask;

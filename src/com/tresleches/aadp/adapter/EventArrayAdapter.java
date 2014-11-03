@@ -1,11 +1,5 @@
 package com.tresleches.aadp.adapter;
 
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.GregorianCalendar;
-import java.util.List;
-
 import android.animation.ObjectAnimator;
 import android.app.Activity;
 import android.content.Context;
@@ -25,6 +19,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.mikhaellopez.circularimageview.CircularImageView;
 import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseFile;
@@ -32,10 +27,15 @@ import com.parse.ParseQuery;
 import com.parse.ParseUser;
 import com.tresleches.aadp.R;
 import com.tresleches.aadp.activity.LoginActivity;
-import com.tresleches.aadp.circularImageView.CircularImageView;
 import com.tresleches.aadp.helper.DateHelper;
 import com.tresleches.aadp.model.Event;
 import com.tresleches.aadp.model.Favorite;
+
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
+import java.util.List;
 
 public class EventArrayAdapter extends ArrayAdapter<Event> {
 
