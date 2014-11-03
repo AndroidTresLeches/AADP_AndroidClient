@@ -1,4 +1,1 @@
-//include ':third-party-libs:android-support-v7-appcompat'
-//include ':third-party-libs:google-play-services_lib'
-//include ':'
 include ':third-party-libs:CircularImageView'
