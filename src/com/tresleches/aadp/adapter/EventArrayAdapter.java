@@ -205,31 +205,4 @@ public class EventArrayAdapter extends ArrayAdapter<Event> {
 			day = cal.get(Calendar.DAY_OF_MONTH);
 		}
 	}
-
-	public boolean isFavorite(Event event) {
-		ParseQuery<Favorite> query = ParseQuery.getQuery(Favorite.class);
-		// Define our query conditions
-		try {
-			String user = ParseUser.getCurrentUser().getUsername();
-			if (user != null) {
-				query.whereEqualTo("objectId", event.getObjectId());
-				query.whereEqualTo("user", user);
-				query.findInBackground(new FindCallback<Favorite>() {
-					public void done(List<Favorite> results, ParseException e) {
-						if (e == null) {
-							// results have all the Story
-							isFav = true;
-							// viewHolder.ivFavoriteIcon
-							// .setImageResource(R.drawable.ic_checked_fav);
-						} else {
-							// There was an error
-						}
-					}
-				});
-			}
-		} catch (Exception ex) {
-			isFav = false;
-		}
-		return isFav;
-	}
 }
