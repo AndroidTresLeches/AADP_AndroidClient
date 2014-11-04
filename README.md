@@ -38,7 +38,7 @@ Completed user stories:
 
 **GIF**
 Gif Image
-![Alt Text](AADP2.gif)
+![Alt Text](AADP-Demo.gif)
 
 
 **Team**
